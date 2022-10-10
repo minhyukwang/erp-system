@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+		<setting value="true" name="callSettersOnNulls" />
+		<setting value="false" name="cacheEnabled" />
+		<setting value="true" name="useGeneratedKeys" />
+		<setting value="REUSE" name="defaultExecutorType" />
+		<setting value="VARCHAR" name="jdbcTypeForNull" />
+		<setting value="true" name="mapUnderscoreToCamelCase" />
+	</settings>
+
+	<typeAliases>
+
+		<!--base -->
+		<typeAlias alias="code" type="com.minhyuk.base.to.CodeBean" />
+		<typeAlias alias="detailCode" type="com.minhyuk.base.to.DetailCodeBean" />
+		<typeAlias alias="menu" type="com.minhyuk.base.to.MenuBean" />
+		<typeAlias alias="permission" type="com.minhyuk.base.to.PermissionBean" />
+		<typeAlias alias="empPermission" type="com.minhyuk.base.to.EmpPermissionBean" />
+		<typeAlias alias="sido" type="com.minhyuk.base.to.SidoBean" />
+		<typeAlias alias="sigungu" type="com.minhyuk.base.to.SigunguBean" />
+		<typeAlias alias="address" type="com.minhyuk.base.to.AddressBean" />
+
+		<!-- insa -->
+		<typeAlias alias="emp" type="com.minhyuk.insa.emp.to.EmpBean" />
+
+		<!-- account -->
+		<typeAlias alias="account" type="com.minhyuk.accounting.account.to.AccountBean" />
+		<typeAlias alias="accountManagement" type="com.minhyuk.accounting.account.to.AccountManagementBean" />
+
+		<!-- slip -->
+		<typeAlias alias="creditorBalance" type="com.minhyuk.accounting.slip.to.CreditorBalanceBean" />
+		<typeAlias alias="debtorBalance" type="com.minhyuk.accounting.slip.to.DebtorBalanceBean" />
+		<typeAlias alias="formerIncome" type="com.minhyuk.accounting.slip.to.FormerIncomeBean" />
+		<typeAlias alias="formerStatementPosition" type="com.minhyuk.accounting.slip.to.FormerStatementPositionBean" />
+		<typeAlias alias="incomeStatement" type="com.minhyuk.accounting.slip.to.IncomeStatementBean" />
+		<typeAlias alias="journal" type="com.minhyuk.accounting.slip.to.JournalBean" />
+		<typeAlias alias="journalList" type="com.minhyuk.accounting.slip.to.JournalListBean" />
+		<typeAlias alias="journalManagement" type="com.minhyuk.accounting.slip.to.JournalManagementBean" />
+		<typeAlias alias="slip" type="com.minhyuk.accounting.slip.to.SlipBean" />
+		<typeAlias alias="statementPosition" type="com.minhyuk.accounting.slip.to.StatementPositionBean" />
+		<typeAlias alias="totalIncome" type="com.minhyuk.accounting.slip.to.TotalIncomeBean" />
+		<typeAlias alias="totalStatement" type="com.minhyuk.accounting.slip.to.TotalStatementBean" />
+
+	</typeAliases>
+
+</configuration>
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.accounting.account.dao.AccountDAO">
+
+	<resultMap id="resultAccount" type="account">
+		<result property="accountCode" column="account_code" />
+		<result property="accountName" column="account_name" />
+		<result property="parentAccount" column="parent_account" />
+		<result property="accountBalance" column="account_balance" />
+		<result property="accountChange" column="account_change" />
+		<result property="accountUse" column="account_use" />
+		<result property="level" column="level" />
+		<collection property="accountManagementBeanList" select="com.minhyuk.accounting.account.dao.AccountManagementDAO.selectAccountManagementList"
+			column="account_code" javaType="list" />
+	</resultMap>
+
+	<select id="selectAccountList" resultMap="resultAccount">
+		SELECT LEVEL
+		     , account_code
+		     , parent_account
+		     , account_name
+		     , account_balance
+		     , account_change
+		     , account_use
+		FROM ACCOUNT START WITH parent_account IS NULL
+		CONNECT BY PRIOR account_code = parent_account
+	</select>
+
+	<insert id="insertAccount">
+        INSERT
+		  INTO account
+		       (
+		           account_code,
+		           parent_account,
+		           account_name,
+		           account_balance,
+		           account_change,
+		           account_use
+		       )
+		       VALUES
+		       (
+		           #{accountCode},
+		           #{parentAccount},
+		           #{accountName},
+		           #{accountBalance},
+		           #{accountChange},
+		           #{accountUse}
+       )
+	</insert>
+
+	<update id="updateAccount">
+		UPDATE account
+		       SET account_name=#{accountName},
+		           account_balance=#{accountBalance},
+		           account_change=#{accountChange},
+		           account_use=#{accountUse}
+		 WHERE account_code=#{accountCode}
+	</update>
+
+	<delete id="deleteAccount">
+        delete from account where account_code=#{accountCode}
+	</delete>
+
+</mapper>

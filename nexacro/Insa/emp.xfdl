@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="emp" classname="emp" left="0" top="0" width="800" height="460" titletext="New Form" onload="emp_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="사원관리" left="1.21%" top="8" right="0.69%" height="25" style="background:#edaf78ff;align:center middle;font:bold antialias 14 Verdana;"/>
+        <Combo id="empDept" taborder="1" innerdataset="dsDept" codecolumn="DETAIL_CODE" datacolumn="DETAIL_NAME" left="40.69%" top="272" right="37.93%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static02" taborder="2" text="성명" left="26.55%" top="46" right="65.52%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="empName" taborder="3" left="35.69%" top="46" right="49.14%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Button id="addrBtn" taborder="4" onclick="addrBtn_onclick" left="95%" top="304" right="0.75%" height="27" style="image:URL('theme://images\StatusbarForm_01.png');background:@gradation URL('theme://search1.Bmp') stretch;font:bold antialias 9 나눔바른고딕;"/>
+        <Grid id="empListGrid" taborder="5" binddataset="dsEmp" useinputpanel="false" autofittype="col" left="1.21%" top="80" right="0.69%" height="152" style="font:Verdana,10,bold antialias;" oncellclick="empListGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;" text="No"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;" text="사번"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;" text="성명"/>
+                <Cell col="3" displaytype="normal" style="background:#f7e4cfff;" text="부서"/>
+                <Cell col="4" displaytype="normal" style="background:#f7e4cfff;" text="직급"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;selectfont:Verdana,10,bold;" expr="expr:currow+1"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;selectfont:Verdana,10,bold;" text="bind:emp_no"/>
+                <Cell col="2" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;selectfont:Verdana,10,bold;" text="bind:emp_name"/>
+                <Cell col="3" displaytype="combo" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;selectfont:Verdana,10,bold;" text="bind:dept_no" combodataset="dsDept" combocodecol="DETAIL_CODE" combodatacol="DETAIL_NAME" combodisplay="edit"/>
+                <Cell col="4" displaytype="combo" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;selectfont:Verdana,10,bold;" text="bind:emp_position" combodataset="dsPosition" combocodecol="detail_code" combodatacol="detail_name" combodisplay="edit"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="empSearchBtn" taborder="6" text="조회" onclick="empSearchBtn_onclick" left="51.55%" top="46" right="41.38%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Button id="addBtn" taborder="7" text="추가" left="60.52%" top="46" right="29.83%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="addBtn_onclick"/>
+        <Button id="saveBtn" taborder="8" text="저장" left="70.17%" top="46" right="20.17%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="saveBtn_onclick"/>
+        <Button id="delBtn" taborder="9" text="삭제" left="79.83%" top="46" right="10.52%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="delBtn_onclick"/>
+        <Button id="resetBtn" taborder="10" text="취소" onclick="resetBtn_onclick" left="89.48%" top="46" right="0.86%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Edit id="empAddress" taborder="11" left="40.75%" top="304" right="5.63%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static04" taborder="12" text="주소" left="28.79%" top="304" right="60%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Static id="Static03" taborder="13" text="성명" left="28.79%" top="240" right="60%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Static id="Static05" taborder="14" text="사번" left="66.03%" top="240" right="22.76%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="empNo" taborder="15" left="77.93%" top="240" right="0.69%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static06" taborder="16" text="직급" left="66.03%" top="272" right="22.76%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Static id="Static07" taborder="17" text="부서" left="28.79%" top="272" right="60%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Static id="Static08" taborder="18" text="e_mail" left="66.03%" top="336" right="22.76%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="empEmail" taborder="19" left="77.93%" top="336" right="0.69%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Edit id="empTel" taborder="20" left="40.69%" top="336" right="37.93%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static09" taborder="21" text="전화번호" left="28.79%" top="336" right="60%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Combo id="empPosition" taborder="22" innerdataset="dsPosition" codecolumn="detail_code" datacolumn="detail_name" left="77.93%" top="272" right="0.69%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static01" taborder="23" text="입사일" left="66.03%" top="368" right="22.76%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="empPw" taborder="24" password="true" left="40.69%" top="368" right="37.93%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static10" taborder="25" text="비밀번호" left="28.79%" top="368" right="60%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Static id="Static12" taborder="26" text="비고" left="28.79%" top="400" right="60%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <TextArea id="empMemo" taborder="27" left="40.69%" top="400" right="0.52%" height="47" style="font:bold antialias 10 Verdana;"/>
+        <Calendar id="empHiredate" taborder="28" dateformat="yyyy-MM-dd" left="77.93%" top="368" right="0.69%" height="25" style="font:bold antialias 10 Verdana;"/>
+        <ImageViewer id="empImg" taborder="29" left="1.55%" top="240" right="73.28%" height="176" style="font:나눔바른고딕,9,bold antialias;"/>
+        <Button id="seachImg" taborder="30" text="열기" left="3.28%" top="422" right="85.69%" height="28" style="color:gray;font:bold antialias 10 Verdana;" onclick="seachImg_onclick"/>
+        <Button id="saveImg" taborder="31" text="저장" onclick="saveImg_onclick" left="14.31%" top="422" right="74.66%" height="28" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Edit id="no00" taborder="32" left="40.69%" top="240" right="37.93%" height="26" style="font:bold antialias 10 Verdana;"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item3" compid="empDept" propid="value" datasetid="dsEmp" columnid="dept_no"/>
+      <BindItem id="item4" compid="empAddress" propid="value" datasetid="dsEmp" columnid="emp_address"/>
+      <BindItem id="item1" compid="empNo" propid="value" datasetid="dsEmp" columnid="emp_no"/>
+      <BindItem id="item8" compid="empEmail" propid="value" datasetid="dsEmp" columnid="emp_email"/>
+      <BindItem id="item5" compid="empTel" propid="value" datasetid="dsEmp" columnid="emp_tel"/>
+      <BindItem id="item2" compid="empPosition" propid="value" datasetid="dsEmp" columnid="emp_position"/>
+      <BindItem id="item6" compid="empPw" propid="value" datasetid="dsEmp" columnid="emp_pw"/>
+      <BindItem id="item9" compid="empMemo" propid="value" datasetid="dsEmp" columnid="memo"/>
+      <BindItem id="item7" compid="empHiredate" propid="value" datasetid="dsEmp" columnid="emp_hiredate"/>
+      <BindItem id="item0" compid="no00" propid="value" datasetid="dsEmp" columnid="emp_name"/>
+    </Bind>
+    <Objects>
+      <Dataset id="dsDept" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DETAIL_CODE" type="STRING" size="256"/>
+          <Column id="DETAIL_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DETAIL_CODE">DP001</Col>
+            <Col id="DETAIL_NAME">경영부</Col>
+          </Row>
+          <Row>
+            <Col id="DETAIL_NAME">관리부</Col>
+            <Col id="DETAIL_CODE">DP002</Col>
+          </Row>
+          <Row>
+            <Col id="DETAIL_NAME">재경부</Col>
+            <Col id="DETAIL_CODE">DP003</Col>
+          </Row>
+          <Row>
+            <Col id="DETAIL_NAME">생산부</Col>
+            <Col id="DETAIL_CODE">DP004</Col>
+          </Row>
+          <Row>
+            <Col id="DETAIL_NAME">구매부</Col>
+            <Col id="DETAIL_CODE">DP005</Col>
+          </Row>
+          <Row>
+            <Col id="DETAIL_NAME">영업부</Col>
+            <Col id="DETAIL_CODE">DP006</Col>
+          </Row>
+          <Row>
+            <Col id="DETAIL_NAME">개발부</Col>
+            <Col id="DETAIL_CODE">DP007</Col>
+          </Row>
+          <Row>
+            <Col id="DETAIL_NAME">품질부</Col>
+            <Col id="DETAIL_CODE">DP008</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsImg" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="emp_filename" type="STRING" size="256"/>
+          <Column id="img_file_data" type="BLOB" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileDialog id="FileDialog" filter="All(*.*)|*.*|" filterindex="0" defaultextension="false" onclose="FileDialog_onclose"/>
+      <Dataset id="dsPosition" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="detail_code" type="STRING" size="256"/>
+          <Column id="detail_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="detail_code">PT001</Col>
+            <Col id="detail_name">대표이사</Col>
+          </Row>
+          <Row>
+            <Col id="detail_code">PT002</Col>
+            <Col id="detail_name">전무이사</Col>
+          </Row>
+          <Row>
+            <Col id="detail_code">PT003</Col>
+            <Col id="detail_name">상무이사</Col>
+          </Row>
+          <Row>
+            <Col id="detail_code">PT004</Col>
+            <Col id="detail_name">팀장</Col>
+          </Row>
+          <Row>
+            <Col id="detail_code">PT005</Col>
+            <Col id="detail_name">부장</Col>
+          </Row>
+          <Row>
+            <Col id="detail_code">PT006</Col>
+            <Col id="detail_name">차장</Col>
+          </Row>
+          <Row>
+            <Col id="detail_code">PT007</Col>
+            <Col id="detail_name">과장</Col>
+          </Row>
+          <Row>
+            <Col id="detail_code">PT008</Col>
+            <Col id="detail_name">대리</Col>
+          </Row>
+          <Row>
+            <Col id="detail_name">주임</Col>
+            <Col id="detail_code">PT009</Col>
+          </Row>
+          <Row>
+            <Col id="detail_name">사원</Col>
+            <Col id="detail_code">PT010</Col>
+          </Row>
+          <Row>
+            <Col id="detail_name">인턴</Col>
+            <Col id="detail_code">PT011</Col>
+          </Row>
+          <Row>
+            <Col id="detail_name">기타</Col>
+            <Col id="detail_code">PT012</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <VirtualFile id="VirtualFile" onsuccess="VirtualFile_onsuccess"/>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[this.fileName="";
+this.filePath=""; 
+this.vFile=""; 
+
+// 콜백 함수
+this.callback = function(trid, errorCode, errorMsg){
+	if(trid=="saveEmpImg"){
+		if(errorCode==0){
+			alert("사진저장완료.");
+		}
+	}else if(trid=="batchEmpList"){
+		if(errorCode<0){
+			alert("수정 실패"+errorMsg);
+		}else{
+			//alert("수정 성공"+strErrorMsg);
+			//trace(dsMenu.saveXML());
+		}
+	}
+}
+
+// emp 폼이 로드 되면
+this.emp_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	application.dsEmp.filter("");
+	var empImgName=application.dsEmp.getColumn(e.row,'emp_image');
+	trace(" ----------- "+empImgName);
+	if(empImgName!=null){
+		this.empImg.set_image("http://localhost/project6th/image/"+empImgName);	
+		this.empImg.set_stretch("fit");
+	}else{
+		this.empImg.set_image("http://localhost/project6th/image/noimage.gif");
+	}
+}
+
+// 사원 조회 버튼
+function empSearchBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var name=empName.text;
+	if(name==""){
+		dsEmp.filter("");
+	}else{
+		dsEmp.filter("String(emp_name).indexOf('"+name+"')>=0");
+	}
+
+}
+
+// 사원 추가 버튼
+this.addBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.dsEmp.addRow();
+}
+
+// 사원 삭제 버튼
+this.delBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(confirm("선택한 사원정보를 삭제하시겠습니까?")){
+		application.dsEmp.deleteRow(application.dsEmp.rowposition);
+	}
+}
+
+// 파일브라우져 열기
+this.seachImg_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.FileDialog.open("FileOpen",FileDialog.LOAD);
+	
+	//imgDialog=this.FileDialog.open("FileOpen",FileDialog.Load);
+	//imgName = this.imgDialog.filename;
+	//imgPath = this.imgDialog.path;
+	//img = imgPath+imgName;
+	//this.empImg.image=img;
+	//this.empImg.stretch="fit";
+}
+
+// 파일브라우저가 닫힐 때 이미지 셋팅
+this.FileDialog_onclose = function(obj:FileDialog, e:nexacro.FileDialogEventInfo)
+{
+	this.vFile=e.virtualfiles[0];
+	this.fileName=this.vFile.filename; 
+	var realpath=system.convertRealPath(this.vFile.fullpath);
+	this.empImg.set_image("file://"+realpath);
+	this.empImg.set_stretch("fit");
+	
+	this.VirtualFile.open(this.vFile.fullpath,VirtualFile.openBinary);
+	this.VirtualFile.read(this.vFile.getFileSize());
+}
+
+this.VirtualFile_onsuccess = function(obj:VirtualFile, e:nexacro.VirtualFileEventInfo)
+{
+	this.dsImg.addRow();
+	this.dsImg.setColumn(0,"emp_filename",this.fileName);
+	this.dsImg.setColumn(0,"img_file_data",e.binarydata);
+}
+
+// 이미지 저장 버튼
+this.saveImg_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	//imgDialog.open(VirtualFile.openRead | VirtualFile.openBinary);
+	//var img_binary=imgDialog.read(imgDialog.getFileSize());
+	
+	this.transaction("saveEmpImg","DataUrl::emp/saveEmpImg.do","dsImg=dsImg:u","","","callback");
+	
+	//this.transaction("saveEmpImg","javaSvc::/empInfo/saveEmpImg.do","ds_image=ds_image:u","","","callback");
+	//application.ds_emp_list.setColumn(e.row,"EMP_IMG",this.fileName);
+}
+
+// 사원 그리드 클릭 시
+this.empListGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var empImgName=application.dsEmp.getColumn(e.row,'emp_image');
+	trace(" ----------- "+empImgName);
+	if(empImgName!=null){
+		this.empImg.set_image("http://localhost/project5th/image/"+empImgName);	
+		this.empImg.stretch="fit";
+	}else{
+		this.empImg.set_image("http://localhost/project5th/image/noimage.gif");
+	}
+}
+
+// 주소 검색 버튼
+function addrBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	dialog("modal", "Base::postInfo.xfdl", MainFrame, {a:'aaa', b:'bbb'}, "showtitlebar=true showstatusbar=false", 800, 150, 800, 600,this);
+}
+
+// 주소 받아오는 함수
+function setPostInfo(zipCode, sidoValue, dong, detailAddr)
+{
+	this.empAddress.value=zipCode+" "+sidoValue+dong+detailAddr;
+}
+
+// 사원 정보 등록&수정
+this.saveBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var empFileName=this.dsImg.getColumn(e.row,'emp_filename')
+	application.dsEmp.setColumn(e.row,'emp_image',empFileName);
+	if(confirm("변경사항을 저장하시겠습니까?")){	
+		this.transaction("batchEmpList","DataUrl::emp/batchEmpList.do","dsEmp=dsEmp:U","dsEmp=dsEmp","","callback");
+	}
+}
+
+
+]]></Script>
+  </Form>
+</FDL>

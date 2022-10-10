@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="accountRegis" classname="accountRegis" left="0" top="0" width="730" height="486" titletext="New Form" onload="accountRegis_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="계정과목등록" left="1.37%" top="8" right="1.37%" height="25" style="background:#edaf78ff;align:center middle;font:bold antialias 14 Verdana;"/>
+        <Static id="Static03" taborder="1" text="상위계정코드" left="10.14%" top="286" right="75.21%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="accountParent" taborder="2" left="25.75%" top="286" right="49.32%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static01" taborder="3" text="계정과목코드" left="10.14%" top="319" right="75.21%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="accountCode" taborder="4" left="25.75%" top="319" right="49.32%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static02" taborder="5" text="계정과목명" left="10.14%" top="352" right="75.21%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="accountName" taborder="6" left="25.75%" top="352" right="49.32%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static04" taborder="7" text="대차구분" left="10.14%" top="385" right="75.21%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="accountBalance" taborder="8" left="25.75%" top="385" right="49.32%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static05" taborder="9" text="수정여부" left="10.14%" top="418" right="75.21%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="accountChange" taborder="10" left="25.75%" top="418" right="49.32%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static06" taborder="11" text="사용여부" left="10.14%" top="451" right="75.21%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="accountUse" taborder="12" left="25.75%" top="451" right="49.32%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Button id="addBtn" taborder="13" text="추가" left="67.81%" top="44" right="24.52%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="addBtn_onclick"/>
+        <Button id="saveBtn" taborder="14" text="저장" onclick="saveBtn_onclick" left="83.15%" top="44" right="9.18%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Button id="delBtn" taborder="15" text="삭제" left="75.48%" top="44" right="16.85%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="delBtn_onclick"/>
+        <Button id="cancelBtn" taborder="16" text="취소" onclick="cancelBtn_onclick" left="90.82%" top="44" right="1.51%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Static id="Static07" taborder="17" text="상위 계정" left="1.51%" top="80" right="70.41%" height="24" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Grid id="firstAccountGrid" taborder="18" binddataset="dsFirstAccount" useinputpanel="false" autofittype="col" left="1.51%" top="116" right="70.41%" height="160" oncellclick="firstAccountGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="계정코드"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="계정명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_code"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static08" taborder="19" text="중간 계정" left="30%" top="80" right="39.73%" height="24" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Grid id="secondAccountGrid" taborder="20" binddataset="dsSecondAccount" useinputpanel="false" autofittype="col" left="30%" top="116" right="39.73%" height="160" oncellclick="secondAccountGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="계정코드"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="계정명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_code"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static09" taborder="21" text="하위 계정" left="60.68%" top="80" right="1.37%" height="24" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Grid id="thirdAccountGrid" taborder="22" binddataset="dsThirdAccount" useinputpanel="false" autofittype="col" left="60.68%" top="116" right="1.37%" height="360">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="계정코드"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="계정명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_code"/>
+                <Cell col="1" displaytype="normal" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="accountParent" propid="value" datasetid="dsThirdAccount" columnid="parent_account"/>
+      <BindItem id="item1" compid="accountCode" propid="value" datasetid="dsThirdAccount" columnid="account_code"/>
+      <BindItem id="item2" compid="accountName" propid="value" datasetid="dsThirdAccount" columnid="account_name"/>
+      <BindItem id="item3" compid="accountBalance" propid="value" datasetid="dsThirdAccount" columnid="account_balance"/>
+      <BindItem id="item4" compid="accountChange" propid="value" datasetid="dsThirdAccount" columnid="account_change"/>
+      <BindItem id="item5" compid="accountUse" propid="value" datasetid="dsThirdAccount" columnid="account_use"/>
+    </Bind>
+    <Objects>
+      <Dataset id="dsSecondAccount" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+          <Column id="parent_account" type="STRING" size="256"/>
+          <Column id="account_balance" type="STRING" size="256"/>
+          <Column id="account_change" type="STRING" size="256"/>
+          <Column id="account_use" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsFirstAccount" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+          <Column id="parent_account" type="STRING" size="256"/>
+          <Column id="account_balance" type="STRING" size="256"/>
+          <Column id="account_change" type="STRING" size="256"/>
+          <Column id="account_use" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsThirdAccount" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+          <Column id="parent_account" type="STRING" size="256"/>
+          <Column id="account_balance" type="STRING" size="256"/>
+          <Column id="account_change" type="STRING" size="256"/>
+          <Column id="account_use" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+// 콜백 함수
+this.callback = function(trid, errorCode, errorMsg){
+	if(trid=="batchAccount"){
+		if(errorCode !=0){
+			alert("등록 실패");
+		}else{
+			//alert("등록 성공");
+			application.dsAccount.copyData(this.dsThirdAccount);
+			reload();
+		}
+	}
+}
+
+// 계정과목등록 폼이 로드되면
+this.accountRegis_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.dsFirstAccount.copyData(application.dsAccount);
+	this.dsFirstAccount.filter("level==1");
+}
+
+// 상위계정 그리드 클릭 시
+this.firstAccountGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var firstCode=this.dsFirstAccount.getColumn(e.row, "account_code");
+	this.dsSecondAccount.copyData(application.dsAccount);
+	this.dsSecondAccount.filter("parent_account=='"+firstCode+"'");
+	this.dsThirdAccount.clear();
+}
+
+// 중간계정 그리드 클릭 시
+this.secondAccountGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var secondCode=this.dsSecondAccount.getColumn(e.row, "account_code");
+	this.dsThirdAccount.copyData(application.dsAccount);
+	this.dsThirdAccount.filter("parent_account=='"+secondCode+"'");
+}
+
+// 추가 버튼
+this.addBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var secondCode=this.dsSecondAccount.getColumn(this.dsSecondAccount.rowposition, "account_code");
+	this.dsThirdAccount.addRow();
+	this.dsThirdAccount.setColumn(this.dsThirdAccount.rowposition,'parent_account', secondCode);
+	this.dsThirdAccount.setColumn(this.dsThirdAccount.rowposition,'account_change', 'Y');
+	this.dsThirdAccount.setColumn(this.dsThirdAccount.rowposition,'account_use', 'Y');
+}
+
+// 삭제 버튼
+this.delBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.dsThirdAccount.deleteRow(this.dsThirdAccount.rowposition);
+}
+
+// 취소 버튼
+this.cancelBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+}
+
+// 저장 버튼
+this.saveBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(confirm("변경사항을 저장하시겠습니까?")){
+		this.transaction("batchAccount","DataUrl::account/batchAccount.do","dsAccount=dsThirdAccount:U","","","callback");
+	}
+}
+
+]]></Script>
+  </Form>
+</FDL>

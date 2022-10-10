@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.accounting.slip.dao.SlipDAO">
+
+	<resultMap id="resultSlip" type="slip">
+		<result property="slipNo" column="slip_no" />
+		<result property="empNo" column="emp_no" />
+		<result property="slipBallotNo" column="slip_ballot_no" />
+		<result property="slipSeq" column="slip_seq" />
+		<result property="slipDate" column="slip_date" />
+		<result property="slipContent" column="slip_content" />
+		<result property="slipStatus" column="slip_status" />
+		<result property="approver" column="approver" />
+		<result property="approvalDate" column="approval_date" />
+		<result property="differenceAmt" column="difference_amt" />
+		<result property="slipWorker" column="slip_worker" />
+		<result property="slipType" column="slip_type" />
+		<result property="slipDept" column="slip_dept" />
+		<collection property="journalBeanList" select="com.minhyuk.accounting.slip.dao.JournalDAO.selectJourList"
+			column="slip_no" />
+	</resultMap>
+
+	<select id="selectSlipList" resultMap="resultSlip" parameterType="map">
+		SELECT slip_no,
+	       emp_no,
+	       slip_ballot_no,
+	       slip_seq,
+	       slip_date,
+	       slip_content,
+	       slip_status,
+	       approver,
+	       approval_date,
+	       difference_amt,
+	       slip_worker,
+	       slip_type,
+	       slip_dept
+		FROM slip
+		WHERE SUBSTR(slip_no,1,8) between #{sDate} AND #{eDate}
+		<if test="deptName != null and deptName != '전체'">
+			AND slip_dept=#{deptName}
+		</if>
+ 		<if test="slipType != null and slipType != '전체'">
+			AND slip_type=#{slipType}
+		</if>
+		<if test="slipStatus != null and slipStatus != '전체'">
+			AND slip_status=#{slipStatus}
+		</if>
+	</select>
+
+<!-- 전표 출력하는 쿼리이다. -->
+<!--
+	<select id="printSlip" resultMap="SlipResult" parameterClass="map">
+		SELECT *
+		FROM slip s, journal j
+		WHERE s.slip_no=j.slip_no
+		AND SUBSTR(slip_no,1,8) between #sDate# AND #eDate#
+		<isNotEmpty property="deptName" prepend="AND">
+			s.slip_dept=#deptName#
+		</isNotEmpty>
+	</select>
+ -->
+
+	<insert id="insertSlip">
+        INSERT
+		  INTO slip
+		       (
+		           slip_no,
+		           emp_no,
+		           slip_ballot_no,
+		           slip_seq,
+		           slip_date,
+		           slip_content,
+		           slip_status,
+		           approver,
+		           approval_date,
+		           difference_amt,
+		           slip_worker,
+		           slip_type,
+		           slip_dept
+		       )
+		       VALUES
+		       (
+		           #{slipNo},
+		           #{empNo},
+		           #{slipBallotNo},
+		           slip_sequ.nextval,
+		           #{slipDate},
+		           #{slipContent},
+		           #{slipStatus},
+		           #{approver},
+		           #{approvalDate},
+		           #{differenceAmt},
+		           #{slipWorker},
+		           #{slipType},
+		           #{slipDept}
+		       )
+	</insert>
+
+	<update id="updateSlip">
+        UPDATE slip
+		       SET emp_no = #{empNo},
+		       slip_ballot_no = #{slipBallotNo},
+		       slip_seq = #{slipSeq},
+		       slip_date = #{slipDate},
+		       slip_content = #{slipContent},
+		       slip_status = #{slipStatus},
+		       approver = #{approver},
+		       approval_date = #{approvalDate},
+		       difference_amt = #{differenceAmt},
+		       slip_worker = #{slipWorker},
+		       slip_type = #{slipType},
+		       slip_dept = #{slipDept}
+		 WHERE slip_no = #{slipNo}
+	</update>
+
+	<delete id="deleteSlip">
+        delete from slip where slip_no = #{slipNo}
+	</delete>
+
+</mapper>

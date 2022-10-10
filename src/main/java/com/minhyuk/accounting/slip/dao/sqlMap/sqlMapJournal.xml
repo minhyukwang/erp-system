@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.accounting.slip.dao.JournalDAO">
+
+	<resultMap id="resultJournal" type="journal">
+		<result property="journalNo" column="journal_no" />
+		<result property="slipNo" column="slip_no" />
+		<result property="accountCode" column="account_code" />
+		<result property="journalType" column="journal_type" />
+		<result property="customerCode" column="customer_code" />
+		<result property="accountName" column="account_name" />
+		<result property="journalReceipt" column="journal_receipt" />
+		<result property="customerName" column="customer_name" />
+		<result property="journalAmt" column="journal_amt" />
+		<result property="summaryCode" column="summary_code" />
+		<result property="summaryName" column="summary_name" />
+		<collection property="journalManagementBeanList" select="com.minhyuk.accounting.slip.dao.JournalManagementDAO.selectJournalManagementList"
+			column="{slipNo=slip_no, journalNo=journal_no}" />
+	</resultMap>
+
+<!-- 분개장 빈이다. -->
+<!--
+	<typeAlias alias="JournalListBean" type="to.slip.accounting.com.minhyuk.JournalListBean" />
+	<resultMap id="JournalListResult" class="JournalListBean">
+		<result property="journalNo" column="journal_no" />
+		<result property="slipNo" column="slip_no" />
+		<result property="slipSeq" column="slip_seq" />
+		<result property="journalType" column="journal_type" />
+		<result property="slipType" column="slip_type" />
+		<result property="slipStatus" column="slip_status" />
+		<result property="customerCode" column="customer_code" />
+		<result property="customerName" column="customer_name" />
+		<result property="accountCode" column="account_code" />
+		<result property="accountName" column="account_name" />
+		<result property="journalAmt" column="journal_amt" />
+		<result property="summaryName" column="summary_name" />
+		<result property="slipBallotDate" column="slip_ballot_date" />
+		<result property="debtor" column="debtor" />
+		<result property="creditor" column="creditor" />
+	</resultMap>
+ -->
+	<select id="selectJourList" resultMap="resultJournal" parameterType="String">
+		SELECT *
+		FROM journal
+		WHERE slip_no=#{slipNo}
+	</select>
+
+	<insert id="insertJournal">
+        INSERT
+		  INTO journal
+		       (
+		           slip_no ,
+		           journal_no,
+		           account_code,
+		           journal_type,
+		           customer_code,
+		           account_name,
+		           journal_receipt,
+		           customer_name,
+		           journal_amt,
+		           summary_code,
+		           summary_name
+		       )
+		       VALUES
+		       (
+		           #{slipNo},
+		           #{journalNo},
+		           #{accountCode},
+		           #{journalType},
+		           #{customerCode},
+		           #{accountName},
+		           #{journalReceipt},
+		           #{customerName},
+		           #{journalAmt},
+		           #{summaryCode},
+		           #{summaryName}
+		       )
+	</insert>
+
+	<update id="updateJournal">
+        UPDATE journal
+		       SET journal_no = #{journalNo},
+				   account_code = #{accountCode},
+				   journal_type = #{journalType},
+				   customer_code = #{customerCode},
+				   account_name = #{accountName},
+				   journal_receipt = #{journalReceipt},
+				   customer_name = #{customerName},
+				   journal_amt = #{journalAmt},
+				   summary_code = #{summaryCode},
+				   summary_name = #{summaryName},
+			 WHERE slip_no = #{slipNo}
+	</update>
+
+	<delete id="deleteJournal">
+        delete from journal where slip_no = #{slipNo}
+	</delete>
+
+	<!-- 분개장 -->
+	<select id="selectJournalList" resultType="journalList" parameterType="hashmap">
+		SELECT slip_date
+		     , slip_type
+		     , journal_type
+		     , account_code
+		     , account_name
+		     , journal_amt
+		     , summary_name
+		     , customer_code
+		     , customer_name
+         	 , slip_status
+		     , DECODE(journal_type,'차변',journal_amt) AS debtor
+		     , DECODE(journal_type,'대변',journal_amt) AS creditor
+  		FROM SLIP
+   		JOIN JOURNAL USING(slip_no)
+ 		WHERE slip_date BETWEEN #{sDate} AND #{eDate}
+ 		<if test="deptName != null and deptName != '전체'">
+			AND slip_dept=#{deptName}
+		</if>
+ 		<if test="slipType != null and slipType != '전체'">
+			AND slip_type=#{slipType}
+		</if>
+ 		ORDER BY slip_no, journal_no
+	</select>
+
+</mapper>

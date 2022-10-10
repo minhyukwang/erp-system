@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.accounting.account.dao.AccountManagementDAO">
+
+	<resultMap id="resultAccountManagement" type="accountManagement">
+		<result property="managementCode" column="management_code" />
+		<result property="accountCode" column="account_code" />
+		<result property="accountManagementName" column="account_management_name" />
+		<result property="managementType" column="management_type" />
+		<result property="accountChange" column="account_change" />
+		<result property="accountUse" column="account_use" />
+	</resultMap>
+
+	<select id="selectAccountManagementList" resultMap="resultAccountManagement"	parameterType="String">
+		SELECT * FROM ACCOUNT_MANAGEMENT JOIN ACCOUNT_MANAGEMENT_LIST USING(management_code)
+		 WHERE account_code=#{code}
+	</select>
+
+	<insert id="insertAccountManagement">
+        INSERT
+		  INTO account_management
+		       (
+		           management_code,
+		           account_code,
+		           account_management_name,
+		           account_change,
+		           account_use
+		       )
+		       VALUES
+		       (
+		           #{managementCode},
+		           #{accountCode},
+		           #{accountManagementName},
+		           #{accountChange},
+		           #{accountUse}
+       )
+	</insert>
+
+	<!-- <update id="updateAccManagement">
+		UPDATE account_management
+		       SET account_management_name,
+		          	  account_type,
+		       		  account_change,
+		           	  account_use
+		 WHERE account_code=#accountCode#
+		 AND management_code=#managementCode#
+	</update> -->
+
+	<delete id="deleteAccountManagement">
+        delete from account_management where management_code=#{managementCode}
+	</delete>
+
+
+</mapper>

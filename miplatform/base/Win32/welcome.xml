@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="486" Id="welcome" Left="8" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Image FillType="STRETCH" Height="484" Id="Image0" ImageID="accounting" TabOrder="1" Width="698"></Image>
+	</Form>
+	<Script></Script>
+</Window>

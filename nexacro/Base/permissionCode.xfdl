@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="permissionCode" classname="permissionCode" left="0" top="0" width="800" height="460" titletext="New Form" onload="permissionCode_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="권한관리" left="1.38%" top="8" right="1.03%" height="25" style="background:#edaf78ff;align:center middle;font:bold antialias 14 Verdana;"/>
+        <Button id="saveBtn" taborder="1" text="저장" onclick="saveBtn_onclick" left="78.1%" top="44" right="12.24%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Button id="cancelBtn" taborder="2" text="취소" onclick="cancelBtn_onclick" left="89.14%" top="44" right="1.21%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Static id="Static07" taborder="3" text="권한" left="1.55%" top="224" right="70%" height="24" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Grid id="permissionGrid" taborder="4" binddataset="dsEmpPermission" useinputpanel="false" autofittype="col" oncellclick="permissionGrid_oncellclick" left="1.55%" top="260" right="70%" height="160">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="110"/>
+                <Column size="50"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="권한코드"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="권한명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:permission_code"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:permission_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="5" text="접근가능메뉴" left="30.52%" top="224" right="39.66%" height="24" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Grid id="permissionMenuGrid" taborder="6" binddataset="dsPermission" useinputpanel="false" autofittype="col" oncellclick="firstAccountGrid_oncellclick" left="30.52%" top="260" right="39.66%" height="192">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="25"/>
+                <Column size="60"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;font:bold 10 Verdana;" text="No"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="메뉴코드"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="메뉴명"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9,bold;" expr="currow+1"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9,bold;" text="bind:menu_code"/>
+                <Cell col="2" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9,bold;" text="bind:menu_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" taborder="7" text="전체메뉴" left="65%" top="224" right="1.03%" height="24" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Button id="permissionRemoveBtn" taborder="8" text="삭제" onclick="delBtn_onclick" left="16.03%" top="426" right="75.69%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Button id="permissionAddBtn" taborder="9" text="추가" onclick="permissionAddBtn_onclick" left="6.38%" top="426" right="85.34%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Grid id="empListGrid" taborder="10" binddataset="dsEmp" useinputpanel="false" autofittype="col" oncellclick="empListGrid_oncellclick" left="1.03%" top="80" right="1.03%" height="136" style="font:Verdana,10,bold antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;font:bold 10 Verdana;" text="No"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="사번"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="성명"/>
+                <Cell col="3" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="부서"/>
+                <Cell col="4" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="직급"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" expr="expr:currow+1"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:emp_no"/>
+                <Cell col="2" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:emp_name"/>
+                <Cell col="3" displaytype="combo" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:dept_no" combodataset="dsDetailCode" combocodecol="detail_code" combodatacol="detail_codename" combodisplay="edit"/>
+                <Cell col="4" displaytype="combo" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:emp_position" combodataset="dsDetailCode" combocodecol="detail_code" combodatacol="detail_codename" combodisplay="edit"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static03" taborder="11" text="성명" left="42.76%" top="43" right="49.31%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Edit id="empName" taborder="12" left="51.9%" top="43" right="32.93%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Button id="empSearchBtn" taborder="13" text="조회" onclick="empSearchBtn_onclick" left="67.76%" top="44" right="25.17%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Button id="removeBtn" taborder="14" text="▶" onclick="removeBtn_onclick" left="60.69%" top="348" right="35.52%" height="24" style="color:gray;font:나눔바른고딕,9,bold antialias;"/>
+        <Button id="addBtn" taborder="15" text="◀" onclick="addBtn_onclick" left="60.69%" top="316" right="35.52%" height="24" style="color:gray;font:나눔바른고딕,9,bold antialias;"/>
+        <Grid id="menuGrid" taborder="16" binddataset="dsMenu" useinputpanel="false" autofittype="col" oncellclick="firstAccountGrid_oncellclick" left="65%" top="260" right="1.03%" height="192">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="25"/>
+                <Column size="60"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;font:bold 10 Verdana;" text="No"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="메뉴코드"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="메뉴명"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9,bold;" expr="currow+1"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9,bold;" text="bind:menu_code"/>
+                <Cell col="2" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9,bold;" text="bind:menu_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[var empNo, permission;
+
+// 콜백 함수
+this.callback = function(trid, errorCode, errorMsg){
+	if(trid=="getEmpPermission"){
+		if(errorCode != 0){
+			alert("조회 실패");
+		}
+	}else if(trid=="batchPermission"){
+		if(errorCode != 0){
+			alert("등록 실패");
+		}
+	}else if(trid=="getPermissionList"){
+		if(errorCode != 0){
+			alert("조회 실패");
+		}else{
+			application.dsEmpPermission.setColumn(application.dsEmpPermission.rowposition, "emp_no", empNo);
+		}
+	}
+}
+
+// 권한 관리 폼이 로드되면
+this.permissionCode_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	application.dsEmp.filter("");
+	application.dsEmpPermission.clearData();
+	application.dsPermission.clearData();
+	this.transaction("getEmpPermission","DataUrl::base/getEmpPermission.do","","dsEmpPermission=dsEmpPermission","","callback");
+}
+
+// 사원정보 그리드를 클릭하면
+this.empListGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	this.empNo = application.dsEmp.getColumn(e.row, "emp_no");
+	application.dsEmpPermission.filter("emp_no=='"+this.empNo+"'");
+}
+
+// 권한 그리드를 클릭하면
+this.permissionGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	if(this.permissionGrid.getCellText(e.row, e.cell).length == 0){
+		application.dsDetailCode.filter("distinction_code=='PS'");
+		dialog("코드리스트", "Base::codeInfo.xfdl", this.parent, "" , "showtitlebar=true showstatusbar=false", "","");
+	}else{
+		this.permission = application.dsEmpPermission.getColumn(e.row,"permission_code");
+		this.sendData(this.permission);
+	}
+}
+
+// 모달창에서 받아오는 값
+this.setCodeInfo = function(code, codeName){
+	application.dsEmpPermission.setColumn(application.dsEmpPermission.rowposition, "permission_code", code);
+	application.dsEmpPermission.setColumn(application.dsEmpPermission.rowposition, "permission_name", codeName);
+}
+
+// 권한메뉴 받아오기
+this.sendData = function(permission)
+{	
+	this.transaction("getPermissionList","DataUrl::base/getPermissionList.do","","dsPermission=dsPermission","permission='"+permission+"'","callback");
+}
+
+// 권한 추가 버튼
+this.permissionAddBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.dsEmpPermission.addRow();
+}
+
+// 권한 삭제 버튼
+this.delBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.dsEmpPermission.deleteRow(application.dsEmpPermission.rowposition);
+}
+
+// add 버튼
+this.addBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var addRow=application.dsPermission.addRow();
+	var menuCode = application.dsMenu.getColumn(application.dsMenu.rowposition,"menu_code");
+	var menuName = application.dsMenu.getColumn(application.dsMenu.rowposition,"menu_name");
+	
+	application.dsPermission.setColumn(addRow,"menu_code",menuCode);
+	application.dsPermission.setColumn(addRow,"menu_name",menuName);	
+	
+	//trace("insert ------------------"+permission);
+	
+	application.dsPermission.setColumn(addRow,"permission_code",this.permission);
+}
+
+// remove 버튼
+this.removeBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.dsPermission.deleteRow(application.dsPermission.rowposition);
+}
+
+// 사원 조회 버튼
+this.empSearchBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.name=this.empName.value;
+	if(this.name==""){
+		application.dsEmp.filter("");
+	}else{
+		application.dsEmp.filter("String(emp_name).indexOf('"+this.name+"')>=0");
+	}
+}
+
+// 저장 버튼
+this.saveBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(confirm("변경사항을 저장하시겠습니까?")){	
+		this.transaction("batchPermission","DataUrl::base/batchPermission.do","dsEmpPermission=dsEmpPermission:U dsPermission=dsPermission:U","","","callback");
+	}
+}
+
+
+]]></Script>
+  </Form>
+</FDL>

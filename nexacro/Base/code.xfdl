@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="code" classname="code" left="0" top="0" width="800" height="460" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="코드관리" left="1.9%" top="8" right="1.55%" height="25" style="background:#edaf78ff;align:center middle;font:bold antialias 14 Verdana;"/>
+        <Button id="addBtn" taborder="1" text="추가" left="59.66%" top="44" right="30.69%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="addBtn_onclick"/>
+        <Button id="saveBtn" taborder="2" text="저장" left="69.31%" top="44" right="21.03%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="saveBtn_onclick"/>
+        <Button id="delBtn" taborder="3" text="삭제" left="78.97%" top="44" right="11.38%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="delBtn_onclick"/>
+        <Button id="resetBtn" taborder="4" text="취소" left="88.62%" top="44" right="1.72%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Static id="Static01" taborder="5" text="코드" left="1.9%" top="80" right="55.86%" height="24" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+        <Grid id="codeGrid" taborder="6" binddataset="dsCode" useinputpanel="false" autofittype="col" left="1.9%" top="116" right="55.86%" height="328" oncellclick="codeGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="50"/>
+                <Column size="100"/>
+                <Column size="50"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;font:bold 10 Verdana;" text="No"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="구분코드"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="코드명"/>
+                <Cell col="3" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="수정여부"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" expr="expr:currow+1"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:distinction_code"/>
+                <Cell col="2" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:code_name"/>
+                <Cell col="3" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:code_use"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="detailcodeGrid" taborder="7" binddataset="dsDetailCode" useinputpanel="false" autofittype="col" left="46.9%" top="116" right="1.55%" height="328" onenterdown="detailcodeGrid_onenterdown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="50"/>
+                <Column size="90"/>
+                <Column size="100"/>
+                <Column size="50"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="구분코드"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="상세코드"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="상세코드명"/>
+                <Cell col="3" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:distinction_code"/>
+                <Cell col="1" displaytype="normal" edittype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:detail_code"/>
+                <Cell col="2" displaytype="normal" edittype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:detail_codename"/>
+                <Cell col="3" displaytype="normal" edittype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:detail_use"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" taborder="8" text="상세코드" left="47.07%" top="80" right="1.55%" height="24" style="background:#edaf78ff;align:center middle;font:bold antialias 10 Verdana;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+// 코드 그리드 클릭 시
+this.codeGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var code=application.dsCode.getColumn(e.row,"distinction_code");
+	trace(" -------------- "+code);	
+	application.dsDetailCode.filter("distinction_code=='"+code+"'");
+}
+
+// 추가 버튼
+this.addBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.dsDetailCode.addRow();
+}
+
+// 삭제 버튼
+this.delBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(confirm("선택한 코드정보를 삭제하시겠습니까?")){
+		application.dsDetailCode.deleteRow(application.dsDetailCode.rowposition);
+	}
+}
+
+// 저장 버튼
+this.saveBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(confirm("변경사항을 저장하시겠습니까?")){
+		this.transaction("batchCodeList","DataUrl::base/batchCodeList.do","dsDetailCode=dsDetailCode:U","dsDetailCode=dsDetailCode","","callback");
+	}
+}
+
+// 상세코드 그리드 엔터키 누르면
+this.detailcodeGrid_onenterdown = function(obj:Grid, e:nexacro.GridEditEventInfo)
+{
+	obj.moveToNextCell();
+}
+
+
+]]></Script>
+  </Form>
+</FDL>

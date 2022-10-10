@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="empInfo" classname="empInfo" left="0" top="0" width="300" height="400" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="사원조회" left="3.33%" top="13" right="3.67%" height="30" style="background:#edaf78ff;align:center middle;font:Verdana,14,bold;"/>
+        <Grid id="empSearchGrid" taborder="1" binddataset="dsEmp" useinputpanel="false" autofittype="col" left="3.33%" top="53" right="3.67%" height="334" oncellclick="empSearchGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;font:bold 10 Verdana;" text="사번"/>
+                <Cell col="1" style="background:#f7e4cfff;font:bold 10 Verdana;" text="사원명"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;" text="bind:emp_no"/>
+                <Cell col="1" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;" text="bind:emp_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.empSearchGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var empNo=application.dsEmp.getColumn(e.row,"emp_no");
+	var empName=application.dsEmp.getColumn(e.row,"emp_name");
+	var empPw=application.dsEmp.getColumn(e.row,"emp_pw");
+	//var empPs=dsPermission.GetColumn(e.row,"permission_code");
+	
+	//글로벌변수지정 
+	gvEmpNo=empNo;
+	gvEmpName=empName;
+	//gvEmpPs=empPs;
+		
+	//trace("권한코드--------------------------"+gvEmpPs);
+	
+	//로그인창에 셋팅한다. 
+	this.opener.setEmpInfo(empNo, empName, empPw);
+	
+	this.close();
+}
+]]></Script>
+  </Form>
+</FDL>

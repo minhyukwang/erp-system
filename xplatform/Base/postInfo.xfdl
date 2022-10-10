@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="postInfo" classname="postInfo" inheritanceid="" position="absolute 0 0 380 380" titletext="New Form" style="background:transparent;" onload="postForm_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="우편번호 검색" position2="absolute l:23 w:339 t:8 h:32" positiontype="position2" style="background:#edaf78ff;align:center middle;font:Verdana,14,bold;"/>
+        <Static id="Static01" text="시 도" position2="absolute l:23 w:46 t:56 h:26" positiontype="position2" style="background:#edaf78ff;align:center middle;font:Verdana,9,bold;"/>
+        <Static id="Static02" text="도로명 입력" position2="absolute l:23 w:88 t:88 h:26" positiontype="position2" style="background:#edaf78ff;align:center middle;font:Verdana,9,bold;"/>
+        <Static id="Static03" text="상세주소" position2="absolute l:23 w:61 t:310 h:26" positiontype="position2" style="background:#edaf78ff;align:center middle;font:Verdana,9,bold;"/>
+        <Static id="Static04" text="선택주소" position2="absolute l:23 w:61 t:278 h:26" positiontype="position2" style="background:#edaf78ff;align:center middle;font:Verdana,9,bold;"/>
+        <Static id="Static05" text="시 / 군 / 구" position2="absolute l:183 w:79 t:56 h:26" positiontype="position2" style="background:#edaf78ff;align:center middle;font:Verdana,9,bold;"/>
+        <Grid id="addrGrid" taborder="1" binddataset="dsAddr" useinputpanel="false" autofittype="col" position2="absolute l:24 w:336 t:120 h:149" positiontype="position2" style="font:Verdana,9,antialias;" oncellclick="addrGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+                <Column size="230"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;" text="우편번호"/>
+                <Cell col="1" style="background:#f7e4cfff;" text="주소"/>
+              </Band>
+              <Band id="body">
+                <Cell edittype="none" text="bind:zip_no"/>
+                <Cell col="1" edittype="none" text="bind:address"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="sido" taborder="1" innerdataset="dsSido" codecolumn="sido_code" datacolumn="sido_value" onitemchanged="sido_onitemchanged" position2="absolute l:74 w:102 t:56 h:24" positiontype="position2"/>
+        <Combo id="sigungu" taborder="1" innerdataset="dsSigungu" codecolumn="sido" datacolumn="gungu" position2="absolute l:266 w:94 t:56 h:24" positiontype="position2"/>
+        <Edit id="roadName" taborder="1" position2="absolute l:116 w:199 t:88 h:26" positiontype="position2"/>
+        <Button id="addrBtn" taborder="1" onclick="addrBtn_onclick" position2="absolute l:318 w:31 t:85 h:27" positiontype="position2" style="image:URL('theme://images\StatusbarForm_01.png');"/>
+        <Edit id="addr" taborder="1" position2="absolute l:92 w:268 t:280 h:26" positiontype="position2"/>
+        <Edit id="detailAddr" taborder="1" position2="absolute l:92 w:268 t:312 h:26" positiontype="position2"/>
+        <Button id="successBtn" taborder="1" text="입력완료" onclick="successBtn_onclick" position2="absolute l:133 w:62 t:343 h:28" positiontype="position2" style="color:gray;"/>
+        <Button id="resetBtn" taborder="1" text="취소" onclick="resetBtn_onclick" position2="absolute l:205 w:62 t:343 h:28" positiontype="position2" style="color:gray;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSigungu" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="gungu" type="STRING" size="256"/>
+          <Column id="sido" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAddr" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="zip_no" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSido" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="sido_code" type="STRING" size="256"/>
+          <Column id="sido_value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[var sidoCode, sidoValue, zipCode, dong;
+
+// 콜백 함수
+function callback(trid, ErrorCode, ErrorMsg){
+	if(trid="getSido" ){
+		if(dsSido.getRowCount()==0 ){
+			alert("검색된 결과가 없습니다.");
+		}else{
+			//alert("조회 성공");
+		}
+	}else if(trid="getSiGunGuList" || trid="getAddrList"){
+		if(dsSigungu.getRowCount()==0 || dsAddr.getRowCount()==0 ){
+			alert("검색된 결과가 없습니다.");
+		}else{
+			//alert("조회 성공");
+		}
+	}
+}
+
+// 우편번호검색 폼이 로드되면
+function postForm_onload(obj:Form, e:LoadEventInfo)
+{
+	transaction("getSido","DataUrl::base/getSido.do","","dsSido=dsSido","","callback");
+}
+
+// 시/도 콤보를 선택하면 
+function sido_onitemchanged(obj:Combo, e:ItemChangeEventInfo)
+{
+	sidoCode=dsSido.getColumn(e.postindex, "sido_code");
+	sidoValue=dsSido.getColumn(e.postindex, "sido_value");
+	transaction("getSiGunGuList","DataUrl::base/getSiGunGuList.do","","dsSigungu=dsSigungu","sido='"+sidoCode+"'","callback");	
+}
+
+// 도로명 검색 버튼
+function addrBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	if(sido.text==null){
+		alert("시도를 선택해주세요.");
+	}else if(sigungu.text==null){
+		alert("시군구를 선택해주세요.");
+	}else if(roadName.text==null){
+		alert("도로명을 입력해주세요.");
+	}else{
+		//시군, 시군구, 동 다 보내서 가져온다.
+		trace("variable: "+sidoCode+" "+sigungu.text+" "+roadName.text);
+		transaction("getAddrList","DataUrl::base/getAddrList.do","","dsAddr=dsAddr","sido='"+sidoCode+"' sigungu='"+sigungu.text+"' roadName='"+roadName.text+"'","callback");
+	}
+}
+
+// 검색된 주소 그리드를 클릭하면
+function addrGrid_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	zipCode=dsAddr.getColumn(e.row,"zip_no");
+	dong=dsAddr.getColumn(e.row,"address");
+	addr.value=zipCode+" "+sidoValue+" "+dong;
+}
+
+// 완료 버튼
+function successBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	if(this.sido.text==null){
+		alert("시도를 선택해주세요.");
+	}else if(this.sigungu.text==null){
+		alert("시군구를 선택해주세요.");
+	}else if(this.roadName.text==null){
+		alert("도로명을 입력해주세요.");
+	}else if(this.detailAddr.value==null){
+		alert("상세주소를 입력해주세요.");
+	}else{	
+		var detailAddr=this.detailAddr.value;
+		opener.setPostInfo(zipCode, sidoValue, dong, detailAddr);
+		close();
+	}
+}
+
+// 취소 버튼
+function resetBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	confirm("취소하시겠습니까?");
+	close();
+}
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="codeInfo" classname="codeInfo" inheritanceid="" position="absolute 0 0 300 400" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="코드조회" position2="absolute l:10 w:279 t:13 h:30" positiontype="position2" style="background:#edaf78ff;align:center middle;font:Verdana,14,bold;"/>
+        <Grid id="codeSearchGrid" taborder="1" binddataset="dsDetailCode" useinputpanel="false" autofittype="col" position2="absolute l:10 w:279 t:53 h:334" positiontype="position2" oncellclick="codeSearchGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;" text="코드"/>
+                <Cell col="1" style="background:#f7e4cfff;" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;" text="bind:detail_code"/>
+                <Cell col="1" style="align:center middle;background:#f9f0d7ff;background2:transparent;" text="bind:detail_codename"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+function codeSearchGrid_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	var code=dsDetailCode.getColumn(e.row,"detail_code");
+	var codeName=dsDetailCode.getColumn(e.row,"detail_codename");
+	
+	if(dsDetailCode.getColumn(e.row, "distinction_code")=='DP'){
+		gvDeptName=codeName;
+		opener.setCodeInfo(code, codeName);
+	}else if(dsDetailCode.getColumn(e.row, "distinction_code")=='AM'){
+		opener.setCodeInfo(code, codeName);
+	}else if(dsDetailCode.getColumn(e.row, "distinction_code")=='PS'){
+		opener.setCodeInfo(code, codeName);
+	}else if(dsDetailCode.getColumn(e.row, "distinction_code")=='C002'){
+		opener.setManagementCodeInfo(codeName);
+	}else if(dsDetailCode.getColumn(e.row, "distinction_code")=='C024'){
+		opener.setManagementCodeInfo(codeName);
+	}
+		
+	close();
+}
+
+
+]]></Script>
+  </Form>
+</FDL>

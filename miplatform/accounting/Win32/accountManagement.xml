@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="486" Id="acountManagementForm" Left="8" OnLoadCompleted="accountManagementForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Static Border="Flat" BorderColor="SCROLLBAR" Height="216" Id="Static1" Left="288" TabOrder="3" Top="48" Width="400"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" Left="8" TabOrder="1" Text="계정과목관리" Top="8" VAlign="Middle" Width="680"></Static>
+		<TreeView BindDataset="dsAccount" Font="KBIZ한마음고딕&#32;B,10" Height="400" Id="accountNameTreeView" Left="8" LevelColumn="level" OnClick="accountNameTreeView_OnClick" TabOrder="2" TEXTColumn="account_name" Top="48" Width="264"></TreeView>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static2" Left="352" TabOrder="4" Text="상위계정코드" Top="64" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static3" Left="352" TabOrder="5" Text="계정과목코드" Top="96" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static4" Left="352" TabOrder="6" Text="계정과목명" Top="128" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static5" Left="352" TabOrder="7" Text="대차구분" Top="160" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static6" Left="352" TabOrder="8" Text="수정여부" Top="192" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static7" Left="352" TabOrder="9" Text="사용여부" Top="224" VAlign="Middle" Width="107"></Static>
+		<Edit BindDataset="dsAccount" Column="parent_account" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountParent" Left="472" LeftMargin="2" TabOrder="10" Top="64" Width="142"></Edit>
+		<Edit BindDataset="dsAccount" Column="ACCOUNT_CODE" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountCode" Left="472" LeftMargin="2" TabOrder="11" Top="96" Width="142"></Edit>
+		<Edit BindDataset="dsAccount" Column="account_name" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountName" Left="472" LeftMargin="2" TabOrder="12" Top="128" Width="142"></Edit>
+		<Edit BindDataset="dsAccount" Column="account_balance" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountBalance" Left="472" LeftMargin="2" TabOrder="13" Top="160" Width="142"></Edit>
+		<Edit BindDataset="dsAccount" Column="account_change" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountChange" Left="472" LeftMargin="2" TabOrder="14" Top="192" Width="142"></Edit>
+		<Edit BindDataset="dsAccount" Column="account_use" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountUse" Left="472" LeftMargin="2" TabOrder="15" Top="224" Width="142"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="add" Left="522" OnClick="add_OnClick" TabOrder="16" Text="추가" Top="453" Width="56"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsAcountManagement" BkColor2="default" BoldHead="true" Bottom="448" Editable="TRUE" Enable="true" EndLineColor="default" Height="176" Id="accountGrid" InputPanel="FALSE" Left="288" LineColor="default" MinWidth="100" OnCellClick="accountGrid_OnCellClick" Right="689" TabOrder="17" TabStop="true" Top="272" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="401">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="40"/>
+						<col width="79"/>
+						<col width="112"/>
+						<col width="94"/>
+						<col width="87"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="No"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="관리항목코드"/>
+						<cell bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="관리항목명"/>
+						<cell bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="입력여부"/>
+						<cell bkcolor="#f7e4cf" col="4" display="text" font="KBIZ한마음고딕&#32;B,10" text="사용여부"/>
+					</head>
+					<body>
+						<cell align="center" col="0" display="text" expr="currow+1" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="management_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="account_management_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="account_change" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="4" colid="account_use" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="delete" Left="577" OnClick="delete_OnClick" TabOrder="18" Text="삭제" Top="453" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="save" Left="632" OnClick="save_OnClick" TabOrder="19" Text="저장" Top="453" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="accountAddBtn" Left="192" OnClick="accountAddBtn_OnClick" TabOrder="20" Text="회사설정계정" Top="453" Width="79"></Button>
+	</Form>
+	<Script><![CDATA[
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg){
+	if(trid=='getAccountList'){
+		if(ErrorCode<0){
+			alert(ErrorMsg);
+		}else{
+			//alert(global.http.RecvHttpStr);
+			var accountCode=dsAccount.getColumn(dsAccount.GetCurrow(),"account_code");
+			dsAcountManagement.filter("account_code='"+accountCode+"'");
+		}
+	}
+}
+
+// 계정 등록 버튼
+function accountAddBtn_OnClick(obj)
+{
+	dialog("accounting::accountRegis.xml","",450,486,"",550,200);
+}
+
+// 계정과목관리 폼이 로드된 후 ~
+function accountManagementForm_OnLoadCompleted(obj)
+{
+	Transaction("getAccountList","svcAccounting::/account/account.do?method=getAccountList","","dsAccount=dsAccount dsAcountManagement=dsAcountManagement","","callback");
+	//var accountCode=dsAccount.getColumn(dsAccount.GetCurrow(),"account_code");
+	//dsAcountManagement.filter("account_code='"+accountCode+"'");
+	
+}
+
+// 관리항목 추가 버튼
+function add_OnClick(obj)
+{
+	if(dsAccount.getColumn(dsAccount.GetCurrow(),"level") == '3'){
+		dsAcountManagement.addrow();
+		dsAcountManagement.setColumn(dsAcountManagement.row,'account_code', accountCode.Text);
+	}else{
+		alert("최하위 계정에만 추가할 수 있습니다.");
+	}
+}
+
+// 관리항목그리드 클릭 시 
+function accountGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	if(accountGrid.GetCellText("body",nRow,nCell).length==0){
+		//관리과목 컬럼을 세팅한다.
+		dsDetailCode.filter("distinction_code='AM'");
+		Dialog("base::codeInfo.xml","",300,400);
+	}
+}
+
+// 관리항목 삭제 버튼
+function delete_OnClick(obj)
+{
+	dsAcountManagement.deleteRow(dsAcountManagement.row);
+}
+
+// 관리항목 저장 버튼
+function save_OnClick(obj)
+{
+	if(Confirm("변경사항을 저장하시겠습니까?")){
+		Transaction("batchAccountManagement","svcAccounting::/account/accountManagement.do?method=batchAccountManagement","dsAcountManagement=dsAcountManagement:U","","","callback");
+	}
+}
+
+// 왼쪽 트리뷰에 계정과목을 클릭하면 
+function accountNameTreeView_OnClick(obj,nOldRow,nNewRow)
+{
+	var accountCode = dsAccount.GetColumn(nNewRow,"account_code");
+	dsAcountManagement.filter("account_code='"+accountCode+"'");
+}
+
+// 새로고침 버튼
+function reloadBtn_OnClick(obj)
+{
+	reload();
+}
+]]></Script>
+</Window>

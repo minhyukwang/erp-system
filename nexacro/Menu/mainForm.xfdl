@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="mainForm" classname="mainForm" left="0" top="0" width="1024" height="768" titletext="New Form">
+    <Layouts>
+      <Layout/>
+    </Layouts>
+  </Form>
+</FDL>

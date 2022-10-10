@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="700" Id="slipInputForm" Left="8" OnLoadCompleted="slipInputForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="slipType">
+				<Contents>
+					<colinfo id="menu" size="256" type="STRING"/>
+					<record>
+						<menu>일반</menu>
+					</record>
+					<record>
+						<menu>매입</menu>
+					</record>
+					<record>
+						<menu>매출</menu>
+					</record>
+					<record>
+						<menu>수금</menu>
+					</record>
+					<record>
+						<menu>반제</menu>
+					</record>
+					<record>
+						<menu>수정</menu>
+					</record>
+					<record>
+						<menu>결산</menu>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="daecha">
+				<Contents>
+					<colinfo id="name" size="256" type="STRING"/>
+					<record>
+						<name>차변</name>
+					</record>
+					<record>
+						<name>대변</name>
+					</record>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" TabOrder="1" Text="전표입력/조회" Top="8" VAlign="Middle" Width="680"></Static>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="29" Id="Static2" Left="171" TabOrder="3" Text="결의부서" Top="73" VAlign="Middle" Width="61"></Static>
+		<Edit Align="CENTER" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="deptNo" Left="227" LeftMargin="2" TabOrder="4" Top="77" Width="53"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="deptInfo" Left="357" OnClick="deptInfo_OnClick" TabOrder="5" Text="검색" Top="76" Width="43"></Button>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="32" Id="Static3" Left="-8" TabOrder="6" Text="작성자" Top="72" VAlign="Middle" Width="61"></Static>
+		<Edit Align="CENTER" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="23" Id="empNo" Left="45" LeftMargin="2" TabOrder="7" Top="77" Width="58"></Edit>
+		<Edit Align="CENTER" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empName" Left="107" LeftMargin="2" TabOrder="8" Top="77" Width="62"></Edit>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="29" Id="Static4" Left="400" TabOrder="9" Text="결의기간" Top="72" VAlign="Middle" Width="61"></Static>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="18" Id="Static5" Left="552" TabOrder="10" Text="~" Top="79" VAlign="Middle" Width="17"></Static>
+		<Calendar Font="KBIZ한마음고딕&#32;B,10" Height="23" Id="eDate" Left="568" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="11" Top="77" Value="20160930" Width="101"></Calendar>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="slipSearch" Left="195" OnClick="slipSearch_OnClick" TabOrder="12" Text="전표조회" Top="43" Width="67"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="insertSlip" Left="277" OnClick="insertSlip_OnClick" TabOrder="13" Text="전표입력" Top="43" Width="67"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="deleteSlip" Left="343" OnClick="deleteSlip_OnClick" TabOrder="14" Text="전표삭제" Top="43" Width="65"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="save" Left="567" OnClick="save_OnClick" TabOrder="15" Text="저장" Top="43" Width="60"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="cancel" Left="626" OnClick="cancel_OnClick" TabOrder="16" Text="취소" Top="43" Width="54"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsSlip" BkColor2="default" BoldHead="true" Bottom="264" Editable="TRUE" Enable="true" EndLineColor="default" Height="155" Id="slipGrid" InputPanel="FALSE" LineColor="default" MinWidth="100" OnCellClick="slipGrid_OnCellClick" OnEnterDown="slipGrid_OnEnterDown" Right="680" TabOrder="17" TabStop="true" Top="109" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="680">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="90"/>
+						<col width="48"/>
+						<col width="95"/>
+						<col width="48"/>
+						<col width="95"/>
+						<col width="49"/>
+						<col width="70"/>
+						<col width="70"/>
+						<col width="70"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="전표번호"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="번호"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="품의내역"/>
+						<cell align="center" bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="유형"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="text" font="KBIZ한마음고딕&#32;B,10" text="기표번호"/>
+						<cell align="center" bkcolor="#f7e4cf" col="5" display="text" font="KBIZ한마음고딕&#32;B,10" text="상태"/>
+						<cell align="center" bkcolor="#f7e4cf" col="6" display="text" font="KBIZ한마음고딕&#32;B,10" text="승인자"/>
+						<cell align="center" bkcolor="#f7e4cf" col="7" display="text" font="KBIZ한마음고딕&#32;B,10" text="대차차액"/>
+						<cell align="center" bkcolor="#f7e4cf" col="8" display="text" font="KBIZ한마음고딕&#32;B,10" text="작업자"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="slip_no" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="slip_seq" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="slip_content" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="slip_type" combocol="menu" combodataset="slipType" combotext="menu" display="text" edit="combo" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="4" colid="slip_ballot_no" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="5" colid="slip_status" combotext="menu" display="text" edit="combo" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="6" colid="approver" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="7" colid="difference_amt" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="8" colid="slip_worker" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoFit="TRUE" BindDataset="dsJournal" BkColor2="default" BoldHead="true" Bottom="413" Editable="TRUE" Enable="true" EndLineColor="default" Height="152" Id="jourGrid" InputPanel="FALSE" LineColor="default" MinWidth="100" OnCellClick="jourGrid_OnCellClick" OnEnterDown="jourGrid_OnEnterDown" Right="680" TabOrder="2" TabStop="true" Top="261" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="680">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="30"/>
+						<col width="40"/>
+						<col width="70"/>
+						<col width="140"/>
+						<col width="60"/>
+						<col width="70"/>
+						<col width="80"/>
+						<col width="90"/>
+						<col width="60"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="순번"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="구분"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정과목코드"/>
+						<cell align="center" bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정과목명"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="text" font="KBIZ한마음고딕&#32;B,10" text="거래처코드"/>
+						<cell align="center" bkcolor="#f7e4cf" col="5" display="text" font="KBIZ한마음고딕&#32;B,10" text="거래처명"/>
+						<cell align="center" bkcolor="#f7e4cf" col="6" display="text" font="KBIZ한마음고딕&#32;B,10" text="금액"/>
+						<cell align="center" bkcolor="#f7e4cf" col="7" display="text" font="KBIZ한마음고딕&#32;B,10" text="적요"/>
+						<cell align="center" bkcolor="#f7e4cf" col="8" display="text" font="KBIZ한마음고딕&#32;B,10" text="증빙"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="journal_no" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="journal_type" combocol="name" combodataset="daecha" combotext="name" display="text" edit="combo" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="account_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="account_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="4" colid="customer_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="5" colid="customer_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="6" colid="journal_amt" display="number" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="7" colid="summary_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="8" colid="JOURNAL_RECEIPT" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Div Height="96" Id="jourCompDiv" TabOrder="18" Text="Div0" Top="417" Width="680">
+			<Contents></Contents>
+		</Div>
+		<Edit Align="CENTER" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="deptName" Left="283" LeftMargin="2" TabOrder="20" Top="77" Width="69"></Edit>
+		<Grid AutoFit="TRUE" BindDataset="dsDebtor" BkColor2="default" BoldHead="true" Bottom="682" Enable="true" EndLineColor="default" Height="154" Id="debtor" InputPanel="FALSE" LineColor="default" MinWidth="100" Right="328" TabOrder="19" TabStop="true" Top="528" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="328">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="80"/>
+						<col width="140"/>
+						<col width="100"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="차변"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</head>
+					<body>
+						<cell col="0" colid="account_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell col="1" colid="account_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="journal_amt" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="차변합계"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="number" expr='sum(&quot;journal_amt&quot;)' font="KBIZ한마음고딕&#32;B,10"/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoFit="TRUE" BindDataset="dsCreditor" BkColor2="default" BoldHead="true" Bottom="680" Enable="true" EndLineColor="default" Height="154" Id="creditor" InputPanel="FALSE" Left="352" LineColor="default" MinWidth="100" Right="680" TabOrder="21" TabStop="true" Top="526" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="328">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="80"/>
+						<col width="140"/>
+						<col width="100"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="대변"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</head>
+					<body>
+						<cell col="0" colid="account_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell col="1" colid="account_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="journal_amt" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="대변합계"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="number" expr='sum(&quot;journal_amt&quot;)' font="KBIZ한마음고딕&#32;B,10"/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Calendar Font="KBIZ한마음고딕&#32;B,10" HeaderFont="KBIZ한마음고딕&#32;B,10" Height="23" Id="sDate" Left="455" SaturdayTextColor="blue" SelectedDayFont="KBIZ한마음고딕&#32;B,9" SundayTextColor="red" TabOrder="22" Top="77" Value="20160901" WeeksFont="KBIZ한마음고딕&#32;B,9" Width="99"></Calendar>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="insertJournal" Left="423" OnClick="insertJournal_OnClick" TabOrder="23" Text="분개입력" Top="43" Width="65"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="deleteJournal" Left="487" OnClick="deleteJournal_OnClick" TabOrder="24" Text="분개삭제" Top="43" Width="65"></Button>
+	</Form>
+	<Script><![CDATA[var accountCode, slipNo, jourSlipNo, accCode;
+
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	if(trid=="getSlipList"){
+		if(dsSlip.GetRowCount()==0){
+			alert("조회된 데이터가 없습니다.");
+		}else{
+			//alert(global.http.RecvHttpStr);			
+			slipListFilter(dsSlip.getCurrow());		
+			jourGrid.Redraw=true;	
+			//slipNo=dsSlip.GetColumn(dsSlip.GetCurrow(),"slip_no");			
+			//createComponent(0,slipNo);	
+			createComponent(dsJournal.getCurrow(),dsJournal.getColumn(dsJournal.getCurrow(),"slip_no"));
+			setChaDae(0);	
+		}
+	}else if(trid=="batchSlipList"){	
+		if(ErrorCode!=0){
+			alert("저장 실패: "+ErrorMsg);				
+		}else{
+			alert("저장 완료");
+		}
+	}	
+}
+
+// 부서 검색 버튼
+function deptInfo_OnClick(obj)
+{
+	dsDetailCode.filter("distinction_code='DP'");
+	dialog("base::codeInfo.xml","",400,300,"",550,200);
+}
+
+// 전표 조회 버튼
+function slipSearch_OnClick(obj)
+{
+	if(deptNo.Text==''){
+		alert("부서를 선택해주세요. ");
+	}else{
+		// 실시간이 아니라 true됨과 동시에 한번에 변경된 내용이 화면에 뿌려진다. 변경시 변경이 완료된 시점에 수정이 가능하다.
+		jourGrid.Redraw=false;
+		// 전표, 분개, 분개상세 데이터를 가져온다.
+		Transaction("getSlipList","svcAccounting::/slip/slip.do?method=getSlipList","","dsSlip=dsSlip dsJournal=dsJournal dsJournalManagement=dsJournalManagement",
+			"deptName='"+deptName.Text+"' sDate='"+sDate.Value+"' eDate='"+eDate.Value+"'","callback");			
+		
+	}
+}
+
+// 전표 입력 버튼    전표번호, 사원번호, 결의날짜 셋팅
+function insertSlip_OnClick(obj)
+{
+	strDate = GetDate();
+   // Mid 입력된 문자열에서 가운데 부분을 주어진 길이만큼 Return한다.
+	strDate = Mid(strDate,0,8);
+	//alert(strDate);
+	dsSlip.AddRow();
+	dsSlip.SetColumn(dsSlip.row,"slip_no",strDate+"-");
+	dsSlip.SetColumn(dsSlip.row,"emp_no",empNo);
+	dsSlip.SetColumn(dsSlip.row,"slip_date",strDate);
+	dsSlip.SetColumn(dsSlip.row,"slip_status","미결");
+	dsSlip.SetColumn(dsSlip.row,"slip_worker",gvEmpName);
+	dsSlip.SetColumn(dsSlip.row,"slip_dept",gvDeptName);
+	dsSlip.SetColumn(dsSlip.row,"emp_no",gvEmpNo);
+
+}
+
+// 전표삭제 버튼
+function deleteSlip_OnClick(obj)
+{
+	if(Confirm("선택한 전표를 삭제하시겠습니까?")){
+		dsSlip.DeleteRow(dsSlip.row);
+		// 전표를 삭제하면 분개도 삭제되어야 한다. 
+		for(i=0;i<dsJournal.getRowcount()+1;i++){
+			dsJournal.DeleteRow(i);
+			dsJournalManagement.DeleteRow(i);
+		}
+	}
+}
+
+// 분개 입력 버튼
+function insertJournal_OnClick(obj)
+{
+	// 유형을 선택했을 때 분개 칸 생긴다. 
+		dsJournal.AddRow();
+		dsJournal.SetColumn(dsJournal.row,"journal_no",dsJournal.GetCurrow()+1);
+		//dsJournal.SetColumn(dsJournal.row,"slip_no",dsSlip.GetColumn(dsSlip.GetCurrow(),"slip_no"));
+		jourSlipNo=dsSlip.getColumn(dsSlip.getCurrow(), "slip_no");
+		
+		//dsJournal.SetColumn(dsJournal.row,"journal_no",dsJournal.GetCurrow());
+      
+		//dsJournal.SetColumn(nRow,"slip_seq",0);
+		// 작성한 전표번호를 분개 데이터셋에도 세팅한다.
+		//alert(jourSlipNo);
+		dsJournal.SetColumn(dsJournal.row,"slip_no",jourSlipNo);   
+		dsJournalManagement.SetColumn(nRow,"journal_no",dsJournal.GetCurrow());
+		dsJournalManagement.SetColumn(nRow,"slip_no",jourSlipNo);      
+		
+}
+
+// 분개 삭제 버튼
+function deleteJournal_OnClick(obj)
+{
+	dsJournal.DeleteRow(dsJournal.row);
+}
+
+// slipInput 폼이 로드 된 후 ~
+function slipInputForm_OnLoadCompleted(obj)
+{
+	empNo.Text=gvEmpNo;
+	empName.Text=gvEmpName;
+	
+	// Dataset의 Column 정보와 Record를 모두 삭제한다. 최초 Loading 된 Data도 전부 삭제되므로 복구할 수 없다.
+	dsSlip.Clear();
+	dsJournal.Clear();
+	dsDebtor.Clear();
+	dsCreditor.Clear();
+	
+	// 분개 창에서 계정과목을 띄운다.
+	Transaction("getAccountList","svcAccounting::/account/account.do?method=getAccountList","","dsAccount=dsAccount dsAcountManagement=dsAcountManagement ","","callback");
+}
+
+// 전표 그리드의 셀을 클릭 하면 ~
+function slipGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{	
+	slipListFilter(nRow);	
+	// 차변, 대변 데이터셋을 세팅한다.	
+	setChaDae(nRow);
+}
+
+// 전표 그리드에서 엔터를 치면 ~
+function slipGrid_OnEnterDown(obj,nRow,nCell,strVal,nPivotIndex)
+{
+	// 엔터치면 다음 셀로 이동한다.
+	obj.MoveToNextCell();	
+
+}
+
+// 분개 그리드 셀을 클릭하면 뜨는 Dialog
+function jourGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	if(nCell==2 || nCell==3){
+		//계정과목 컬럼을 세팅한다.
+		Dialog("base::accountInfo.xml","",250,300);
+	}else if(nCell==4 || nCell==5){
+		//거래처 컬럼을 세팅한다.
+		dsDetailCode.Filter("distinction_code='CT'");
+		Dialog("base::codeInfo.xml","",250,300);
+	}
+	
+	createComponent(nRow,slipNo);
+}
+
+// 분개 그리드에서 엔터를 치면 ~
+function jourGrid_OnEnterDown(obj,nRow,nCell,strVal,nPivotIndex)
+{
+		obj.MoveToNextCell();
+		setChaDae(dsSlip.GetCurrow());
+}
+
+// 컴포넌트를 생성
+function createComponent(nRow,slipNo){
+
+	// 기존 분개상세를 지운다.
+	for ( var c = Length(jourCompDiv.Components()); c >= 0; c-- ) {  
+      jourCompDiv.Destroy(jourCompDiv.Components[c].id);
+   }   
+   	
+	jourSlipNo=dsSlip.GetColumn(dsSlip.GetCurrow(),"slip_no");
+  	trace("jourSlipNo ::: --------------- "+jourSlipNo);	
+      
+	dsJournalManagement.Filter("journal_no='"+dsJournal.GetColumn(nRow,"journal_no")+"' && slip_no='"+jourSlipNo+"'");
+	
+	// Dataset의 내용을 XML 형식으로 저장해서 문자열로 얻어낸다.
+	//trace(dsJournalManagement.SaveXML());
+	
+	var iTop=3, iLeft=3;	
+	
+	// 분개 상세를 생성한다.
+	for(i=1; i<dsJournalManagement.GetRowCount()+1; i++){
+		
+		var accValue=dsJournalManagement.GetColumn(i-1,"value");
+		var accName=dsJournalManagement.GetColumn(i-1,"management_name"); 		
+		var accComp=dsJournalManagement.GetColumn(i-1,"management_type"); 	
+		
+		trace(accValue+" ---------- "+accName+" ---------- "+accComp);
+		
+		// Create((StartXML에 등록된) 컴포넌트명, ID, 속성들, 인자들)	
+		jourCompDiv.Create("Edit","text"+i, 'Border="None" Enable="False" Height="25" Align="CENTER" Left="'+iLeft+'" Top="'+iTop+'" Width="70" text = "'+accName+'" ');
+		
+		iLeft+=75; 
+		
+		// OnChanged는 '' 맨앞에 두면 안먹힌다.
+		if(accComp != 'CODE'){
+			jourCompDiv.Create(accComp,i,'Height="25" Align="CENTER" Left="'+iLeft+'" Top="'+iTop+'" Width="120" OnChanged="EditOnChanged" text = "'+accValue+'" ');
+		}else{
+			accCode=dsJournalManagement.GetColumn(i-1,"management_code"); 
+			jourCompDiv.Create('Edit',i,'Height="25" Align="CENTER" Left="'+iLeft+'" Top="'+iTop+'" Width="120" OnClick="codeInput" text = "'+accValue+'" ');
+		}
+		
+		if(i%4==0){
+			iTop+=35;
+			iLeft=3;
+		}else{
+			iLeft+=120;
+		}
+	}
+}
+
+function EditOnChanged(obj, strCode, strText, nOldIndex, nNewIndex)
+{
+	//alert(obj.id);
+   var num = trim(obj.id);
+   var comment = "";
+   comment = obj.value;   
+   //trace(dsJournalManagement.SaveXML());
+   dsJournalManagement.SetColumn(parseInt(num)-1,"value",comment);   
+}
+function codeInput(obj){
+   dsDetailCode.filter("distinction_code='"+accCode+"'");
+   var codeIdx;
+   codeIdx = "codeNum="+trim(obj.id);
+   Dialog("base::codeInfo.xml",codeIdx,300,300,"",550,200);
+}
+
+// 현재 전표에 따라 전표번호로 분개 리스트를 필터해준다
+function slipListFilter(nRow)
+{	
+	slipNo=dsSlip.GetColumn(nRow,"slip_no");
+	jourGrid.Redraw=false;
+	dsJournal.filter("slip_no='"+slipNo+"'");	
+	jourGrid.Redraw=true;
+}
+
+// 차변/대변 뿌리기
+function setChaDae(nRow)
+{
+	debtor.Redraw = false;
+	creditor.Redraw = false;
+	dsDebtor.copyF(dsJournal);
+	dsDebtor.Filter("journal_type='차변'");
+	dsCreditor.copyF(dsJournal);
+	dsCreditor.Filter("journal_type='대변'");	
+	debtor.Redraw = true;	
+	creditor.Redraw = true;	
+	
+	// 대차차액을 구한다. summary는 그리드의 sum을 뜻한다. 
+	var debtor=parseInt(replace(debtor.GetCellText("summary", 0, 1),",",""));
+	var creditor=parseInt(replace(creditor.GetCellText("summary", 0, 1),",",""));
+
+	trace(debtor+" --------------- "+creditor);
+
+	dsSlip.SetColumn(nRow,"difference_amt",debtor-creditor);
+} 
+
+// 저장 버튼 
+function save_OnClick(obj)
+{
+	if(Confirm("전표를 저장하시겠습니까?")){
+		//var count=dsJournal.GetCount()-1;
+			// 분개 타입이 없는 행을 삭제한다.
+		//alert("count : "+count);
+		if(length(dsJournal.GetColumn(count, "journal_type"))==0){	
+			dsJournal.DeleteRow(count);			
+		}
+			
+	Transaction("batchSlipList","svcAccounting::/slip/slip.do?method=batchSlipList","dsSlip=dsSlip:U dsJournal=dsJournal:U dsJournalManagement=dsJournalManagement:U",
+				"","","callback");
+	}
+}
+
+// 취소 버튼
+function cancel_OnClick(obj)
+{
+	if(confirm("취소하시겠습니까?")){
+      Reload();
+   }
+}
+]]></Script>
+</Window>

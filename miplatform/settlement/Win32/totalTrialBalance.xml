@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="488" Id="totalTrialBalanceForm" Left="8" OnLoadCompleted="totalTrialBalanceForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsTotalTrialBalance">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="selectYear">
+				<Contents>
+					<colinfo id="preYear" size="256" summ="default" type="STRING"/>
+					<record>
+						<preYear>2016</preYear>
+					</record>
+					<record>
+						<preYear>2015</preYear>
+					</record>
+					<record>
+						<preYear>2014</preYear>
+					</record>
+					<record>
+						<preYear>2013</preYear>
+					</record>
+					<record>
+						<preYear>2012</preYear>
+					</record>
+					<record>
+						<preYear>2011</preYear>
+					</record>
+					<record>
+						<preYear>2010</preYear>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsTotalCreditor">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="amt" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="journal_type" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsTotalDebtor">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="amt" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="journal_type" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" TabOrder="1" Text="합계&#32;잔액&#32;시산표" Top="8" VAlign="Middle" Width="696"></Static>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="totalSearch" Left="592" OnClick="totalSearch_OnClick" TabOrder="2" Text="조회" Top="43" Width="46"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsTotalTrialBalance" BkColor2="default" BoldHead="true" Bottom="480" Editable="TRUE" Enable="true" EndLineColor="default" Height="400" Id="totalTrialBalanceGrid" InputPanel="FALSE" LineColor="default" MinWidth="100" Right="696" TabOrder="3" TabStop="true" Top="80" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="696">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="100"/>
+						<col width="100"/>
+						<col width="50"/>
+						<col width="150"/>
+						<col width="100"/>
+						<col width="100"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10">
+							<cell align="center" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="차변"/>
+						</cell>
+						<cell align="center" bkcolor="#f7e4cf" col="2" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="계정과목"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10">
+							<cell col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="대변"/>
+						</cell>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="잔액"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="합계"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="합계"/>
+						<cell align="center" bkcolor="#f7e4cf" col="5" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="잔액"/>
+					</head>
+					<body>
+						<cell align="center" bkcolor="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="0" display="text" edit="normal" expr='iif(parseInt(dsTotalDebtor.getColumn(currow,&#32;&quot;amt&quot;))-parseInt(dsTotalCreditor.getColumn(currow,&#32;&quot;amt&quot;))&#32;&gt;&#32;0&#32;,&#32;parseInt(dsTotalDebtor.getColumn(currow,&#32;&quot;amt&quot;))-parseInt(dsTotalCreditor.getColumn(currow,&#32;&quot;amt&quot;)),&#32;&quot;&quot;)' font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="1" colid="account_code" combocol="account_code" combodataset="dsTotalDebtor" combotext="amt" display="combo" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="2" colid="account_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="3" colid="account_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="4" colid="account_code" combocol="account_code" combodataset="dsTotalCreditor" combotext="amt" display="combo" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(account_code&#32;==&#32;10&#32;||&#32;account_code&#32;==&#32;20&#32;||&#32;account_code&#32;==&#32;30&#32;||&#32;account_code&#32;==&#32;40&#32;||&#32;account_code&#32;==&#32;50&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="5" display="text" expr='iif(parseInt(dsTotalCreditor.getColumn(currow,&#32;&quot;amt&quot;))-parseInt(dsTotalDebtor.getColumn(currow,&#32;&quot;amt&quot;))&#32;&gt;&#32;0&#32;,&#32;parseInt(dsTotalCreditor.getColumn(currow,&#32;&quot;amt&quot;))-parseInt(dsTotalDebtor.getColumn(currow,&#32;&quot;amt&quot;)),&#32;&quot;&quot;)' font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="number" expr='sum(&quot;amt&quot;)' font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="number" expr='sum(&quot;amt&quot;)' font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="#f7e4cf" col="5" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Calendar DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="sDate" InnerDataset="selectYear" Left="346" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="4" Top="44" Width="105"></Calendar>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="20" Id="Static9" Left="449" TabOrder="6" Text="~" Top="46" VAlign="Middle" Width="32"></Static>
+		<Calendar DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="eDate" Left="480" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="5" Top="44" Width="105"></Calendar>
+		<Combo DataColumn="preYear" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="selYear" INDEX="0" InnerDataset="selectYear" Left="272" OnChanged="selYear_OnChanged" TabOrder="7" Top="44" Width="63"></Combo>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="excelPrint" Left="640" OnClick="excelPrint_OnClick" TabOrder="8" Text="엑셀출력" Top="43" Width="56"></Button>
+	</Form>
+	<Script><![CDATA[var year, strDate;
+
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	if(trid=="getTotalTrialBalanceList"){
+		if(ErrorCode != 0){
+			alert(ErrorMsg);
+		}
+		dsTotalTrialBalance.Copy(dsTotalDebtor);
+	}else{	
+		
+	}	
+}
+
+// 합계 시산표 폼이 로드된 후 ~
+function totalTrialBalanceForm_OnLoadCompleted(obj)
+{
+	strDate = GetDate();
+	year = Mid(strDate,0,4);
+	strDate = Mid(strDate,0,8);
+	
+	sDate.value = year+'0101' ;
+	eDate.value = strDate ;
+}
+
+// 조회 버튼
+function totalSearch_OnClick(obj)
+{
+	//alert("시작 : "+sDate.Value+"  끝 : "+eDate.Value);
+	Transaction("getTotalTrialBalanceList","svcAccounting::/slip/settlement.do?method=getTotalTrialBalanceList","","dsTotalCreditor=dsTotalCreditor dsTotalDebtor=dsTotalDebtor",
+			"sDate='"+sDate.Value+"' eDate='"+eDate.Value+"'","callback");
+}
+
+// 날짜 선택 콤보가 바뀌면 ~
+function selYear_OnChanged(obj,strCode,strText,nOldIndex,nNewIndex)
+{
+	year = selYear.Value ;
+	if(year == '2016'){
+		sDate.value = year+'0101' ;
+		eDate.value = strDate ;
+	}else{
+		sDate.value = parseInt(year)+'0101' ;
+		eDate.value = parseInt(year)+'1231' ;
+	}
+}
+
+// 엑셀로 출력 ~
+function excelPrint_OnClick(obj)
+{
+	if(Confirm("시산표를 출력하시겠습니까?")){
+		totalTrialBalanceGrid.ExportExcelEx("TotalTrialBalance");
+	}
+}
+]]></Script>
+</Window>

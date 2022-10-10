@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- @Component 어노테이션을 클래스에 작성하면 빈 스캐너를 통해 자동 빈 등록된다. -->
+	<context:component-scan base-package="com.minhyuk">
+		<context:include-filter type="aspectj" expression="com.minhyuk..service.*" />
+	</context:component-scan>
+	<context:component-scan base-package="com.minhyuk">
+		<context:include-filter type="aspectj" expression="com.minhyuk..as.*" />
+	</context:component-scan>
+
+</beans>

@@ -1,0 +1,515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="slipInput" classname="slipInput" inheritanceid="" position="absolute 0 0 580 660" titletext="New Form" style="background:transparent;" onload="slipInput_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="전표입력/조회" position2="absolute l:7 w:569 t:8 h:25" positiontype="position2" style="background:#edaf78ff;align:center middle;font:나눔바른고딕,14,bold antialias;"/>
+        <Button id="insertJournal" taborder="1" text="분개입력" position2="absolute l:343 w:56 t:38 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;" onclick="insertJournal_onclick"/>
+        <Button id="deleteJournal" taborder="1" text="분개삭제" position2="absolute l:399 w:56 t:38 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;"/>
+        <Button id="saveBtn" taborder="1" text="저장" position2="absolute l:463 w:56 t:38 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;" onclick="saveBtn_onclick"/>
+        <Button id="cancelBtn" taborder="1" text="취소" position2="absolute l:519 w:56 t:38 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;"/>
+        <Button id="deleteSlip" taborder="1" text="전표삭제" position2="absolute l:279 w:56 t:38 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;" onclick="deleteSlip_onclick"/>
+        <Button id="insertSlip" taborder="1" text="전표입력" position2="absolute l:223 w:56 t:38 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;" onclick="insertSlip_onclick"/>
+        <Button id="slipSearch" taborder="1" text="전표조회" position2="absolute l:159 w:56 t:38 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;" onclick="slipSearch_onclick"/>
+        <Static id="Static02" text="결의부서" position2="absolute l:59 w:62 t:70 h:26" positiontype="position2" style="align:center middle;font:나눔바른고딕,9,bold antialias;"/>
+        <Button id="deptInfo" taborder="1" text="검색" onclick="empSearchBtn_onclick" position2="absolute l:226 w:41 t:70 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;"/>
+        <Static id="Static01" text="작성자" position2="absolute l:-4 w:62 t:37 h:26" positiontype="position2" style="align:center middle;font:나눔바른고딕,9,bold antialias;"/>
+        <Static id="Static03" text="결의기간" position2="absolute l:272 w:62 t:70 h:26" positiontype="position2" style="align:center middle;font:나눔바른고딕,9,bold antialias;"/>
+        <Edit id="empName" taborder="1" position2="absolute l:94 w:56 t:37 h:26" positiontype="position2" style="align:center middle;font:나눔바른고딕,9,bold antialias;" readonly="true"/>
+        <Edit id="empNo" taborder="1" position2="absolute l:46 w:48 t:37 h:26" positiontype="position2" style="align:center middle;font:나눔바른고딕,9,bold antialias;" readonly="true"/>
+        <Edit id="deptNo" taborder="1" position2="absolute l:117 w:48 t:70 h:26" positiontype="position2" style="align:center middle;font:나눔바른고딕,9,bold antialias;" readonly="true"/>
+        <Edit id="deptName" taborder="1" position2="absolute l:165 w:56 t:70 h:26" positiontype="position2" style="align:center middle;font:나눔바른고딕,9,bold antialias;" readonly="true"/>
+        <Calendar id="sDate" taborder="1" position2="absolute l:335 w:112 t:70 h:26" positiontype="position2" dateformat="yyyy-MM-dd" value="20160901" type="normal"/>
+        <Static id="Static04" text="~" position2="absolute l:449 w:14 t:70 h:26" positiontype="position2" style="align:center middle;font:나눔바른고딕,9,bold antialias;"/>
+        <Calendar id="eDate" taborder="1" dateformat="yyyy-MM-dd" position2="absolute l:463 w:112 t:70 h:26" positiontype="position2" value="20160930"/>
+        <Grid id="slipGrid" taborder="1" binddataset="dsSlip" useinputpanel="false" autofittype="col" position2="absolute l:7 w:569 t:104 h:152" positiontype="position2" style="font:Verdana,10,bold antialias;" oncellclick="slipGrid_oncellclick" onenterdown="slipGrid_onenterdown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="90"/>
+                <Column size="30"/>
+                <Column size="80"/>
+                <Column size="70"/>
+                <Column size="90"/>
+                <Column size="30"/>
+                <Column size="50"/>
+                <Column size="70"/>
+                <Column size="50"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;" text="전표번호"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;" text="번호"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;" text="품의내역"/>
+                <Cell col="3" displaytype="normal" style="background:#f7e4cfff;" text="유형"/>
+                <Cell col="4" displaytype="normal" style="background:#f7e4cfff;" text="기표번호"/>
+                <Cell col="5" style="background:#f7e4cfff;" text="상태"/>
+                <Cell col="6" style="background:#f7e4cfff;" text="승인자"/>
+                <Cell col="7" style="background:#f7e4cfff;" text="대차차액"/>
+                <Cell col="8" style="background:#f7e4cfff;" text="작업자"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="text" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:slip_no"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:slip_seq"/>
+                <Cell col="2" displaytype="normal" edittype="text" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:slip_content"/>
+                <Cell col="3" displaytype="combo" edittype="combo" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:slip_type" combodataset="slipType" combocodecol="name" combodatacol="name" combodisplay="edit"/>
+                <Cell col="4" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:slip_ballot_no" combodisplay="edit"/>
+                <Cell col="5" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:slip_status"/>
+                <Cell col="6" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:approver"/>
+                <Cell col="7" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:difference_amt"/>
+                <Cell col="8" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:slip_worker"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="debtor" taborder="1" binddataset="dsDebtor" useinputpanel="false" autofittype="col" oncellclick="empListGrid_oncellclick" position2="absolute l:7 w:281 t:544 h:110" positiontype="position2" style="font:Verdana,10,bold antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" displaytype="normal" style="background:#f7e4cfff;" text="차변"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;selectfont:Verdana,10,bold;" text="bind:account_code" combodataset="dsDept" combocodecol="DETAIL_CODE" combodatacol="DETAIL_NAME" combodisplay="edit"/>
+                <Cell col="1" style="align:center middle;background:#f9f0d7ff;background2:transparent;selectfont:Verdana,10,bold;" text="bind:account_name"/>
+                <Cell col="2" displaytype="number" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;selectfont:Verdana,10,bold;" text="bind:journal_amt" combodataset="dsPosition" combocodecol="detail_code" combodatacol="detail_name" combodisplay="edit"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" style="align:center middle;background:#f7e4cfff;" text="차변합계"/>
+                <Cell col="2" displaytype="number" style="align:center middle;background:#f7e4cfff;" expr="expr:getSum(&quot;parseInt(journal_amt)&quot;)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="journalGrid" taborder="1" binddataset="dsJournal" useinputpanel="false" autofittype="col" position2="absolute l:7 w:569 t:256 h:152" positiontype="position2" style="font:Verdana,10,bold antialias;" oncellclick="journalGrid_oncellclick" onenterdown="journalGrid_onenterdown">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="30"/>
+                <Column size="30"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;" text="순번"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;" text="구분"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;" text="계정과목코드"/>
+                <Cell col="3" displaytype="normal" style="background:#f7e4cfff;" text="계정과목명"/>
+                <Cell col="4" displaytype="normal" style="background:#f7e4cfff;" text="거래처코드"/>
+                <Cell col="5" style="background:#f7e4cfff;" text="거래처명"/>
+                <Cell col="6" style="background:#f7e4cfff;" text="금액"/>
+                <Cell col="7" style="background:#f7e4cfff;" text="적요"/>
+                <Cell col="8" style="background:#f7e4cfff;" text="증빙"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:journal_no"/>
+                <Cell col="1" displaytype="combo" edittype="combo" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:journal_type" combodataset="daecha" combocodecol="name" combodatacol="name"/>
+                <Cell col="2" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:account_code"/>
+                <Cell col="3" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:account_name" combodisplay="edit"/>
+                <Cell col="4" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:customer_code" combodisplay="edit"/>
+                <Cell col="5" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:customer_name"/>
+                <Cell col="6" displaytype="number" edittype="text" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:journal_amt"/>
+                <Cell col="7" edittype="text" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:summary_name"/>
+                <Cell col="8" edittype="text" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,9;selectfont:Verdana,9;" text="bind:journal_receipt"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="creditor" taborder="1" binddataset="dsCreditor" useinputpanel="false" autofittype="col" oncellclick="empListGrid_oncellclick" position2="absolute l:295 w:281 t:544 h:110" positiontype="position2" style="font:Verdana,10,bold antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="80"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" displaytype="normal" style="background:#f7e4cfff;" text="대변"/>
+                <Cell col="2" displaytype="normal" style="background:#f7e4cfff;"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;selectfont:Verdana,10,bold;" text="bind:account_code" combodisplay="edit"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;" text="bind:account_name"/>
+                <Cell col="2" displaytype="number" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;selectfont:Verdana,10,bold;" text="bind:journal_amt" combodisplay="edit"/>
+              </Band>
+              <Band id="summary">
+                <Cell colspan="2" style="align:center middle;background:#f7e4cfff;" text="대변합계"/>
+                <Cell col="2" displaytype="number" style="align:center middle;background:#f7e4cfff;" expr="expr:getSum(&quot;parseInt(journal_amt)&quot;)"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="jourCompDiv" taborder="1" position2="absolute l:7 w:569 t:408 h:136" positiontype="position2" style="background:transparent;"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="slipType" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="name">일반</Col>
+          </Row>
+          <Row>
+            <Col id="name">매입</Col>
+          </Row>
+          <Row>
+            <Col id="name">매출</Col>
+          </Row>
+          <Row>
+            <Col id="name">수금</Col>
+          </Row>
+          <Row>
+            <Col id="name">반제</Col>
+          </Row>
+          <Row>
+            <Col id="name">수정</Col>
+          </Row>
+          <Row>
+            <Col id="name">결산</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="daecha" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="name">차변</Col>
+          </Row>
+          <Row>
+            <Col id="name">대변</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[var accountCode, slipNo, accComp, jourSlipNo, managementCode, managementIdx;
+
+// 콜백 함수
+function callback(trid, errorCode, errorMsg){
+	if(trid=="getSlipList"){
+		if(dsSlip.getRowCount()==0){
+			alert("조회된 데이터가 없습니다.");
+		}else{
+			//trace(dsJournal.saveXML());
+			slipListFilter();		
+			slipNo=dsSlip.getColumn(dsSlip.rowposition,"slip_no");			
+			createComponent(dsJournal.rowposition, dsJournal.getColumn(dsJournal.rowposition,"slip_no"));	
+			setChaDae(dsSlip.rowposition);	
+		}
+	}else if(trid=="getAccountList"){
+		if(errorCode!=0){
+			alert("조회 실패: "+errorMsg);				
+		}
+	}else if(trid=="batchSlipList"){
+		if(errorCode!=0){
+			alert("수정 실패: "+errorMsg);				
+		}
+	}
+}
+
+// 전표입력 폼이 로드되면
+function slipInput_onload(obj:Form, e:LoadEventInfo)
+{
+	empNo.value=gvEmpNo;
+	empName.value=gvEmpName;
+	
+	dsSlip.clear();
+	dsJournal.clear();
+	dsDebtor.clear();
+	dsCreditor.clear();
+	transaction("getAccountList","DataUrl::account/getAccountList.do","","dsAccount=dsAccount dsAcountManagement=dsAcountManagement","","callback");
+}
+
+// 부서검색 버튼
+function empSearchBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	dsDetailCode.filter("distinction_code=='DP'");
+	dialog("modal", "Base::codeInfo.xfdl", MainFrame, {a:'aaa', b:'bbb'}, "showtitlebar=true showstatusbar=false", 800, 150, 800, 600,this);
+}
+
+// 팝업창에서 선택한 부서정보를 edit에 자동입력
+function setCodeInfo(deptNo, deptName)
+{
+	this.deptNo.value=deptNo;
+	this.deptName.value=deptName;
+}
+
+// 전표 조회 버튼
+function slipSearch_onclick(obj:Button,  e:ClickEventInfo)
+{
+	if(deptNo.text==''  || deptName.text=='' ){
+		alert("부서를 선택해주세요. ");
+	}else{
+		transaction("getSlipList","DataUrl::slip/getSlipList.do","","dsSlip=dsSlip dsJournal=dsJournal dsJournalManagement=dsJournalManagement",
+			"deptName='"+deptName.text+"' sDate='"+sDate.value+"' eDate='"+eDate.value+"'","callback");	
+	}
+}
+
+// 슬립리스트필터
+function slipListFilter(){	
+	slipNo=dsSlip.getColumn(dsSlip.rowposition,"slip_no");
+	dsJournal.filter("slip_no=='"+slipNo+"'");		
+}
+
+// 차변 - 대변
+function setChaDae(nRow)
+{
+	dsDebtor.clear();
+    dsDebtor.copyData(dsJournal,true);
+    dsDebtor.filter("journal_type=='차변'");
+   
+    dsCreditor.clear();
+    dsCreditor.copyData(dsJournal,true);
+    dsCreditor.filter("journal_type=='대변'");   
+   
+    var moneyDebit=parseInt(debtor.getCellText( -2,1).replace(",",""),"10");
+    var moneyCreditor=parseInt(creditor.getCellText( -2,1).replace(",",""),"10");   
+    dsSlip.setColumn(nRow,"difference_amt",moneyDebit-moneyCreditor);   
+}
+
+// 전표그리드를 클릭하면
+function slipGrid_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	slipListFilter();	
+	createComponent(e.row,slipNo);	
+	setChaDae();
+}
+
+// 취소버튼
+function resetBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	reload();
+}
+
+// 전표입력 버튼
+function insertSlip_onclick(obj:Button,  e:ClickEventInfo)
+{
+	var objDate = new Date();
+	var strDate = objDate.toFormatString("%Y%m%d");
+	//alert(strDate);
+	dsSlip.addRow();
+	dsSlip.setColumn(dsSlip.rowposition,"slip_no",strDate+"-");
+	dsSlip.setColumn(dsSlip.rowposition,"emp_no",empNo);
+	dsSlip.setColumn(dsSlip.rowposition,"slip_date",strDate);
+	dsSlip.setColumn(dsSlip.rowposition,"slip_status","미결");
+	dsSlip.setColumn(dsSlip.rowposition,"slip_worker",gvEmpName);
+	dsSlip.setColumn(dsSlip.rowposition,"slip_dept",gvDeptName);
+	dsSlip.setColumn(dsSlip.rowposition,"emp_no",gvEmpNo);
+}
+
+// 전표그리드에서 엔터를 치면
+function slipGrid_onenterdown(obj:Grid, e:GridEditEventInfo)
+{
+	obj.moveToNextCell();
+}
+
+// 전표 삭제 버튼
+function deleteSlip_onclick(obj:Button,  e:ClickEventInfo)
+{
+	if(confirm("선택한 전표를 삭제하시겠습니까?")){
+		dsSlip.deleteRow(dsSlip.rowposition);
+		// 전표를 삭제하면 분개도 삭제되어야 한다. 
+		for(i=0;i<dsJournal.getRowCount()+1;i++){
+			dsJournal.deleteRow(i);
+			dsJournalManagement.deleteRow(i);
+		}
+	}
+}
+
+// 분개 입력 버튼
+function insertJournal_onclick(obj:Button,  e:ClickEventInfo)
+{
+	dsJournal.addRow();
+	dsJournal.setColumn(dsJournal.rowposition,"journal_no",dsJournal.rowposition+1);
+	
+	jourSlipNo=dsSlip.getColumn(dsSlip.rowposition, "slip_no");
+	dsJournal.setColumn(dsJournal.rowposition,"slip_no",jourSlipNo);   
+	dsJournalManagement.setColumn(dsJournal.rowposition,"journal_no",dsJournal.rowposition);
+	dsJournalManagement.setColumn(dsJournal.rowposition,"slip_no",jourSlipNo);   
+}
+
+// 분개그리드를 클릭하면
+function journalGrid_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	if(e.cell==2 || e.cell==3){
+		//계정과목 컬럼을 세팅한다.
+		dialog("modal", "Base::accountInfo.xfdl", MainFrame, {a:'aaa', b:'bbb'}, "showtitlebar=true showstatusbar=false", 400, 150, 800, 600,this);	
+	}
+	createComponent(e.row,slipNo);	
+}
+
+// 분개그리드에서 엔터를 치면
+function journalGrid_onenterdown(obj:Grid, e:GridEditEventInfo)
+{
+	obj.moveToNextCell();
+	setChaDae(dsSlip.rowposition);
+}
+
+// 계정과목 팝업창에서 받아온 값
+function setAccountCodeInfo(code, name)
+{	
+	dsJournal.setColumn(dsJournal.rowposition,"account_code", code);
+	dsJournal.setColumn(dsJournal.rowposition,"account_name", name);
+}
+
+// 컴포넌트 생성
+function createComponent(row,slipNo)
+{	
+	//기존 분개상세를 지운다.
+	for ( var c =  jourCompDiv.components.length ; c >= 0; c-- ) {  
+      jourCompDiv.removeChild("Edit"+c);
+      jourCompDiv.removeChild("EditValue"+c);
+    } 
+   	
+  	trace("slipNo ::: --------------- "+slipNo);	
+      
+	dsJournalManagement.filter("journal_no=='"+dsJournal.getColumn(row,"journal_no")+"' && slip_no=='"+slipNo+"'");
+	dsJournal.setColumn(dsJournal.rowposition,"slip_no",slipNo);
+	
+	var iTop=3, iLeft=3;	
+	
+	// 분개 상세를 생성한다.
+	for(i=1; i<dsJournalManagement.getRowCount()+1; i++){
+		
+		var accValue=dsJournalManagement.getColumn(i-1,"value");
+		var accName=dsJournalManagement.getColumn(i-1,"management_name"); 		
+		var accComp=dsJournalManagement.getColumn(i-1,"management_type"); 	
+		
+		trace(accValue+" ---------- "+accName+" ---------- "+accComp);
+		
+		var objEdit = new Edit();
+		//스크립트에서 동적으로 컴포넌트를 생성한 후에 초기화한다.
+		objEdit.init("Edit"+i, iLeft,iTop,iLeft+80,iTop+25);
+		jourCompDiv.addChild("Edit"+i, objEdit);
+		objEdit.background ="white";
+		objEdit.border.style = "none";
+		objEdit.align = "right";
+		objEdit.enable = "false";
+		objEdit.value = accName;
+		objEdit.show();
+		
+		iLeft+=80; 
+		
+		if(accComp=="CALENDAR"){
+			 var objCalendar = new Calendar();
+			 objCalendar.init(i, iLeft,iTop,iLeft+110,iTop+25);
+			 jourCompDiv.addChild("EditValue"+i, objCalendar);
+			 objCalendar.background ="whitesmoke";
+			 objCalendar.border.style = "none";
+			 objCalendar.dateformat="yyyy-MM-dd";
+			 objCalendar.align = "center";
+			 objCalendar.enable = "true";
+			 objCalendar.value = accValue;
+			 objCalendar.oncloseup.addHandler(changedValue);
+			 objCalendar.show(); 
+		}else if(accComp=="EDIT"){
+			 var objEdit = new Edit();
+			 objEdit.init(i, iLeft,iTop,iLeft+80,iTop+25);
+			 jourCompDiv.addChild("EditValue"+i, objEdit);
+			 objEdit.background ="whitesmoke";
+			 objEdit.border.style = "none";
+			 objEdit.align = "center";
+			 objEdit.enable = "true";
+			 objEdit.value = accValue;
+			 //objEdit.oneditclick.addHandler(editClick);
+			 objEdit.ontextchanged.addHandler(changedValue);
+			 objEdit.show();
+		}else{
+			managementCode=dsJournalManagement.getColumn(i-1,"management_code");
+			managementIdx=i;
+			var objEdit = new Edit();
+			 objEdit.init(i, iLeft,iTop,iLeft+80,iTop+25);
+			 jourCompDiv.addChild("EditValue"+i, objEdit);
+			 objEdit.background ="whitesmoke";
+			 objEdit.border.style = "none";
+			 objEdit.align = "center";
+			 objEdit.enable = "true";
+			 objEdit.value = accValue;
+			 objEdit.oneditclick.addHandler(editClick);
+			 objEdit.ontextchanged.addHandler(changedValue);
+			 objEdit.show();
+		}
+
+		if(i%4==0){
+			iTop+=35;
+			iLeft=3;
+		}else{
+			iLeft+=110;
+		}
+	}
+}
+
+function changedValue(obj , e)
+{	
+   if(obj.toString().replace("[object ",'').replace("]",'') == "Calendar"){
+	  //alert(obj.value);
+      dsJournalManagement.setColumn(parseInt(obj.name)-1,"value",obj.value);
+   }else{
+      dsJournalManagement.setColumn(parseInt(obj.name)-1,"value",obj.text);
+   }   
+}
+
+function editClick(obj , e)
+{		
+	//alert(obj);
+	//alert(managementCode);
+	//alert(managementIdx);
+	//dialog(obj,"Base::codeInfo.xfdl", this, {managementCode:accCode},obj.name);
+	dsDetailCode.filter("distinction_code=='"+managementCode+"'");
+	dialog("modal", "Base::codeInfo.xfdl", MainFrame, {a:'aaa',b:'bbb'}, "showtitlebar=true showstatusbar=false", 400, 150, 800, 600,this);
+	createComponent(dsJournal.rowposition,slipNo);
+}
+
+function setManagementCodeInfo(codeName){
+	dsJournalManagement.setColumn(parseInt(managementIdx)-1,"value", codeName);
+}
+
+// 저장 버튼
+function saveBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	if(confirm("전표를 저장하시겠습니까?")){
+		//var count=dsJournal.GetCount()-1;
+			// 분개 타입이 없는 행을 삭제한다.
+		//alert("count : "+count);
+		//if(length(dsJournal.GetColumn(count, "journal_type"))==null){	
+		//	dsJournal.DeleteRow(count);			
+		//}
+
+	transaction("batchSlipList","DataUrl::slip/batchSlipList.do","dsSlip=dsSlip:U dsJournal=dsJournal:U dsJournalManagement=dsJournalManagement:U",
+				"","","callback");	
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

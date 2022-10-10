@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="treeView" classname="treeView" left="0" top="0" width="200" height="768" titletext="New Form" onload="treeView_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="부서명" left="0%" top="0" right="65%" height="30" style="background:#f7e4cfff;align:center middle;font:Verdana,10,bold;"/>
+        <Static id="Static01" taborder="1" text="사 번" left="0%" top="30" right="65%" height="30" style="background:#f7e4cfff;align:center middle;font:Verdana,10,bold;"/>
+        <Static id="Static02" taborder="2" text="사원명" left="0%" top="60" right="65%" height="30" style="background:#f7e4cfff;align:center middle;font:Verdana,10,bold;"/>
+        <Static id="deptName" taborder="3" left="35%" top="0" right="2.5%" height="30" style="background:#f7e4cfff;align:center middle;font:10 Verdana;"/>
+        <Static id="empNo" taborder="4" left="35%" top="30" right="2.5%" height="30" style="background:#f7e4cfff;align:center middle;font:10 Verdana;"/>
+        <Static id="empName" taborder="5" left="35%" top="60" right="2.5%" height="30" style="background:#f7e4cfff;align:center middle;font:10 Verdana;"/>
+        <Grid id="treeViewGrid" taborder="6" binddataset="dsMenu" useinputpanel="false" autofittype="col" treeusecheckbox="false" treeinitstatus="expand,all" left="0%" top="90" right="2.5%" height="360" style="linetype:onlyvert;border:1px solid #808080ff ;font:Verdana,9,antialias;" oncelldblclick="treeViewGrid_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="tree" edittype="tree" style="background:transparent;background2:transparent;font:bold 10 Verdana;" text="bind:menu_name" treelevel="bind:level"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.treeView_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.deptName.set_text(gvDeptName);
+	this.empNo.set_text(gvEmpNo);
+	this.empName.set_text(gvEmpName);
+}
+
+this.treeViewGrid_oncelldblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var check = false;
+	
+	var sID=application.dsMenu.getColumn(e.row,"menu_code");
+	var sURL=application.dsMenu.getColumn(e.row,"menu_url");
+	var sTitle=application.dsMenu.getColumn(e.row,"menu_name");
+	var sLevel=application.dsMenu.getColumn(e.row,"level");
+	
+		var result = application.permission.findRow("menu_code", sID);
+		//alert(result);
+		trace(sID+","+result);
+		// Dataset에서 지정한 Column ID의 Column 값과 입력된 Value의 값이 일치하는 첫번째 레코드 Index를 얻어온다.
+		if(!(result==-1)){
+			check = true;
+		}
+		if(sLevel=='1'){
+			return;
+		}
+		if(check == false){
+			alert("접근할 수 없는 화면입니다.");
+			return;	
+		}
+		
+	//화면이 갖고 있는 메서드
+	application.gfn_open(sID, sURL, sTitle);		
+}
+]]></Script>
+  </Form>
+</FDL>

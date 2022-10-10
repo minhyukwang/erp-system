@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="300" Id="loginForm" Left="8" OnLoadCompleted="loginForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="300" WorkArea="true">
+		<Static Align="Center" BKColor="#edaf78" Color="MENUTEXT" Font="KBIZ한마음고딕&#32;B,10" Height="32" Id="Static1" Left="40" TabOrder="3" Text="부서코드" Top="32" VAlign="Middle" Width="64"></Static>
+		<Edit Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="30" Id="deptNo" Left="104" LeftMargin="2" TabOrder="1" Top="32" Width="128"></Edit>
+		<Button Font="나눔바른고딕,9" Height="30" Id="deptSearchBtn" ImageID="search" Left="234" OnClick="deptSearchBtn_OnClick" TabOrder="11" Text="조회" Top="34" Width="23"></Button>
+		<Static Align="Center" BKColor="#edaf78" Color="MENUTEXT" Font="KBIZ한마음고딕&#32;B,10" Height="32" Id="Static2" Left="40" TabOrder="6" Text="부서명" Top="72" VAlign="Middle" Width="64"></Static>
+		<Edit Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="30" Id="deptName" Left="104" LeftMargin="2" TabOrder="2" Top="72" Width="153"></Edit>
+		<Static Align="Center" BKColor="#edaf78" Color="MENUTEXT" Font="KBIZ한마음고딕&#32;B,10" Height="32" Id="Static3" Left="40" TabOrder="7" Text="사번" Top="112" VAlign="Middle" Width="64"></Static>
+		<Edit Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="30" Id="empNo" Left="104" LeftMargin="2" OnChanged="Edit1_OnChanged" TabOrder="4" Top="112" Width="128"></Edit>
+		<Button Font="나눔바른고딕,9" Height="30" Id="empSearchBtn" ImageID="search" Left="233" OnClick="empSearchBtn_OnClick" TabOrder="12" Text="조회" Top="116" Width="24"></Button>
+		<Static Align="Center" BKColor="#edaf78" Color="MENUTEXT" Font="KBIZ한마음고딕&#32;B,10" Height="32" Id="Static4" Left="40" TabOrder="8" Text="사원명" Top="152" VAlign="Middle" Width="64"></Static>
+		<Edit Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="30" Id="empName" Left="104" LeftMargin="2" TabOrder="5" Top="152" Width="153"></Edit>
+		<Static Align="Center" BKColor="#edaf78" Color="MENUTEXT" Font="KBIZ한마음고딕&#32;B,10" Height="32" Id="Static5" Left="40" TabOrder="14" Text="비밀번호" Top="192" VAlign="Middle" Width="64"></Static>
+		<Edit Font="KBIZ한마음고딕&#32;B,10" Height="30" Id="empPw" Left="104" LeftMargin="2" OnKeyDown="empPw_OnKeyDown" Password="TRUE" TabOrder="13" Top="192" Width="153"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,11" Height="33" Id="login" Left="104" OnClick="login_OnClick" TabOrder="9" Text="로그인" Top="232" Width="74"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,11" Height="33" Id="cancel" Left="184" OnClick="cancel_OnClick" TabOrder="10" Text="취소" Top="232" Width="74"></Button>
+	</Form>
+	<Script><![CDATA[var empPassword;
+
+//부서 검색 버튼
+function deptSearchBtn_OnClick(obj)
+{
+	//세션연결한다.
+	dsDetailCode.Filter("distinction_code='DP'");
+	initSession(true);
+	dialog("base::codeInfo.xml","",400,300,"",550,200);
+}
+
+//사원 검색 버튼
+function empSearchBtn_OnClick(obj)
+{
+	dsEmp.Filter("dept_no='"+deptNo.Text+"'");
+	//false하면 값이 안넘어간다.
+	initSession(true); 
+	dialog("base::empInfo.xml","",400,300,"",550,200);
+	empPw.SetFocus();
+}
+
+//취소 버튼
+function cancel_OnClick(obj)
+{
+	exit();
+}
+
+//로그인 폼이 로드 완료된 후
+function loginForm_OnLoadCompleted(obj)
+{
+	//글로벌데이터셋으로 세팅한다.
+	Transaction("getCodeList","svcBase::/code.do?method=getCodeList","","dsCode=dsCode dsDetailCode=dsDetailCode","","callback");
+	transaction("getEmpList","svcInsa::/emp/emp.do?method=getEmpList", "", "dsEmp=dsEmp","","callback");
+	Transaction("getPermission","svcBase::/permission.do?method=getPermission","","dsPermission=dsPermission","","callback");
+	Transaction("getEmpPermission","svcBase::/permission.do?method=getEmpPermission","","dsEmpPermission=dsEmpPermission","","callback");
+}
+
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	//플랫폼컨트롤러에서 메서드를 호출해 호출한 메서드에 대한 에러코드와 에러메세지를 날려준다.
+	if(trid == "getEmpList" || trid == "getDeptList" || trid == "getDetailCodeList"){
+		if( ErrorCode < 0 ){
+			alert("실패"+ErrorMsg);
+		}else{
+			//alert("성공"+ErrorMsg);			
+		}
+	}else if(trid == "getPermission" || trid == "getEmpPermission"){
+		if( ErrorCode < 0 ){
+			alert("실패"+ErrorMsg);
+		}else{
+			//trace(dsPermission.SaveXML());		
+		}
+	}
+}
+
+//비번받아오는 함수
+function setPw(pw){
+	empPassword=pw;
+}
+
+//로그인 클릭이벤트
+function login_OnClick(obj)
+{
+	
+	if(empNo=="" || empName=""){
+		alert("사원정보를 선택해주세요.");
+	}else if(empNo.Text==gvEmpNo ){
+			if(empPw.Text==empPassword){
+				alert(empName.Text+"님 환영합니다."); 				
+				go("base::menu.xml");
+			}else{
+				alert("사번과 비밀번호가 맞지 않습니다.");
+			}
+		}else{
+			alert("해당 사번이 없습니다.");
+		}
+}
+
+
+
+function empPw_OnKeyDown(obj,nChar,bShift,bCtrl, bAlt,LLParam,HLParam)
+{
+	if(nChar == 13){
+		login_OnClick();
+	}
+}
+]]></Script>
+</Window>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.base.dao.PostDAO">
+
+	<resultMap id="resultSido" type="sido">
+		<result property="sidoCode" column="code" />
+		<result property="sidoValue" column="value" />
+	</resultMap>
+
+	<resultMap id="resultSigungu" type="sigungu">
+		<result property="gungu" column="value" />
+		<result property="sido" column="code" />
+	</resultMap>
+
+	<resultMap id="resultAddress" type="address">
+		<result property="zipNo" column="zipcode" />
+		<result property="address" column="road_name" />
+	</resultMap>
+
+	<select id="selectSido" resultMap="resultSido">
+        SELECT distinct * FROM post_si
+	</select>
+
+	<select id="selectSiGunGuList" resultMap="resultSigungu">
+        SELECT * FROM post_sigungu WHERE code=#{sido}
+	</select>
+
+	<select id="selectAddrList" resultMap="resultAddress" parameterType="map">
+        SELECT zipcode,
+       		 sigungu ||' '|| BOROUGH ||''|| dong ||' '|| ri ||' '|| road_name AS road_name
+		 FROM road_post_${sido}
+		 WHERE sigungu=#{sigungu}
+		 AND road_name like '%'||#{roadName}||'%'
+	</select>
+
+</mapper>

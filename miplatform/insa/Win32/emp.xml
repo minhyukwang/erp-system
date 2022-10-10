@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="486" Id="empForm" Left="8" OnLoadCompleted="empForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsPosition">
+				<Contents>
+					<colinfo id="DETAIL_CODE" size="256" summ="default" type="STRING"/>
+					<colinfo id="DETAIL_NAME" size="256" summ="default" type="STRING"/>
+					<record>
+						<DETAIL_CODE>PT001</DETAIL_CODE>
+						<DETAIL_NAME>대표이사</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT002</DETAIL_CODE>
+						<DETAIL_NAME>전무이사</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT003</DETAIL_CODE>
+						<DETAIL_NAME>상무이사</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT004</DETAIL_CODE>
+						<DETAIL_NAME>팀장</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT005</DETAIL_CODE>
+						<DETAIL_NAME>부장</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT006</DETAIL_CODE>
+						<DETAIL_NAME>차장</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT007</DETAIL_CODE>
+						<DETAIL_NAME>과장</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT008</DETAIL_CODE>
+						<DETAIL_NAME>대리</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT009</DETAIL_CODE>
+						<DETAIL_NAME>주임</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT010</DETAIL_CODE>
+						<DETAIL_NAME>사원</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT011</DETAIL_CODE>
+						<DETAIL_NAME>인턴</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>PT012</DETAIL_CODE>
+						<DETAIL_NAME>기타</DETAIL_NAME>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsImg">
+				<Contents>
+					<colinfo id="emp_filename" size="256" summ="default" type="STRING"/>
+					<colinfo encrypt="base64" id="img_file_data" size="256" summ="default" type="BLOB"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsDept">
+				<Contents>
+					<colinfo id="DETAIL_CODE" size="256" summ="default" type="STRING"/>
+					<colinfo id="DETAIL_NAME" size="256" summ="default" type="STRING"/>
+					<record>
+						<DETAIL_CODE>DP001</DETAIL_CODE>
+						<DETAIL_NAME>경영부</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP002</DETAIL_CODE>
+						<DETAIL_NAME>관리부</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP003</DETAIL_CODE>
+						<DETAIL_NAME>재경부</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP004</DETAIL_CODE>
+						<DETAIL_NAME>생산부</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP005</DETAIL_CODE>
+						<DETAIL_NAME>구매부</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP006</DETAIL_CODE>
+						<DETAIL_NAME>영업부</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP007</DETAIL_CODE>
+						<DETAIL_NAME>개발부</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP008</DETAIL_CODE>
+						<DETAIL_NAME>품질부</DETAIL_NAME>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsDeptTel">
+				<Contents>
+					<colinfo id="DETAIL_CODE" size="256" summ="default" type="STRING"/>
+					<colinfo id="DETAIL_NAME" size="256" summ="default" type="STRING"/>
+					<record>
+						<DETAIL_CODE>DP001</DETAIL_CODE>
+						<DETAIL_NAME>070-111-1111</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP002</DETAIL_CODE>
+						<DETAIL_NAME>070-111-1112</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP003</DETAIL_CODE>
+						<DETAIL_NAME>070-111-1113</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP004</DETAIL_CODE>
+						<DETAIL_NAME>070-111-1114</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP005</DETAIL_CODE>
+						<DETAIL_NAME>070-111-1115</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP006</DETAIL_CODE>
+						<DETAIL_NAME>070-111-1116</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP007</DETAIL_CODE>
+						<DETAIL_NAME>070-111-1117</DETAIL_NAME>
+					</record>
+					<record>
+						<DETAIL_CODE>DP008</DETAIL_CODE>
+						<DETAIL_NAME>070-111-1118</DETAIL_NAME>
+					</record>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Border="Flat" BorderColor="SCROLLBAR" Font="KBIZ한마음고딕&#32;B,10" Height="265" Id="Static10" Left="8" TabOrder="29" Text="사원상세정보" Top="216" Type="Groupbox" Width="672"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" Left="8" TabOrder="1" Text="사원관리" Top="8" VAlign="Middle" Width="672"></Static>
+		<Grid AutoFit="TRUE" BindDataset="dsEmp" BkColor2="default" BoldHead="true" Bottom="217" Enable="true" EndLineColor="default" Font="KBIZ한마음고딕&#32;B,10" Height="152" Id="empListGrid" InputPanel="FALSE" Left="8" LineColor="default" MinWidth="100" OnCellClick="empListGrid_OnCellClick" Right="680" TabOrder="2" TabStop="true" Top="65" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="672">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="50"/>
+						<col width="120"/>
+						<col width="150"/>
+						<col width="150"/>
+						<col width="150"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="No"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="사번"/>
+						<cell bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="성명"/>
+						<cell bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="부서"/>
+						<cell bkcolor="#f7e4cf" col="4" display="text" font="KBIZ한마음고딕&#32;B,10" text="직급"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="No" display="text" expr="currow+1" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="emp_no" combocol="emp_no" combodataset="dsEmp" combotext="emp_no" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="emp_name" combocol="emp_name" combodataset="dsEmp" combotext="emp_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="dept_no" combocol="detail_code" combodataset="dsDetailCode" combotext="detail_codename" display="combo" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="4" colid="emp_position" combocol="DETAIL_CODE" combodataset="dsPosition" combotext="DETAIL_NAME" display="combo" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="4" display="text" font="KBIZ한마음고딕&#32;B,10">
+							<cell align="center" col="0" colspan="4" display="text" text="총&#32;인원"/>
+						</cell>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="text" expr='RowCount()+&quot;명&quot;' font="KBIZ한마음고딕&#32;B,10"/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="Static1" Left="250" TabOrder="3" Text="성명" Top="36" VAlign="Middle" Width="46"></Static>
+		<Edit Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="empName" ImeMode="none" Left="304" TabOrder="4" Top="36" Width="88"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empSearchBtn" Left="399" OnClick="empSearchBtn_OnClick" TabOrder="5" Text="조회" Top="36" Width="41"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empAddBtn" Left="459" OnClick="empAddBtn_OnClick" TabOrder="6" Text="추가" Top="36" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empSaveBtn" Left="514" OnClick="empSaveBtn_OnClick" TabOrder="7" Text="저장" Top="36" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empRemoveBtn" Left="569" OnClick="empRemoveBtn_OnClick" TabOrder="8" Text="삭제" Top="36" Width="56"></Button>
+		<Image Border="Sunken" Height="176" Id="empImg" Left="48" OnClick="empImg_OnClick" TabOrder="9" Top="236" Width="146"></Image>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static2" Left="216" TabOrder="10" Text="성명" Top="234" VAlign="Middle" Width="65"></Static>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="dept" Left="216" TabOrder="11" Text="부서" Top="268" VAlign="Middle" Width="65"></Static>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static4" Left="216" TabOrder="12" Text="비밀번호" Top="364" VAlign="Middle" Width="65"></Static>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static5" Left="216" TabOrder="13" Text="주소" Top="300" VAlign="Middle" Width="65"></Static>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static6" Left="216" TabOrder="14" Text="전화번호" Top="332" VAlign="Middle" Width="65"></Static>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static7" Left="442" TabOrder="15" Text="e_mail" Top="332" VAlign="Middle" Width="65"></Static>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static8" Left="442" TabOrder="16" Text="사번" Top="236" VAlign="Middle" Width="65"></Static>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static11" Left="216" TabOrder="17" Text="비고" Top="396" VAlign="Middle" Width="65"></Static>
+		<Edit BindDataset="dsEmp" Column="emp_name" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empNameEdit" Left="288" LeftMargin="2" TabOrder="18" Top="236" Width="124"></Edit>
+		<Edit BindDataset="dsEmp" Column="emp_no" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empNo" Left="512" LeftMargin="2" TabOrder="19" Top="236" Width="124"></Edit>
+		<Edit BindDataset="dsEmp" Column="emp_address" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empAddr" Left="288" LeftMargin="2" TabOrder="20" Top="300" Width="312"></Edit>
+		<Edit BindDataset="dsEmp" Column="emp_pw" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empPw" Left="288" LeftMargin="2" OnChanged="Edit1_OnChanged" Password="TRUE" TabOrder="21" Top="364" Width="128"></Edit>
+		<Edit BindDataset="dsEmp" Column="memo" Font="KBIZ한마음고딕&#32;B,10" Height="80" Id="empMemo" Left="288" LeftMargin="2" OnChanged="Edit1_OnChanged" TabOrder="22" Top="396" Width="344"></Edit>
+		<Combo BindDataset="dsEmp" CodeColumn="detail_code" Column="dept_no" DataColumn="DETAIL_NAME" DisplayRowCnt="8" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="deptNo" InnerDataset="dsDept" Left="288" TabOrder="23" Top="268" Width="122"></Combo>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empResetBtn" Left="624" OnClick="empResetBtn_OnClick" TabOrder="24" Text="취소" Top="36" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="selectImgBtn" Left="57" OnClick="selectImgBtn_OnClick" TabOrder="25" Text="열기" Top="420" Width="64"></Button>
+		<Button Height="25" Id="addrSearchBtn" ImageID="search" Left="607" OnClick="addrSearchBtn_OnClick" TabOrder="26" Text="Button0" Top="300" Width="25"></Button>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static14" Left="442" TabOrder="27" Text="입사일" Top="364" VAlign="Middle" Width="65"></Static>
+		<Static Align="Center" BKColor="#edaf78" Border="Flat" BorderColor="INACTIVECAPTION" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="position" Left="442" TabOrder="29" Text="직급" Top="268" VAlign="Middle" Width="65"></Static>
+		<Combo BindDataset="dsEmp" CodeColumn="DETAIL_CODE" Column="emp_position" DataColumn="DETAIL_NAME" Font="KBIZ한마음고딕&#32;B,10" Height="23" Id="empPositionCode" ImeMode="none" InnerDataset="dsPosition" Left="512" TabOrder="30" Top="268" Width="121"></Combo>
+		<File Bottom="476" Height="24" Id="imgFile" Left="128" Right="152" TabOrder="34" Top="452" Width="24"></File>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="saveImgBtn" Left="120" OnClick="saveImgBtn_OnClick" TabOrder="30" Text="저장" Top="420" Width="64"></Button>
+		<Edit BindDataset="dsEmp" Column="emp_email" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empEmail" Left="512" LeftMargin="2" TabOrder="31" Top="332" Width="124"></Edit>
+		<Calendar BindDataset="dsEmp" Column="emp_hiredate" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="hiredate" Left="512" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="32" Top="364" Width="123"></Calendar>
+		<FileDialog Bottom="476" Height="24" Id="imgFileOpen" Left="89" Right="113" TabOrder="33" Top="452" Width="24"></FileDialog>
+		<Edit BindDataset="dsEmp" Column="emp_tel" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empTel" Left="288" LeftMargin="2" TabOrder="28" Top="332" Width="128"></Edit>
+	</Form>
+	<Script><![CDATA[var empFilename;
+// 조회 버튼
+function empSearchBtn_OnClick(obj)
+{
+	 //transaction("getEmpList","svcInsa::/emp/emp.do?method=getEmpList", "", "dsEmp=dsEmp","","callback"); 
+	 var name=empName.Text;
+	var sFilter;
+	if(name=""){
+		dsEmp.UnFilter();
+	}else{
+		if(name.trim().length > 0 ) sFilter += " || pos(emp_name," + quote(name) + ") >= 0";
+		dsEmp.Filter(sFilter);
+	}
+}
+
+// 콜백 함수
+function callback(trid, ErrorCode, ErrorMsg){
+   if(trid=="getEmpList"){
+      if(dsEmp.getRowCount()==0){
+         alert("조회된 데이터가 없습니다.");
+      }else{
+      }
+   }else if(trid=="saveEmpImg"){
+		if(ErrorCode==0){
+			alert("사진저장완료.");
+		}
+	}
+}
+
+// 취소 버튼
+function empResetBtn_OnClick(obj)
+{
+	if(confirm("취소하시겠습니까?")){
+		go("insa::emp.xml");
+	}
+}
+
+// 추가 버튼
+function empAddBtn_OnClick(obj)
+{
+	dsEmp.addrow();
+}
+
+// 삭제 버튼
+function empRemoveBtn_OnClick(obj)
+{
+	if(Confirm("선택한 사원정보를 삭제하시겠습니까?")){
+		dsEmp.DeleteRow(dsEmp.GetCurrow());
+	}
+}
+
+// 이미지 열기
+function selectImgBtn_OnClick(obj)
+{
+	imgFileOpen.Open();
+	//파일 저장하는 곳에 경로 넣는다.		
+	var empImgFilePath=imgFileOpen.FilePath + "\\" + imgFileOpen.FileName;
+	imgFile.FileName=empImgFilePath;	
+	
+	//alert(" ----- " +fileName);
+	
+	// 실제 이미지 나오게 한다.
+	empImg.ImageID=empImgFilePath;		
+	empImg.FillType="STRETCH";	
+}
+
+// 이미지 저장
+function saveImgBtn_OnClick(obj)
+{
+	// 파일 이름을 가져온다.
+	empFilename=imgFileOpen.Filename;
+	
+	// 파일 읽어들이는 것. read binary의 줄임말이다.
+	imgFile.Open("rb");
+	// ReadBinary 한번에 읽어올 Buffer의 Size를 정한다. 지정하지 않으면 파일의 모든 내용을 읽어온다.
+    var empImgFile=imgFile.ReadBinary();
+	
+	dsImg.AddRow(); 
+	
+	// 이미지 이름과 실제 저장될 데이터 값을 셋팅한다. 
+	dsImg.SetColumn(dsImg.GetCurrow(),"emp_filename",empFileName);
+	dsImg.SetColumn(dsImg.GetCurrow(),"img_file_data",empImgFile);
+	Transaction("saveEmpImg","svcInsa::/emp/emp.do?method=saveEmpImg","dsImg=dsImg:u","","","callback");
+}
+
+// empForm을 로드한 후 
+function empForm_OnLoadCompleted(obj)
+{
+	trace(dsEmp.SaveXML());
+	var empImgName=dsEmp.getColumn(dsEmp.GetCurrow(),'emp_image');
+	empImg.ImageID="http://localhost/project4th/image/"+empImgName+"?time="+timem();	
+	empImg.FillType="STRETCH"; 
+	
+	
+}
+
+// 그리드에서 선택한 셀의 이미지 얻어오기
+function empListGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var empImgName=dsEmp.getColumn(nRow,'emp_image');
+	empFileName=imgFile.ReadBinary();
+	trace(" ----------- "+empImgName);
+	if(Length(empImgName)!=0){
+		empImg.ImageID="http://localhost/project4th/image/"+empImgName+"?time="+timem();	
+		empImg.FillType="STRETCH"; 
+		//dsEmp.setColumn(dsEmp.GetCurrow(),'emp_image',reImgName);
+	}else{
+		empImg.ImageID="http://localhost/project4th/image/noimage.gif?time="+timem();
+	}
+}
+
+// 저장 버튼
+function empSaveBtn_OnClick(obj)
+{
+	if(empFileName != null){
+		dsEmp.setColumn(dsEmp.GetCurrow(),'emp_image',empFileName);
+	}else{
+		dsEmp.setColumn(dsEmp.GetCurrow(),'emp_image',empImgName);
+	}
+	if(Confirm("변경사항을 저장하시겠습니까?")){	
+		Transaction("batchEmpList","svcInsa::/emp/emp.do?method=batchEmpList","dsEmp=dsEmp:U","","","callback");
+	}
+	Reload();
+}
+
+//우편번호&주소 검색 버튼
+function addrSearchBtn_OnClick(obj)
+{
+	dialog("base::postInfo.xml","",400,370,"",550,200);
+}
+]]></Script>
+</Window>

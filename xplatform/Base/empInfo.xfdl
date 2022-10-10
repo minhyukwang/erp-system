@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="empInfo" classname="empInfo" inheritanceid="" position="absolute 0 0 300 400" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="사원조회" position2="absolute l:10 w:279 t:13 h:30" positiontype="position2" style="background:#edaf78ff;align:center middle;font:Verdana,14,bold;"/>
+        <Grid id="empSearchGrid" taborder="1" binddataset="dsEmp" useinputpanel="false" autofittype="col" position2="absolute l:10 w:279 t:53 h:334" positiontype="position2" oncellclick="empSearchGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;" text="사번"/>
+                <Cell col="1" style="background:#f7e4cfff;" text="사원명"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;" text="bind:emp_no"/>
+                <Cell col="1" style="align:center middle;background:#f9f0d7ff;background2:transparent;" text="bind:emp_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+// 서원정보 얻어오는 그리드를 클릭하면 ~
+function empSearchGrid_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	var empNo=dsEmp.getColumn(e.row,"emp_no");
+	var empName=dsEmp.getColumn(e.row,"emp_name");
+	var empPw=dsEmp.getColumn(e.row,"emp_pw");
+	//var empPs=dsPermission.GetColumn(e.row,"permission_code");
+	
+	//글로벌변수지정 
+	gvEmpNo=empNo;
+	gvEmpName=empName;
+	//gvEmpPs=empPs;
+		
+	//trace("권한코드--------------------------"+gvEmpPs);
+	
+	//로그인창에 셋팅한다. 
+	opener.setEmpInfo(empNo, empName, empPw);
+	
+	close();
+}
+]]></Script>
+  </Form>
+</FDL>

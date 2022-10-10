@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="reportForm" classname="reportForm" inheritanceid="" position="absolute 0 0 580 500" titletext="New Form" oninit="reportForm_oninit">
+    <Layouts>
+      <Layout>
+        <ActiveX id="empPdf" position2="absolute l:8 w:566 t:9 h:474" positiontype="position2" anchor="default" taborder="0" progid="{CA8A9780-280D-11CF-A24D-444553540000}"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[
+function reportForm_oninit(obj:Form, e:InitEventInfo)
+{
+	//alert(empCode);
+	empPdf.src = "http://localhost/project5th/emp/report.do?empCode=" + empCode + "&type=pdf";
+	empPdf.show();
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="400" Id="postInfo" Left="8" OnLoadCompleted="postInfo_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="370" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsAddr">
+				<Contents>
+					<colinfo id="zip_no" size="256" summ="default" type="STRING"/>
+					<colinfo id="address" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsSigungu">
+				<Contents>
+					<colinfo id="gungu" size="256" summ="default" type="STRING"/>
+					<colinfo id="sido" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsSido">
+				<Contents>
+					<colinfo id="sido_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="sido_value" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,16" Height="32" Id="Static0" Left="16" TabOrder="1" Text="우편번호&#32;검색" Top="24" VAlign="Middle" Width="336"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="Static1" Left="16" TabOrder="2" Text="시&#32;도" Top="70" VAlign="Middle" Width="59"></Static>
+		<Combo CodeColumn="sido_value" DataColumn="sido_value" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="sido" InnerDataset="dsSido" Left="84" OnChanged="sido_OnChanged" TabOrder="3" Text="선택하세요" Top="71" Width="83"></Combo>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="Static2" Left="179" TabOrder="4" Text="시&#32;/&#32;군&#32;/&#32;구" Top="70" VAlign="Middle" Width="72"></Static>
+		<Combo CodeColumn="gungu" DataColumn="gungu" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="sigungu" InnerDataset="dsSigungu" Left="259" TabOrder="5" Text="선택하세요" Top="71" Width="93"></Combo>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="Static3" Left="16" TabOrder="6" Text="도로명&#32;입력" Top="104" VAlign="Middle" Width="88"></Static>
+		<Edit Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="roadName" Left="112" TabOrder="7" Top="104" Width="199"></Edit>
+		<Button Height="24" Id="addrSearch" ImageID="search" Left="320" OnClick="addrSearch_OnClick" TabOrder="8" Text="Button0" Top="104" Width="26"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsAddr" BkColor2="default" BoldHead="true" Bottom="285" Enable="true" EndLineColor="default" Font="KBIZ한마음고딕&#32;B,10" Height="149" Id="addrGrid" InputPanel="FALSE" Left="16" LineColor="default" MinWidth="100" OnCellDBLClick="addrGrid_OnCellDblClick" Right="352" TabOrder="9" TabStop="true" Top="136" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="336">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="101"/>
+						<col width="74"/>
+						<col width="76"/>
+						<col width="78"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="우편번호"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" colspan="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="주소"/>
+					</head>
+					<body>
+						<cell col="0" colid="ZIP_NO" display="text"/>
+						<cell col="1" colid="address" colspan="3" display="text"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="Static6" Left="16" TabOrder="10" Text="상세주소" Top="320" VAlign="Middle" Width="61"></Static>
+		<Edit Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="detailAddr" Left="84" TabOrder="11" Top="321" Width="268"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="success" Left="120" OnClick="success_OnClick" TabOrder="12" Text="입력완료" Top="352" Width="62"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="reset" Left="192" OnClick="reset_OnClick" TabOrder="13" Text="취소" Top="352" Width="64"></Button>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="Static4" Left="16" TabOrder="14" Text="선택주소" Top="288" VAlign="Middle" Width="61"></Static>
+		<Edit Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="addr" Left="84" TabOrder="15" Top="289" Width="268"></Edit>
+	</Form>
+	<Script><![CDATA[var sidoCode;
+var sidoValue;
+var zipCode;
+var dong;
+// 취소 버튼
+function reset_OnClick(obj)
+{
+	if(confirm("취소하시겠습니까?")){
+		close();
+	}
+}
+
+// post폼이 로드된 후 ~
+function postInfo_OnLoadCompleted(obj)
+{
+	Transaction("getSido","svcBase::/post.do?method=getSido","","dsSido=dsSido","","callback");
+}
+
+// 시/도 콤보가 체인지 되면 ~
+function sido_OnChanged(obj,strCode,strText,nOldIndex,nNewIndex)
+{
+	sidoCode=dsSido.GetColumn(nNewIndex, "sido_code");
+	sidoValue=dsSido.GetColumn(nNewIndex, "sido_value");
+	Transaction("getSiGunGuList","svcBase::/post.do?method=getSiGunGuList","","dsSigungu=dsSigungu","sido='"+sidoCode+"'","callback");
+}
+
+// 콜백 함수
+function callback(trid, ErrorCode, ErrorMsg){
+	if(trid="dsSido" || trid="dsSigungu" || trid="getAddrList"){
+		if(dsAddr.GetRowCount()==0 || dsAddr.GetRowCount()==0 || dsAddr.GetRowCount()==0 ){
+			alert("검색된 결과가 없습니다.");
+		}
+	}
+}
+
+// 도로명주소 입력 후 검색하는 버튼 
+function addrSearch_OnClick(obj)
+{
+	if(sido.Text==''){
+		alert("시도를 선택해주세요.");
+	}else if(sigungu.Text==''){
+		alert("시군구를 선택해주세요.");
+	}else if(roadName.Text==''){
+		alert("도로명을 입력해주세요.");
+	}else{
+		//시군, 시군구, 동 다 보내서 가져온다.
+		trace("variable: "+sidoCode+" "+sigungu.Text+" "+roadName.Text);
+		Transaction("getAddrList","svcBase::/post.do?method=getAddrList","","dsAddr=dsAddr","sido='"+sidoCode+"' sigungu='"+sigungu.Text+"' roadName='"+roadName.Text+"'","callback");
+	}
+}
+
+// 그리드에서 주소 선택 후 더블클릭 하면 입력 되는 함수
+function addrGrid_OnCellDblClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	zipCode=dsAddr.GetColumn(nRow,"zip_no");
+	dong=dsAddr.GetColumn(nRow,"address");
+	addr.text=zipCode+" "+sidoValue+" "+dong;
+}
+
+// 부모창에 주소 입력하기
+function success_OnClick(obj)
+{
+	if(sido.Text==''){
+		alert("시도를 선택해주세요.");
+	}else if(sigungu.Text==''){
+		alert("시군구를 선택해주세요.");
+	}else if(roadName.Text==''){
+		alert("도로명을 입력해주세요.");
+	}else if(detailAddr.Text==''){
+		alert("상세주소를 입력해주세요.");
+	}else{
+		parent.empAddr.text=zipCode+" "+sidoValue+" "+dong+" "+detailAddr.Text;
+		close();
+	}
+}
+]]></Script>
+</Window>

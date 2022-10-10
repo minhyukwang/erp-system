@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="400" Id="empInfo" Left="8" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="300" WorkArea="true">
+		<Grid AutoFit="TRUE" BindDataset="dsEmp" BkColor2="default" BoldHead="true" Bottom="387" Enable="true" EndLineColor="default" Font="KBIZ한마음고딕&#32;B,10" Height="347" Id="empInfo" InputPanel="FALSE" Left="8" LineColor="default" MinWidth="100" OnCellClick="empInfo_OnCellClick" Right="289" TabOrder="1" TabStop="true" Top="40" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="281">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="40"/>
+						<col width="60"/>
+						<col width="100"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="No"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="사원번호"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="사원명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" display="text" expr="currow+1" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="emp_no" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="emp_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,15" Height="26" Id="Static0" Left="9" TabOrder="2" Text="사번&#32;조회" Top="11" VAlign="Middle" Width="279"></Static>
+	</Form>
+	<Script><![CDATA[
+function empInfo_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var empNo=dsEmp.GetColumn(nRow,"emp_no");
+	var empName=dsEmp.GetColumn(nRow,"emp_name");
+	var empPw=dsEmp.GetColumn(nRow,"emp_pw");
+	var empPs=dsPermission.GetColumn(nRow,"permission_code");
+	
+	//글로벌변수지정 
+	gvEmpNo=empNo;
+	gvEmpName=empName;
+	gvEmpPs=empPs;
+	
+	//trace("권한코드--------------------------"+gvEmpPs);
+	
+	//로그인창에 셋팅한다. 
+	parent.empNo.text=empNo;
+	parent.empName.text=empName;
+	parent.setPw(empPw);
+	close();
+}
+
+]]></Script>
+</Window>

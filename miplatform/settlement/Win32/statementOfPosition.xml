@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="488" Id="statementOfPositionForm" Left="8" OnLoadCompleted="statementOfPositionForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsStatementPosition">
+				<Contents>
+					<colinfo id="ACCOUNT_CODE" size="256" summ="default" type="STRING"/>
+					<colinfo id="PARENT_ACCOUNT" size="256" summ="default" type="STRING"/>
+					<colinfo id="ACCOUNT_NAME" size="256" summ="default" type="STRING"/>
+					<colinfo id="AMT" size="256" summ="default" type="STRING"/>
+					<colinfo id="TOTAL_AMT" size="256" summ="default" type="STRING"/>
+					<colinfo id="STATEMENT_YEAR" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsFormerStatementPosition">
+				<Contents>
+					<colinfo id="ACCOUNT_CODE" size="256" summ="default" type="STRING"/>
+					<colinfo id="PARENT_ACCOUNT" size="256" summ="default" type="STRING"/>
+					<colinfo id="ACCOUNT_NAME" size="256" summ="default" type="STRING"/>
+					<colinfo id="AMT" size="256" summ="default" type="STRING"/>
+					<colinfo id="TOTAL_AMT" size="256" summ="default" type="STRING"/>
+					<colinfo id="STATEMENT_YEAR" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="selectYear">
+				<Contents>
+					<colinfo id="preYear" size="256" summ="default" type="STRING"/>
+					<record>
+						<preYear>2016</preYear>
+					</record>
+					<record>
+						<preYear>2015</preYear>
+					</record>
+					<record>
+						<preYear>2014</preYear>
+					</record>
+					<record>
+						<preYear>2013</preYear>
+					</record>
+					<record>
+						<preYear>2012</preYear>
+					</record>
+					<record>
+						<preYear>2011</preYear>
+					</record>
+					<record>
+						<preYear>2010</preYear>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsTotalStatement">
+				<Contents>
+					<colinfo id="statement_year" size="256" summ="default" type="STRING"/>
+					<colinfo id="asset_total" size="256" summ="default" type="STRING"/>
+					<colinfo id="capital_total" size="256" summ="default" type="STRING"/>
+					<colinfo id="debt_total" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="statementOfPosition" TabOrder="1" Text="재무상태표" Top="8" VAlign="Middle" Width="696"></Static>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="statementSearch" Left="536" OnClick="statementSearch_OnClick" TabOrder="2" Text="조회" Top="43" Width="46"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsStatementPosition" BkColor2="default" BoldHead="true" Bottom="472" Editable="TRUE" Enable="true" EndLineColor="default" Height="392" Id="statementOfPositionGrid" InputPanel="FALSE" LineColor="default" MinWidth="100" Right="696" TabOrder="3" TabStop="true" Top="80" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="696">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="150"/>
+						<col width="80"/>
+						<col width="80"/>
+						<col width="80"/>
+						<col width="80"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="과목"/>
+						<cell bkcolor="#f7e4cf" col="1" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="당기"/>
+						<cell bkcolor="#f7e4cf" col="3" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="전기"/>
+						<cell bkcolor="#f7e4cf" col="1" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="금액"/>
+						<cell bkcolor="#f7e4cf" col="3" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="금액"/>
+					</head>
+					<body>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="0" colid="ACCOUNT_NAME" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="1" colid="AMT" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="2" colid="TOTAL_AMT" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="3" colid="ACCOUNT_CODE" combocol="ACCOUNT_CODE" combodataset="dsFormerStatementPosition" combotext="AMT" display="combo" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;10&#32;||&#32;parent_account&#32;==&#32;20&#32;||&#32;parent_account&#32;==&#32;30&#32;,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="4" colid="ACCOUNT_CODE" combocol="ACCOUNT_CODE" combodataset="dsFormerStatementPosition" combotext="TOTAL_AMT" display="combo" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="자산총계"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell bkcolor="#f7e4cf" col="3" display="text"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="자본과&#32;부채총계"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" row="1"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="number" font="KBIZ한마음고딕&#32;B,10" row="1"/>
+						<cell align="center" bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" row="1"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="number" font="KBIZ한마음고딕&#32;B,10" row="1"/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Calendar DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="sDate" Left="290" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="4" Top="44" Width="105"></Calendar>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="20" Id="Static9" Left="393" TabOrder="6" Text="~" Top="46" VAlign="Middle" Width="32"></Static>
+		<Calendar DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="eDate" Left="424" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="5" Top="44" Width="105"></Calendar>
+		<Combo DataColumn="preYear" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="selYear" INDEX="0" InnerDataset="selectYear" Left="216" OnChanged="selYear_OnChanged" TabOrder="7" Top="44" Width="63"></Combo>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="excelPrint" Left="632" OnClick="excelPrint_OnClick" TabOrder="8" Text="엑셀출력" Top="43" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="statementSave" Left="584" OnClick="statementSave_OnClick" TabOrder="9" Text="저장" Top="43" Width="46"></Button>
+	</Form>
+	<Script><![CDATA[var year, strDate, total;
+
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	if(trid=="getStatementPositionList"){
+		if(ErrorCode != 0){
+			alert(ErrorMsg);
+		}else{
+			sum();
+			//alert(dsIncomeStatement.GetColumn(0,"income_year"));
+			
+		}
+	}else if(trid=="batchStatementPositionList"){	
+		if(ErrorCode != 0){
+			alert("해당 연도는 저장할 수 없습니다. 관리자에게 문의하세요 !!");
+		}else{
+			alert("저장 성공");
+		}
+	}	
+}
+
+var asset, capital, debt, total;
+
+// 총 자산, 자본, 부채 합계 구하는 함수 ~
+function sum()
+{	
+	var assetCheck=dsStatementPosition.findrow("account_code","106");
+    var debtCheck=dsStatementPosition.findrow("account_code","202");
+    var capitalCheck=dsStatementPosition.findrow("account_code","305");
+   
+   asset=parseInt(dsStatementPosition.totalSum("total_amt", 0, assetCheck));
+   debt=parseInt(dsStatementPosition.totalSum("total_amt", assetCheck+1, capitalCheck-debtCheck));
+   capital=parseInt(dsStatementPosition.totalSum("total_amt", debtCheck+1));
+   total=debt+capital;
+   //alert(capitalCheck-debtCheck);
+   
+   
+   statementOfPositionGrid.SetCellProp("summ",2,"value",asset);
+   statementOfPositionGrid.SetCellProp("summ",7,"value",total);
+   
+   var former_asset=parseInt(dsFormerStatementPosition.totalSum("total_amt", 0, assetCheck));
+   var former_debt=parseInt(dsFormerStatementPosition.totalSum("total_amt", assetCheck+1, capitalCheck-debtCheck));
+   var former_capital=parseInt(dsFormerStatementPosition.totalSum("total_amt", debtCheck+1));
+   var former_total=former_debt+former_capital;
+   
+   statementOfPositionGrid.SetCellProp("summ",4,"value",former_asset);
+   statementOfPositionGrid.SetCellProp("summ",9,"value",former_total);
+	
+}
+
+// 재무상태표 폼이 로드된 후 ~
+function statementOfPositionForm_OnLoadCompleted(obj)
+{
+	strDate = GetDate();
+	year = Mid(strDate,0,4);
+	strDate = Mid(strDate,0,8);
+	
+	sDate.value = year+'0101' ;
+	eDate.value = strDate ;
+}
+
+// 날짜 선택 콤보가 바뀌면 ~
+function selYear_OnChanged(obj,strCode,strText,nOldIndex,nNewIndex)
+{
+	year = selYear.Value ;
+	if(year == '2016'){
+		sDate.value = year+'0101' ;
+		eDate.value = strDate ;
+	}else{
+		sDate.value = parseInt(year)+'0101' ;
+		eDate.value = parseInt(year)+'1231' ;
+	}
+}
+
+// 조회 버튼
+function statementSearch_OnClick(obj)
+{
+	//alert("시작 : "+sDate.Value+"  끝 : "+eDate.Value);
+	Transaction("getStatementPositionList","svcAccounting::/slip/settlement.do?method=getStatementPositionList","","dsStatementPosition=dsStatementPosition dsFormerStatementPosition=dsFormerStatementPosition",
+			"sDate='"+sDate.Value+"' eDate='"+eDate.Value+"'","callback");
+}
+
+// 엑셀 출력
+function excelPrint_OnClick(obj)
+{
+	if(Confirm("재무상태표를 출력하시겠습니까?")){
+		statementOfPositionGrid.ExportExcelEx("StatementOfPosition");
+	}
+}
+
+// 저장 버튼
+function statementSave_OnClick(obj)
+{
+	dsTotalStatement.AddRow();
+	dsTotalStatement.SetColumn(dsTotalStatement.GetCurrow(), "statement_year", year);
+	dsTotalStatement.SetColumn(dsTotalStatement.GetCurrow(), "asset_total", asset);
+	dsTotalStatement.SetColumn(dsTotalStatement.GetCurrow(), "capital_total", capital);
+	dsTotalStatement.SetColumn(dsTotalStatement.GetCurrow(), "debt_total", debt);
+	
+	if(Confirm("재무상태표를 저장하시겠습니까?")){
+	Transaction("batchStatementPositionList","svcAccounting::/slip/settlement.do?method=batchStatementPositionList","dsStatementPosition=dsStatementPosition:A dsTotalStatement=dsTotalStatement:A",
+				"","","callback");
+	}
+}
+]]></Script>
+</Window>

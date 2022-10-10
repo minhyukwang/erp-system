@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="600" Id="slipApproveForm" Left="8" OnLoadCompleted="slipApproveForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="ds_slip_approve">
+				<Contents>
+					<colinfo id="APPROVER_DATE" size="256" type="STRING"/>
+					<colinfo id="SLIP_SEQ" size="256" type="STRING"/>
+					<colinfo id="SLIP_TYPE" size="256" type="STRING"/>
+					<colinfo id="SLIP_BALLOT_NO" size="256" type="STRING"/>
+					<colinfo id="SLIP_STATUS" size="256" type="STRING"/>
+					<colinfo id="APPROVER" size="256" type="STRING"/>
+					<colinfo id="SLIP_WORKER" size="256" type="STRING"/>
+					<colinfo id="DIFFRENCE_AMT" size="256" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="ds_slip_approve_sub">
+				<Contents>
+					<colinfo id="JOURNAL_NO" size="256" type="STRING"/>
+					<colinfo id="SLIP_GUBUN" size="256" type="STRING"/>
+					<colinfo id="ACCOUNT_CODE" size="256" type="STRING"/>
+					<colinfo id="ACCOUNT_NAME" size="256" type="STRING"/>
+					<colinfo id="CUSTOMER_CODE" size="256" type="STRING"/>
+					<colinfo id="CUSTOMER_NAME" size="256" type="STRING"/>
+					<colinfo id="JOURNAL_AMT" size="256" type="STRING"/>
+					<colinfo id="DESCRIPT_NAME" size="256" type="STRING"/>
+					<colinfo id="JOURNAL_RECEIPT" size="256" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="slipDiv">
+				<Contents>
+					<colinfo id="slip_division" size="256" summ="default" type="STRING"/>
+					<record>
+						<slip_division>전체</slip_division>
+					</record>
+					<record>
+						<slip_division>차변</slip_division>
+					</record>
+					<record>
+						<slip_division>대변</slip_division>
+					</record>
+					<record>
+						<slip_division>입금</slip_division>
+					</record>
+					<record>
+						<slip_division>출금</slip_division>
+					</record>
+					<record>
+						<slip_division>매입부가세</slip_division>
+					</record>
+					<record>
+						<slip_division>매출부가세</slip_division>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsSlipStatus">
+				<Contents>
+					<colinfo id="slip_status" size="256" summ="default" type="STRING"/>
+					<record>
+						<slip_status>전체</slip_status>
+					</record>
+					<record>
+						<slip_status>승인</slip_status>
+					</record>
+					<record>
+						<slip_status>미결</slip_status>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="slipDept">
+				<Contents>
+					<colinfo id="dept_name" size="256" summ="default" type="STRING"/>
+					<record>
+						<dept_name>전체</dept_name>
+					</record>
+					<record>
+						<dept_name>경영부</dept_name>
+					</record>
+					<record>
+						<dept_name>관리부</dept_name>
+					</record>
+					<record>
+						<dept_name>재경부</dept_name>
+					</record>
+					<record>
+						<dept_name>생산부</dept_name>
+					</record>
+					<record>
+						<dept_name>구매부</dept_name>
+					</record>
+					<record>
+						<dept_name>영업부</dept_name>
+					</record>
+					<record>
+						<dept_name>개발부</dept_name>
+					</record>
+					<record>
+						<dept_name>품질부</dept_name>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="slipCategory">
+				<Contents>
+					<colinfo id="slip_category" size="256" summ="default" type="STRING"/>
+					<record>
+						<slip_category>전체</slip_category>
+					</record>
+					<record>
+						<slip_category>일반</slip_category>
+					</record>
+					<record>
+						<slip_category>매입</slip_category>
+					</record>
+					<record>
+						<slip_category>매출</slip_category>
+					</record>
+					<record>
+						<slip_category>수금</slip_category>
+					</record>
+					<record>
+						<slip_category>반제</slip_category>
+					</record>
+					<record>
+						<slip_category>결산</slip_category>
+					</record>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" TabOrder="1" Text="전표승인/해제" Top="8" VAlign="Middle" Width="680"></Static>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="32" Id="Static2" Left="200" TabOrder="2" Text="작성자" Top="48" VAlign="Middle" Width="65"></Static>
+		<Edit Align="CENTER" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="empNo" Left="256" TabOrder="3" Top="52" Width="59"></Edit>
+		<Edit Align="CENTER" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empName" Left="319" TabOrder="4" Top="52" Width="85"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="approve" Left="528" OnClick="approve_OnClick" TabOrder="5" Text="전표승인" Top="48" Width="67"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="cancel" Left="600" OnClick="cancle_OnClick" TabOrder="6" Text="승인해제" Top="48" Width="65"></Button>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="Static4" Left="14" TabOrder="7" Text="전표유형" Top="86" VAlign="Middle" Width="59"></Static>
+		<Combo DataColumn="slip_category" Font="KBIZ한마음고딕&#32;B,10" Height="22" Id="slipType" INDEX="0" InnerDataset="slipCategory" Left="72" TabOrder="8" Top="89" Width="87"></Combo>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="Static7" Left="173" TabOrder="9" Text="전표상태" Top="86" VAlign="Middle" Width="59"></Static>
+		<Combo DataColumn="slip_status" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="slipStatus" INDEX="0" InnerDataset="dsSlipStatus" Left="232" TabOrder="10" Top="88" Width="89"></Combo>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="20" Id="Static8" Left="331" TabOrder="11" Text="결의기간" Top="90" VAlign="Middle" Width="70"></Static>
+		<Calendar Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="sDate" Left="394" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="12" Top="88" Value="20160901" Width="105"></Calendar>
+		<Calendar Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="eDate" Left="528" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="13" Top="88" Value="20160930" Width="105"></Calendar>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="20" Id="Static9" Left="497" TabOrder="14" Text="~" Top="90" VAlign="Middle" Width="32"></Static>
+		<Button Height="24" Id="search" ImageID="search" Left="640" OnClick="search_OnClick" TabOrder="15" Text="Button2" Top="88" Width="24"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsSlip" BkColor2="default" BoldHead="true" Bottom="263" Enable="true" EndLineColor="default" Height="143" Id="slipGrid" InputPanel="FALSE" LineColor="default" MinWidth="100" OnCellClick="slipGrid_OnCellClick" Right="680" TabOrder="16" TabStop="true" Top="120" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="680">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="80"/>
+						<col width="40"/>
+						<col width="50"/>
+						<col width="120"/>
+						<col width="80"/>
+						<col width="50"/>
+						<col width="70"/>
+						<col width="70"/>
+						<col width="90"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="결의일자"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="번호"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="유형"/>
+						<cell align="center" bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="품의내역"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="text" font="KBIZ한마음고딕&#32;B,10" text="기표일자"/>
+						<cell align="center" bkcolor="#f7e4cf" col="5" display="text" font="KBIZ한마음고딕&#32;B,10" text="전표상태"/>
+						<cell align="center" bkcolor="#f7e4cf" col="6" display="text" font="KBIZ한마음고딕&#32;B,10" text="승인자"/>
+						<cell align="center" bkcolor="#f7e4cf" col="7" display="text" font="KBIZ한마음고딕&#32;B,10" text="작업자"/>
+						<cell align="center" bkcolor="#f7e4cf" col="8" display="text" font="KBIZ한마음고딕&#32;B,10" text="대차차액"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="slip_date" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="slip_seq" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="slip_type" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="slip_content" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="4" colid="approval_date" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="5" colid="slip_status" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="6" colid="APPROVER" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="7" colid="slip_worker" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="8" colid="difference_amt" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoFit="TRUE" BindDataset="dsJournal" BkColor2="default" BoldHead="true" Bottom="400" Enable="true" EndLineColor="default" Height="136" Id="jourGrid" InputPanel="FALSE" LineColor="default" MinWidth="100" OnCellClick="jourGrid_OnCellClick" Right="680" TabOrder="17" TabStop="true" Top="264" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="680">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="35"/>
+						<col width="50"/>
+						<col width="70"/>
+						<col width="130"/>
+						<col width="60"/>
+						<col width="80"/>
+						<col width="70"/>
+						<col width="110"/>
+						<col width="70"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="순번"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="구분"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정과목코드"/>
+						<cell align="center" bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정과목명"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="text" font="KBIZ한마음고딕&#32;B,10" text="거래처코드"/>
+						<cell align="center" bkcolor="#f7e4cf" col="5" display="text" font="KBIZ한마음고딕&#32;B,10" text="거래처명"/>
+						<cell align="center" bkcolor="#f7e4cf" col="6" display="text" font="KBIZ한마음고딕&#32;B,10" text="금액"/>
+						<cell align="center" bkcolor="#f7e4cf" col="7" display="text" font="KBIZ한마음고딕&#32;B,10" text="적요"/>
+						<cell align="center" bkcolor="#f7e4cf" col="8" display="text" font="KBIZ한마음고딕&#32;B,10" text="증빙"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="JOURNAL_NO" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="journal_type" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="account_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="account_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="4" colid="customer_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="5" colid="customer_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="6" colid="journal_amt" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="7" colid="summary_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="8" colid="journal_receipt" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Calendar DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="apprDate" Left="416" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="18" Top="52" Value="TODAY" Width="101"></Calendar>
+		<Grid AutoFit="TRUE" BindDataset="dsDebtor" BkColor2="default" BoldHead="true" Bottom="562" Enable="true" EndLineColor="default" Height="154" Id="debtor" InputPanel="FALSE" LineColor="default" MinWidth="100" Right="328" TabOrder="19" TabStop="true" Top="408" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="328">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="75"/>
+						<col width="151"/>
+						<col width="96"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="차변"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="account_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="account_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="journal_amt" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="차변합계"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="number" expr='sum(&quot;journal_amt&quot;)' font="KBIZ한마음고딕&#32;B,10"/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoFit="TRUE" BindDataset="dsCreditor" BkColor2="default" BoldHead="true" Bottom="562" Enable="true" EndLineColor="default" Height="154" Id="creditor" InputPanel="FALSE" Left="352" LineColor="default" MinWidth="100" Right="680" TabOrder="20" TabStop="true" Top="408" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="328">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="75"/>
+						<col width="151"/>
+						<col width="96"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="대변"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="account_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="account_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="journal_amt" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell align="center" bkcolor="#f7e4cf" col="0" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="대변합계"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="number" expr='sum(&quot;journal_amt&quot;)' font="KBIZ한마음고딕&#32;B,10"/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Combo DataColumn="dept_name" Font="KBIZ한마음고딕&#32;B,10" Height="22" Id="deptName" INDEX="0" InnerDataset="slipDept" Left="72" TabOrder="21" Top="53" Width="87"></Combo>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="Static1" Left="14" TabOrder="22" Text="결의부서" Top="50" VAlign="Middle" Width="59"></Static>
+	</Form>
+	<Script><![CDATA[var accountCode,cha,dae;
+
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg){
+	if(trid=="getSlipList" || trid=="batchSlipList"){
+		if(dsSlip.GetRowCount()==0){
+			alert("조회된 데이터가 없습니다.");
+		}else{
+			//slipGridFilter(0);
+			slipListFilter(dsSlip.getCurrow());
+			jourGrid.Redraw=true;
+			setChaDae(0);
+			
+		}
+	}
+}
+
+// 전표 승인해제 폼이 로드된 후 ~
+function slipApproveForm_OnLoadCompleted(obj)
+{
+	//deptName.Text=gvDeptName;
+	empNo.Text=gvEmpNo;
+	empName.Text=gvEmpName;
+	
+	//그리드 클리어.
+	dsSlip.Clear();
+	dsJournal.Clear();
+	dsDebtor.Clear();
+	dsCreditor.Clear();
+}
+
+// 조회 버튼
+function search_OnClick(obj)
+{
+	// 전표, 분개, 분개상세 데이터를 가져온다.
+		Transaction("getSlipList","svcAccounting::/slip/slip.do?method=getSlipApproveList","","dsSlip=dsSlip dsJournal=dsJournal dsJournalManagement=dsJournalManagement",
+			"deptName='"+deptName.value+"' slipType='"+slipType.value+"' slipStatus='"+slipStatus.value+"' sDate='"+sDate.Value+"' eDate='"+eDate.Value+"'","callback");
+}
+
+function slipGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{	
+	slipListFilter(nRow);	
+	// 차변, 대변 데이터셋을 세팅한다.	
+	setChaDae(nRow);
+}
+
+// 현재 전표에 따라 전표번호로 분개 리스트를 필터해준다
+function slipListFilter(nRow)
+{	
+	slipNo=dsSlip.GetColumn(nRow,"slip_no");
+	jourGrid.Redraw=false;
+	dsJournal.filter("slip_no='"+slipNo+"'");	
+	jourGrid.Redraw=true;
+}
+
+function jourGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	setChaDae(nRow);
+}
+
+function setChaDae(nRow){
+	debtor.Redraw = false;
+	creditor.Redraw = false;
+	dsDebtor.copyF(dsJournal);
+	dsDebtor.Filter("journal_type='차변'");
+	dsCreditor.copyF(dsJournal);
+	dsCreditor.Filter("journal_type='대변'");	
+	debtor.Redraw = true;	
+	creditor.Redraw = true;	
+	
+	cha=parseInt(replace(debtor.GetCellText("summary", 0, 1),",",""));
+	dae=parseInt(replace(creditor.GetCellText("summary", 0, 1),",",""));
+	
+	trace(cha+' ------------------ '+dae);
+}
+function approve_OnClick(obj) 
+{
+	if(confirm("선택한 전표를 승인하시겠습니까?")){
+		if(cha==dae){
+			dsSlip.setColumn(dsSlip.GetCurrow(),'approval_date',apprDate.Value);
+			dsSlip.setColumn(dsSlip.GetCurrow(),'slip_ballot_no',apprDate.Value+'001');
+			dsSlip.setColumn(dsSlip.GetCurrow(),'approver',gvEmpName);
+			dsSlip.setColumn(dsSlip.GetCurrow(),'slip_status','승인');
+			Transaction("batchSlipList","svcAccounting::/slip/slip.do?method=batchSlipList","dsSlip=dsSlip:U dsJournal=dsJournal:U dsJournalManagement=dsJournalManagement:U","","","callback");
+		}else{
+			alert("차변과 대변의 금액이 맞지 않습니다.");
+		}
+	}
+}
+
+// 승인해제 버튼
+function cancle_OnClick(obj)
+{
+	if(confirm("승인된 전표를 해제하시겠습니까?")){
+		dsSlip.setColumn(dsSlip.GetCurrow(),'approval_date','');
+		dsSlip.setColumn(dsSlip.GetCurrow(),'slip_ballot_no','');
+		dsSlip.setColumn(dsSlip.GetCurrow(),'approver','');
+		dsSlip.setColumn(dsSlip.GetCurrow(),'slip_status','미결');
+		Transaction("batchSlipList","svcAccounting::/slip/slip.do?method=batchSlipList","dsSlip=dsSlip:U dsJournal=dsJournal:U dsJournalManagement=dsJournalManagement:U","","","callback");
+	}
+}
+]]></Script>
+</Window>

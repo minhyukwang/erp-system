@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.insa.emp.dao.EmpDAO">
+
+	<resultMap id="resultEmpMap" type="emp">
+      <result property="empNo" column="emp_no" />
+      <result property="empName" column="emp_name" />
+      <result property="empPw" column="emp_pw" />
+      <result property="empTel" column="emp_tel" />
+      <result property="empAddress" column="emp_address" />
+      <result property="empEmail" column="emp_email" />
+      <result property="empPosition" column="emp_position" />
+      <result property="empImage" column="emp_image" />
+      <result property="memo" column="memo" />
+      <result property="deptNo" column="dept_no" />
+      <result property="empHiredate" column="emp_hiredate" />
+   </resultMap>
+
+
+	<select id="selectEmpList" resultMap="resultEmpMap">
+        SELECT *
+		FROM EMP
+	</select>
+
+	<insert id="insertEmp" >
+        insert into emp
+        (
+		           emp_no,
+		           emp_name,
+		           dept_no,
+		           emp_tel,
+		       	   emp_hiredate,
+		       	   emp_image,
+		           emp_address,
+		           emp_email,
+		           emp_position,
+		           emp_pw,
+		           memo
+		  )
+		        values
+        (
+		       seq_emp_no.nextval,
+		       #{empName},
+		       #{deptNo},
+		       #{empTel},
+		       #{empHiredate},
+		       #{empImage},
+		       #{empAddress},
+		       #{empEmail},
+		       #{empPosition},
+		       #{empPw},
+		       #{memo}
+		  )
+	</insert>
+
+	<update id="updateEmp" >
+        UPDATE emp
+		       SET dept_no = #{deptNo},
+		       emp_name = #{empName},
+		       emp_tel = #{empTel},
+		       emp_hiredate = #{empHiredate},
+		       emp_image = #{empImage},
+		       emp_address = #{empAddress},
+		       emp_email = #{empEmail},
+		       emp_position = #{empPosition},
+		       emp_pw = #{empPw},
+		       memo = #{memo}
+		 WHERE emp_no = #{empNo}
+	</update>
+
+	<delete id="deleteEmp" >
+        delete from emp where emp_no = #{empNo}
+	</delete>
+
+
+</mapper>

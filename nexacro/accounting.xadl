@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="1.2">
+  <TypeDefinition url="default_typedef.xml"/>
+  <GlobalVariables url="globalvars.xml"/>
+  <Application id="accounting" codepage="utf-8" language="Korean" loginformurl="" loginformstyle="" windowopeneffect="" windowcloseeffect="" version="" tracemode="" themeid="default.xtheme" onload="application_onload">
+    <Layout>
+      <MainFrame id="mainframe" title="maintitle" defaultfont="" resizable="false" showtitlebar="true" showstatusbar="true" left="0" top="0" width="1000" height="600" visible="true" titletext="JCorporation">
+        <VFrameSet id="VFrameSet0" separatesize="80,*">
+          <Frames>
+            <ChildFrame id="ChildFrame0" showtitlebar="false"/>
+            <HFrameSet id="HFrameSet0" separatesize="200,*">
+              <Frames>
+                <ChildFrame id="ChildFrame0" showtitlebar="false"/>
+                <ChildFrame id="ChildFrame1" showtitlebar="false"/>
+              </Frames>
+            </HFrameSet>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <ScreenInfo/>
+  </Application>
+  <Script type="xscript5.0"><![CDATA[var oFS;
+
+this.gfn_open = function gfn_open(sID, sURL, sTitle){
+	oFS=application.mainframe.VFrameSet0.HFrameSet0.ChildFrame1;
+	oFS.set_formurl(sURL);
+	oFS.show();
+}
+
+this.application_onload = function(obj:Application, e:nexacro.LoadEventInfo)
+{
+	/*
+	var objNew = new ChildFrame();   
+	objNew.showtitlebar = true;   
+	objNew.init("Login", 500,250,0,0, "Base::loginForm.xfdl");   
+
+	var view = objNew.showModal(oFS);
+      
+	if (view == "open") 
+	{      
+		mainframe.visible = true;
+	}*/
+	
+	application.mainframe.move(150,80);
+	
+		
+	var empLoginFrame = new ChildFrame();
+	//로컬변수앞에 this없어도 됨 
+    empLoginFrame.init("Login", "absolute", 350, 150, 0, 0, null, null, "Base::loginForm.xfdl");
+    
+    empLoginFrame.showtitlebar=true;
+	empLoginFrame.showstatusbar=false;
+	empLoginFrame.openalign = "center middle";
+    empLoginFrame.showModal("Login");   //showModal(null)하면 안됨. 
+    
+	
+}
+
+]]></Script>
+</ADL>

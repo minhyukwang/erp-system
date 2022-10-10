@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="loginForm" classname="loginForm" left="0" top="0" width="300" height="300" onload="loginForm_onload" visible="true" onclose="loginForm_onclose">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="부서코드" left="16%" top="40" height="32" style="background:#edaf78ff;align:center middle;font:bold 10 Verdana;" width="60"/>
+        <Edit id="deptNo" taborder="1" left="36%" top="40" height="32" width="110" enable="false" style=":disabled {font:bold 10 Verdana;}"/>
+        <Static id="Static01" taborder="2" text="부서명" left="16%" top="80" right="64%" height="32" style="background:#edaf78ff;align:center middle;font:bold 10 Verdana;"/>
+        <Edit id="deptName" taborder="3" left="36%" top="80" height="32" width="145" enable="false" style=":disabled {font:bold 10 Verdana;}"/>
+        <Static id="Static02" taborder="4" text="사번" left="16%" top="120" right="64%" height="32" style="background:#edaf78ff;align:center middle;font:bold 10 Verdana;"/>
+        <Edit id="empNo" taborder="5" left="36%" top="120" right="27.33%" height="32" enable="false" style=":disabled {font:bold 10 Verdana;}"/>
+        <Edit id="empName" taborder="6" left="36%" top="160" height="32" width="145" enable="false" style=":disabled {font:bold 10 Verdana;}"/>
+        <Static id="Static03" taborder="7" text="사원명" left="16%" top="160" right="64%" height="32" style="background:#edaf78ff;align:center middle;font:bold 10 Verdana;"/>
+        <Edit id="empPw" taborder="8" left="36%" top="200" height="32" width="145" onkeydown="empPw_onkeydown" style=":disabled {font:bold 10 Verdana;}" password="true"/>
+        <Static id="Static04" taborder="9" text="비밀번호" left="16%" top="200" right="64%" height="32" style="background:#edaf78ff;align:center middle;font:bold 10 Verdana;"/>
+        <Button id="loginBtn" taborder="10" text="로그인" left="36.33%" top="242" height="31" width="62" style="font:bold 10 Verdana;" onclick="loginBtn_onclick"/>
+        <Button id="cancelBtn" taborder="11" text="취소" left="60.33%" top="242" right="19%" height="31" style="font:bold 10 Verdana;" onclick="cancelBtn_onclick"/>
+        <Button id="Button00" taborder="12" left="73.67%" top="40" right="15.67%" height="32" onclick="Button00_onclick" style="image:URL('theme://search1.Bmp');"/>
+        <Button id="Button01" taborder="13" left="73.67%" top="120" right="15.67%" height="32" onclick="Button01_onclick" style="image:URL('theme://search1.Bmp');"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[this.empPassword="";
+
+// 콜백 함수
+this.callback = function (strSvcID, nErrorCode, strErrorMsg){
+	if(strSvcID=="getCodeList" || strSvcID=="getEmpList" || strSvcID=="getPermission" || strSvcID=="getEmpPermission"){
+		if(nErrorCode<0){
+			alert("조회 실패"+strErrorMsg);
+		}else{
+			//alert("조회 성공"+errorMsg);
+			//trace(dsMenu.saveXML());
+		}
+	}else if(strSvcID=="getMenuList"){
+		if(nErrorCode<0){
+			alert("조회 실패"+strErrorMsg);
+		}
+	}
+}
+
+// 로그인 폼이 로드 되면
+this.loginForm_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//application.permission.clearData();
+	this.transaction("getCodeList","DataUrl::base/getCodeList.do","","dsCode=dsCode dsDetailCode=dsDetailCode","","callback");
+	this.transaction("getEmpList","DataUrl::emp/getEmpList.do","","dsEmp=dsEmp","","callback");	
+	//transaction("getMenuList","DataUrl::base/getMenuList.do","","dsMenu=dsMenu","","callback");
+	this.transaction("getPermission","DataUrl::base/getPermission.do","","dsPermission=dsPermission","","callback");
+	this.transaction("getEmpPermission","DataUrl::base/getEmpPermission.do","","dsEmpPermission=dsEmpPermission","","callback");
+	this.transaction("getAccountList","DataUrl::account/getAccountList.do","","dsAccount=dsAccount dsAcountManagement=dsAcountManagement","","callback");
+}
+
+// 부서 검색 버튼
+this.Button00_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.dsDetailCode.filter("distinction_code=='DP'");
+	application.open("부서리스트", "Base::codeInfo.xfdl", this.parent , {} , "showtitlebar=true showstatusbar=false" , "", "");
+}
+
+// 사번 검색 버튼
+this.Button01_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.dsEmp.filter("dept_no=='"+this.deptNo.value+"'");
+	application.open("사원리스트", "Base::empInfo.xfdl", this.parent , "" , "showtitlebar=true showstatusbar=false" , 500, 250, 0, 0);
+	this.empPw.setFocus();
+}
+
+// 취소버튼
+this.cancelBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.close();
+	application.exit(); //전체 종료 
+}
+
+// 로그인 버튼
+this.loginBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(this.deptNo.value==null || this.deptName.value==null){
+		alert("부서정보를 선택해주세요.");
+	}else if(this.empNo.value==null || this.empName.value==null){
+		alert("사원정보를 선택해주세요.");
+	}else if(this.empNo.value==gvEmpNo ){
+			if(this.empPw.value==this.empPassword){
+				alert(this.empName.value+"님 환영합니다."); 
+				//application.mainframe.set_visible(true); 
+				application.mainframe.VFrameSet0.HFrameSet0.ChildFrame0.set_formurl("Menu::treeView.xfdl");
+				application.mainframe.VFrameSet0.ChildFrame0.set_formurl("Menu::menuBar.xfdl");
+				this.close();
+			}else{
+				alert("사번과 비밀번호가 맞지 않습니다.");
+			}
+	}else{
+		alert("없는 사번입니다.");
+	}
+}
+
+// 팝업창에서 선택한 부서정보를 edit에 자동입력
+this.setCodeInfo = function(deptNo, deptName)
+{
+	this.deptNo.set_value(deptNo);
+	this.deptName.set_value(deptName);
+}
+
+// 팝업창에서 선택한 사원정보를 edit에 자동입력
+this.setEmpInfo = function(empNo, empName, empPw)
+{
+	this.empNo.set_value(empNo);
+	this.empName.set_value(empName);
+	this.empPassword=empPw;
+}
+
+
+this.empPw_onkeydown = function(obj:Edit, e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.loginBtn_onclick();
+	}
+}
+
+
+this.loginForm_onclose = function(obj:Form, e:nexacro.CloseEventInfo)
+{
+	//alert("권한");
+	//alert(gvEmpNo);
+	//alert(application.dsEmpPermission.getRowCount());
+	this.transaction("getMenuList","DataUrl::base/getMenuList.do","","dsMenu=dsMenu","","callback");
+	application.dsEmpPermission.filter("emp_no=='"+gvEmpNo+"'");	
+	//alert(application.dsEmpPermission.getRowCount());
+	for(var i=0; i < application.dsEmpPermission.getRowCount(); i++){
+		var permissionCode=application.dsEmpPermission.getColumn(i, "permission_code");
+
+		application.dsPermission.filter("permission_code=='"+permissionCode+"'");
+		application.permission.appendData(application.dsPermission,true);
+	}
+	//alert(application.permission.getRowCount());
+	//alert(application.dsPermission.getColumn(0,"menu_code"));
+	//alert(application.dsPermission.getColumn(1,"menu_code"));
+	alert("오늘 하루도 활기찬 하루 되세요 ~ ");
+}
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="488" Id="incomeStatementForm" Left="8" OnLoadCompleted="incomeStatementForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsIncomeStatement">
+				<Contents>
+					<colinfo id="ACCOUNT_CODE" size="256" summ="default" type="STRING"/>
+					<colinfo id="PARENT_ACCOUNT" size="256" summ="default" type="STRING"/>
+					<colinfo id="ACCOUNT_NAME" size="256" summ="default" type="STRING"/>
+					<colinfo id="AMT" size="256" summ="default" type="STRING"/>
+					<colinfo id="TOTAL_AMT" size="256" summ="default" type="STRING"/>
+					<colinfo id="income_year" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="selectYear">
+				<Contents>
+					<colinfo id="preYear" size="256" summ="default" type="STRING"/>
+					<record>
+						<preYear>2016</preYear>
+					</record>
+					<record>
+						<preYear>2015</preYear>
+					</record>
+					<record>
+						<preYear>2014</preYear>
+					</record>
+					<record>
+						<preYear>2013</preYear>
+					</record>
+					<record>
+						<preYear>2012</preYear>
+					</record>
+					<record>
+						<preYear>2011</preYear>
+					</record>
+					<record>
+						<preYear>2010</preYear>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsTotalIncome">
+				<Contents>
+					<colinfo id="income_year" size="256" summ="default" type="STRING"/>
+					<colinfo id="net_profit" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsFormerIncome">
+				<Contents>
+					<colinfo id="ACCOUNT_CODE" size="256" summ="default" type="STRING"/>
+					<colinfo id="PARENT_ACCOUNT" size="256" summ="default" type="STRING"/>
+					<colinfo id="ACCOUNT_NAME" size="256" summ="default" type="STRING"/>
+					<colinfo id="AMT" size="256" summ="default" type="STRING"/>
+					<colinfo id="TOTAL_AMT" size="256" summ="default" type="STRING"/>
+					<colinfo id="income_year" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" TabOrder="1" Text="손익계산서" Top="8" VAlign="Middle" Width="696"></Static>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="incomeSearch" Left="536" OnClick="incomeSearch_OnClick" TabOrder="2" Text="조회" Top="43" Width="46"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsIncomeStatement" BkColor2="default" BoldHead="true" Bottom="472" Editable="TRUE" Enable="true" EndLineColor="default" Height="392" Id="incomeStatementGrid" InputPanel="FALSE" LineColor="default" MinWidth="100" Right="696" TabOrder="3" TabStop="true" Top="80" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="696">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="150"/>
+						<col width="80"/>
+						<col width="80"/>
+						<col width="80"/>
+						<col width="80"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="과목"/>
+						<cell bkcolor="#f7e4cf" col="1" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="당기"/>
+						<cell bkcolor="#f7e4cf" col="3" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="전기"/>
+						<cell bkcolor="#f7e4cf" col="1" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="금액"/>
+						<cell bkcolor="#f7e4cf" col="3" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="금액"/>
+					</head>
+					<body>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="0" colid="ACCOUNT_NAME" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="1" colid="AMT" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="2" colid="TOTAL_AMT" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="3" colid="ACCOUNT_CODE" combocol="ACCOUNT_CODE" combodataset="dsFormerIncome" combotext="AMT" display="combo" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;)" bkcolor2="expr:iif(parent_account&#32;==&#32;40&#32;||&#32;parent_account&#32;==&#32;50,&#32;&apos;#EEC699&apos;,&#32;&apos;#FAEDDE&apos;)" col="4" colid="ACCOUNT_CODE" combocol="ACCOUNT_CODE" combodataset="dsFormerIncome" combotext="TOTAL_AMT" display="combo" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="순이익"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell bkcolor="#f7e4cf" col="3" display="text"/>
+						<cell align="center" bkcolor="#f7e4cf" col="4" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Calendar DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="sDate" Left="290" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="4" Top="44" Width="105"></Calendar>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="20" Id="Static9" Left="393" TabOrder="6" Text="~" Top="46" VAlign="Middle" Width="32"></Static>
+		<Calendar DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="eDate" Left="424" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="5" Top="44" Width="105"></Calendar>
+		<Combo DataColumn="preYear" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="selYear" INDEX="0" InnerDataset="selectYear" Left="216" OnChanged="selYear_OnChanged" TabOrder="7" Top="44" Width="63"></Combo>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="excelPrint" Left="632" OnClick="excelPrint_OnClick" TabOrder="8" Text="엑셀출력" Top="43" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="incomeSave" Left="584" OnClick="incomeSave_OnClick" TabOrder="9" Text="저장" Top="43" Width="46"></Button>
+	</Form>
+	<Script><![CDATA[var year, strDate, total;
+
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	if(trid=="getIncomeStatementList"){
+		if(ErrorCode != 0){
+			alert(ErrorMsg);
+		}else{
+			sum();
+			//alert(dsIncomeStatement.GetColumn(0,"income_year"));
+		}
+	}else if(trid=="batchIncomeStatementList"){	
+		if(ErrorCode != 0){
+			alert("해당 연도는 저장할 수 없습니다. 관리자에게 문의하세요 !!");
+		}else{
+			alert("저장 성공");
+		}
+	}	
+}
+
+var profit, cost, total, fProfit, fCost, fTotal;
+// 당기, 전기 순이익 총계 구하는 함수 ~
+function sum()
+{
+	var profitCheck=dsIncomeStatement.findrow("account_code","402");
+    var costCheck=dsIncomeStatement.findrow("account_code","503");
+    
+    profit=parseInt(dsIncomeStatement.totalSum("total_amt", 0, profitCheck));
+    cost=parseInt(dsIncomeStatement.totalSum("total_amt", profitCheck+1));
+    total=profit-cost;
+    
+    incomeStatementGrid.SetCellProp("summ",2,"value", total);
+	
+	var former_profit=parseInt(dsFormerIncome.totalSum("total_amt", 0, profitCheck));
+	var former_cost=parseInt(dsFormerIncome.totalSum("total_amt", profitCheck+1));
+	var former_total=former_profit-former_cost;
+	
+	incomeStatementGrid.SetCellProp("summ",4,"value", former_total);
+}
+
+
+// 손익계산서 폼이 로드된 후 ~
+function incomeStatementForm_OnLoadCompleted(obj)
+{
+	strDate = GetDate();
+	year = Mid(strDate,0,4);
+	strDate = Mid(strDate,0,8);
+	
+	sDate.value = year+'0101' ;
+	eDate.value = strDate ;
+}
+
+// 날짜 선택 콤보가 바뀌면 ~
+function selYear_OnChanged(obj,strCode,strText,nOldIndex,nNewIndex)
+{
+	year = selYear.Value ;
+	if(year == '2016'){
+		sDate.value = year+'0101' ;
+		eDate.value = strDate ;
+	}else{
+		sDate.value = parseInt(year)+'0101' ;
+		eDate.value = parseInt(year)+'1231' ;
+	}
+}
+
+
+// 조회 버튼
+function incomeSearch_OnClick(obj)
+{
+	//alert("시작 : "+sDate.Value+"  끝 : "+eDate.Value);
+	Transaction("getIncomeStatementList","svcAccounting::/slip/settlement.do?method=getIncomeStatementList","","dsIncomeStatement=dsIncomeStatement dsFormerIncome=dsFormerIncome",
+			"sDate='"+sDate.Value+"' eDate='"+eDate.Value+"'","callback");
+}
+
+// 엑셀 출력
+function excelPrint_OnClick(obj)
+{
+	if(Confirm("손익계산서를 출력하시겠습니까?")){
+		incomeStatementGrid.ExportExcelEx("IncomeStatement");
+	}
+}
+
+// 저장 버튼
+function incomeSave_OnClick(obj)
+{
+	dsTotalIncome.AddRow();
+	dsTotalIncome.SetColumn(dsTotalIncome.GetCurrow(), "income_year", year);
+	dsTotalIncome.SetColumn(dsTotalIncome.GetCurrow(), "net_profit", total);
+	
+	if(Confirm("손익계산서를 저장하시겠습니까?")){
+	Transaction("batchIncomeStatementList","svcAccounting::/slip/settlement.do?method=batchIncomeStatementList","dsTotalIncome=dsTotalIncome:A dsIncomeStatement=dsIncomeStatement:A",
+				"","","callback");
+	}
+}
+]]></Script>
+</Window>

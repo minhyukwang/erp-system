@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="loginForm" classname="loginForm" inheritanceid="" position="absolute 0 0 300 300" titletext="New Form" onload="loginForm_onload" style="background:transparent;">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="부서코드" position2="absolute l:52 w:60 t:32 h:32" positiontype="position2" style="background:#edaf78ff;align:center;font:KBIZ한마음고딕 M,10,bold;"/>
+        <Edit id="deptNo" taborder="1" position2="absolute l:110 w:105 t:32 h:32" positiontype="position2" enable="false" style=":disabled {padding:1px 1px 1px 5px;}"/>
+        <Static id="Static01" text="부서명" position2="absolute l:52 w:60 t:72 h:32" positiontype="position2" style="background:#edaf78ff;align:center;font:KBIZ한마음고딕 M,10,bold;"/>
+        <Edit id="deptName" taborder="1" position2="absolute l:110 w:137 t:72 h:32" positiontype="position2" enable="false" style=":disabled {padding:1px 1px 1px 5px;}"/>
+        <Edit id="empNo" taborder="1" position2="absolute l:110 w:105 t:112 h:32" positiontype="position2" enable="false" style=":disabled {padding:1px 1px 1px 5px;}"/>
+        <Static id="Static02" text="사번" position2="absolute l:52 w:60 t:112 h:32" positiontype="position2" style="background:#edaf78ff;align:center;font:KBIZ한마음고딕 M,10,bold;"/>
+        <Static id="Static03" text="사원명" position2="absolute l:52 w:60 t:152 h:32" positiontype="position2" style="background:#edaf78ff;align:center;font:KBIZ한마음고딕 M,10,bold;"/>
+        <Edit id="empName" taborder="1" position2="absolute l:110 w:137 t:152 h:32" positiontype="position2" enable="false" style=":disabled {padding:1px 1px 1px 5px;}"/>
+        <Static id="Static04" text="비밀번호" position2="absolute l:52 w:60 t:192 h:32" positiontype="position2" style="background:#edaf78ff;align:center;font:KBIZ한마음고딕 M,10,bold;"/>
+        <Edit id="empPw" taborder="1" position2="absolute l:110 w:137 t:192 h:32" positiontype="position2" enable="true" style="padding:1px 1px 1px 5;" password="true" onkeydown="empPw_onkeydown"/>
+        <Button id="loginBtn" taborder="1" text="로그인" position2="absolute l:110 w:62 t:234 h:31" positiontype="position2" style="font:KBIZ한마음고딕 M,12,bold;" onclick="loginBtn_onclick"/>
+        <Button id="cancelBtn" taborder="1" text="취소" position2="absolute l:185 w:62 t:234 h:31" positiontype="position2" style="background:@gradation;font:KBIZ한마음고딕 M,12,bold;" onclick="cancelBtn_onclick"/>
+        <Button id="Button00" taborder="1" position2="absolute l:219 w:28 t:32 h:32" positiontype="position2" style="background:@gradation URL('search1') stretch;" onclick="Button00_onclick"/>
+        <Button id="Button01" taborder="1" position2="absolute l:219 w:28 t:112 h:32" positiontype="position2" style="background:@gradation URL('search1') stretch;" onclick="Button01_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript4.0"><![CDATA[var empPassword;
+
+// 콜백 함수
+function callback(trid, errorCode, errorMsg){
+	if(trid=="getCodeList" || trid=="getEmpList" || trid=="getMenuList" || trid=="getPermission" || trid=="getEmpPermission" || trid=="getAccountList"){
+		if(errorCode<0){
+			alert("조회 실패"+errorMsg);
+		}else{
+			//alert("조회 성공"+errorMsg);
+			//trace(dsMenu.saveXML());
+		}
+	}
+}
+
+// 로그인 폼이 로드 되면
+function loginForm_onload(obj:Form, e:LoadEventInfo)
+{
+	permission.clear();
+	transaction("getCodeList","DataUrl::base/getCodeList.do","","dsCode=dsCode dsDetailCode=dsDetailCode","","callback");
+	transaction("getEmpList","DataUrl::emp/getEmpList.do","","dsEmp=dsEmp","","callback");	
+	//transaction("getMenuList","DataUrl::base/getMenuList.do","","dsMenu=dsMenu","","callback");
+	transaction("getPermission","DataUrl::base/getPermission.do","","dsPermission=dsPermission","","callback");
+	transaction("getEmpPermission","DataUrl::base/getEmpPermission.do","","dsEmpPermission=dsEmpPermission","","callback");
+	//transaction("getAccountList","DataUrl::account/getAccountList.do","","dsAccount=dsAccount dsAcountManagement=dsAcountManagement","","callback");
+}
+
+// 부서 검색 버튼
+function Button00_onclick(obj:Button,  e:ClickEventInfo)
+{
+	dsDetailCode.filter("distinction_code=='DP'");
+	dialog("modal", "Base::codeInfo.xfdl", MainFrame, {a:'aaa', b:'bbb'}, "showtitlebar=true showstatusbar=false", 800, 150, 800, 600,this);
+}
+
+// 사번 검색 버튼
+function Button01_onclick(obj:Button,  e:ClickEventInfo)
+{
+	dsEmp.filter("dept_no=='"+deptNo.value+"'");
+	dialog("modal", "Base::empInfo.xfdl", MainFrame, {a:'aaa', b:'bbb'}, "showtitlebar=true showstatusbar=false", 800, 150, 800, 600,this);
+	empPw.setFocus();
+}
+
+// 취소버튼
+function cancelBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	exit();
+}
+
+// 로그인 버튼
+function loginBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	if(deptNo.value==null || deptName.value==null){
+		alert("부서정보를 선택해주세요.");
+	}else if(empNo.value==null || empName.value==null){
+		alert("사원정보를 선택해주세요.");
+	}else if(empNo.value==gvEmpNo ){
+			if(empPw.value==empPassword){
+				alert(empName.value+"님 환영합니다."); 
+				close("open");
+			}else{
+				alert("사번과 비밀번호가 맞지 않습니다.");
+			}
+	}else{
+		alert("없는 사번입니다.");
+	}
+}
+
+// 팝업창에서 선택한 부서정보를 edit에 자동입력
+function setCodeInfo(deptNo, deptName)
+{
+	this.deptNo.value=deptNo;
+	this.deptName.value=deptName;
+}
+
+// 팝업창에서 선택한 사원정보를 edit에 자동입력
+function setEmpInfo(empNo, empName, empPw)
+{
+	this.empNo.value=empNo;
+	this.empName.value=empName;
+	empPassword=empPw;
+}
+
+
+function empPw_onkeydown(obj:Edit, e:KeyEventInfo)
+{
+	if(e.keycode == 13){
+		loginBtn_onclick();
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

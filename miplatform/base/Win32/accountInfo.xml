@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="400" Id="accountInfoForm" Left="8" OnLoadCompleted="accountInfoForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="608" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsFirstAccount">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="parent_account" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_balance" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_change" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_use" size="256" summ="default" type="STRING"/>
+					<colinfo id="level" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsSecondAccount">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="parent_account" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_balance" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_change" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_use" size="256" summ="default" type="STRING"/>
+					<colinfo id="level" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsThirdAccount">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="parent_account" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_balance" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_change" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_use" size="256" summ="default" type="STRING"/>
+					<colinfo id="level" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="26" Id="Static0" Left="8" TabOrder="1" Text="계정과목조회" Top="8" VAlign="Middle" Width="592"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="27" Id="Static1" Left="200" TabOrder="2" Text="항목검색" Top="45" VAlign="Middle" Width="56"></Static>
+		<Edit Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="search" Left="260" LeftMargin="2" OnKeyDown="search_OnKeyDown" TabOrder="3" Top="45" Width="132"></Edit>
+		<Button Height="24" Id="searchBtn" ImageID="search" Left="394" OnClick="searchBtn_OnClick" TabOrder="4" Text="Button0" Top="46" Width="23"></Button>
+		<Grid AutoEnter="TRUE" AutoFit="TRUE" BindDataset="dsFirstAccount" BkColor2="default" BoldHead="true" Bottom="384" ColSizing="TRUE" Enable="true" EndLineColor="default" Height="272" Id="firstAccountGrid" InputPanel="FALSE" Left="8" LineColor="default" MinWidth="100" MultiSelect="TRUE" OnCellClick="firstAccountGrid_OnCellClick" Right="168" TabOrder="5" TabStop="true" Top="112" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="160">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="50"/>
+						<col width="60"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정코드"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="account_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="account_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoEnter="TRUE" AutoFit="TRUE" BindDataset="dsSecondAccount" BkColor2="default" BoldHead="true" Bottom="384" ColSizing="TRUE" Enable="true" EndLineColor="default" Height="272" Id="secondAccountGrid" InputPanel="FALSE" Left="172" LineColor="default" MinWidth="100" MultiSelect="TRUE" OnCellClick="secondAccountGrid_OnCellClick" Right="332" TabOrder="6" TabStop="true" Top="112" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="160">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="50"/>
+						<col width="60"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정코드"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="account_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="account_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoEnter="TRUE" AutoFit="TRUE" BindDataset="dsThirdAccount" BkColor2="default" BoldHead="true" Bottom="384" ColSizing="TRUE" Enable="true" EndLineColor="default" Height="272" Id="thirdAccountGrid" InputPanel="FALSE" Left="336" LineColor="default" MinWidth="100" MultiSelect="TRUE" OnCellDBLClick="thirdAccountGrid_OnCellDblClick" Right="600" TabOrder="7" TabStop="true" Top="112" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="264">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="50"/>
+						<col width="100"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정코드"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="account_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="account_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static8" Left="8" TabOrder="8" Text="상위&#32;계정" Top="80" VAlign="Middle" Width="160"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static9" Left="172" TabOrder="9" Text="중간&#32;계정" Top="80" VAlign="Middle" Width="160"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static10" Left="336" TabOrder="10" Text="하위&#32;계정" Top="80" VAlign="Middle" Width="264"></Static>
+	</Form>
+	<Script><![CDATA[
+// 계정과목 폼이 로드 된 후~
+function accountInfoForm_OnLoadCompleted(obj)
+{
+	//dsAccount.filter("account_use='Y'");
+	dsAccount.UnFilter();
+	dsFirstAccount.Copy(dsAccount);
+	dsFirstAccount.Filter("level=1");
+}
+
+
+
+// 조회 버튼
+function searchBtn_OnClick(obj)
+{
+	var accountCode=search.Text;
+	var sFilter;
+	if(accountCode=""){
+		alert("검색할 항목을 입력하여 주십시오.");
+		dsAccount.UnFilter();
+	}else{
+		dsThirdAccount.Copy(dsAccount);
+		if(accountCode.trim().length > 0 ) {
+			sFilter += " || pos(account_name," + quote(accountCode) + ") >= 0";
+			sFilter += " || pos(account_code," + quote(accountCode) + ") >= 0";
+		}
+		dsThirdAccount.Filter(sFilter);
+		//dsAccount.filter("account_name='"+name"'");
+	}
+}
+
+// 조회 창에서 엔터를 치면 ~
+function search_OnKeyDown(obj,nChar,bShift,bCtrl,bAlt,nLLParam,nHLParam)
+{
+	if(nChar == 13){
+		searchBtn_OnClick();
+	}
+}
+
+// 상위 계정 그리드 클릭 시
+function firstAccountGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var firstCode=dsFirstAccount.GetColumn(nRow, "account_code");
+	//alert(firstCode);
+	dsSecondAccount.Copy(dsAccount);
+	dsSecondAccount.Filter("parent_account='"+firstCode+"'");
+}
+
+// 중간 계정 그리드 클릭 시
+function secondAccountGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var secondCode=dsSecondAccount.GetColumn(nRow, "account_code");
+	//alert(firstCode);
+	dsThirdAccount.Copy(dsAccount);
+	dsThirdAccount.Filter("parent_account='"+secondCode+"'");
+}
+
+// 하위 계정 그리드 더블클릭 시
+function thirdAccountGrid_OnCellDblClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var code=dsThirdAccount.getColumn(nRow,"account_code");
+	var name=dsThirdAccount.getColumn(nRow,"account_name");
+	parent.dsJournal.SetColumn(parent.dsJournal.GetCurrow(),"account_code",code);
+	parent.dsJournal.SetColumn(parent.dsJournal.GetCurrow(),"account_name",name);
+			
+	// 변경되는 값을 jourCompDiv에 세팅한다.
+	var journalNo=parent.dsJournal.GetColumn(parent.dsJournal.GetCurrow(),"journal_no");
+	var slipNo=parent.dsSlip.GetColumn(parent.dsSlip.GetCurrow(),"slip_no");		
+	
+	// Dataset에 바인딩 이벤트를 일시 중단시킨다.
+	parent.dsJournalManagement.fireEvent = false; 	
+		
+	var iCnt = parent.dsJournalManagement.GetRowCount();
+	
+	// 뒤에서부터 삭제한다.
+	for(var i=iCnt-1; i>=0; i--){
+		// 조건문 
+		 if((parent.dsJournalManagement.GetColumn(i,"journal_no") == journalNo) && (parent.dsJournalManagement.GetColumn(i,"slip_no") == slipNo)) 
+         {
+			// 실제 삭제하는 실행문이다.
+            parent.dsJournalManagement.DeleteRow(i); 
+         }
+	}
+	
+	// Dataset에 바인딩 이벤트를 시작시킨다.
+	parent.dsJournalManagement.fireEvent = true; 	  
+		
+	var accountCode = parent.dsJournal.GetColumn(parent.dsJournal.GetCurrow(),"account_code");
+	
+	dsAcountManagement.UnFilter();
+	dsAcountManagement.Filter("account_code='"+accountCode+"'");
+		
+	// 분개상세 생성한다.
+	for(i=0; i<dsAcountManagement.GetRowCount(); i++){
+		
+		parent.dsJournalManagement.AddRow();
+	
+		var accName=dsAcountManagement.GetColumn(i,"account_management_name");	
+		var accCode=dsAcountManagement.GetColumn(i,"management_code");	
+		var accComp=dsAcountManagement.GetColumn(i,"management_type");
+		
+		// 코드명 + 코드타입
+		trace("variable: "+accName+" ---------- "+accComp);
+				
+		parent.dsJournalManagement.SetColumn(parent.dsJournalManagement.GetCurrow(),"management_name",accName);
+		parent.dsJournalManagement.SetColumn(parent.dsJournalManagement.GetCurrow(),"management_code",accCode);
+		parent.dsJournalManagement.SetColumn(parent.dsJournalManagement.GetCurrow(),"management_type",accComp);
+		parent.dsJournalManagement.SetColumn(parent.dsJournalManagement.GetCurrow(),"journal_no",journalNo);
+		parent.dsJournalManagement.SetColumn(parent.dsJournalManagement.GetCurrow(),"slip_no",slipNo);		
+		
+		trace(journalNo+','+slipNo+','+accName+','+accCode+','+accComp);
+	}
+	
+	// 분개상세를 새로고침한다.
+	parent.createComponent(parent.dsJournal.GetCurrow(),slipNo);
+	
+	close();
+}
+]]></Script>
+</Window>

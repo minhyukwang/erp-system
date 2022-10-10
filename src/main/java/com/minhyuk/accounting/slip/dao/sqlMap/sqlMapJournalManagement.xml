@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.accounting.slip.dao.JournalManagementDAO">
+
+	<resultMap id="resultJournalManagement" type="JournalManagement">
+		<result property="journalNo" column="journal_no" />
+		<result property="slipNo" column="slip_no" />
+		<result property="managementCode" column="management_code" />
+		<result property="managementName" column="management_name" />
+		<result property="managementType" column="management_type" />
+		<result property="value" column="value" />
+	</resultMap>
+
+	<select id="selectJournalManagementList" resultMap="resultJournalManagement"	parameterType="hashmap">
+		SELECT *
+		FROM journal_management join account_management_list
+		USING(management_code)
+		WHERE slip_no=#{slipNo}
+		AND journal_no=#{journalNo}
+	</select>
+
+	<insert id="insertJournalManagement">
+        INSERT
+		  INTO journal_management
+		       (
+		           journal_no,
+		           slip_no ,
+		           management_code,
+		           value
+		       )
+		       VALUES
+		       (
+		           #{journalNo},
+		           #{slipNo},
+		           #{managementCode},
+		           #{value}
+		       )
+	</insert>
+
+	<update id="updateJournalManagement">
+        UPDATE journal_management
+		       SET value = #{value}
+			 WHERE slip_no = #{slipNo}
+			 AND journal_no = #{journalNo}
+			 AND management_code = #{managementCode}
+	</update>
+
+	<delete id="deleteJournalManagement">
+        delete from journal_management where slip_no = #{slipNo} AND journal_no = #{journalNo}
+	</delete>
+
+</mapper>

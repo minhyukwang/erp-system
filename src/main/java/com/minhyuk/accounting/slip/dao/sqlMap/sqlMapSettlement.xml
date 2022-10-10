@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.accounting.slip.dao.SettlementDAO">
+
+	<resultMap id="resultIncomeMap" type="incomeStatement">
+		<result property="accountCode" column="ACCOUNT_CODE"/>
+		<result property="parentAccount" column="PARENT_ACCOUNT"/>
+		<result property="accountName" column="ACCOUNT_NAME"/>
+		<result property="amt" column="AMT"/>
+		<result property="totalAmt" column="TOTAL_AMT"/>
+		<result property="incomeYear" column="income_year"/>
+	</resultMap>
+
+	<resultMap id="resultStatementMap" type="statementPosition">
+		<result property="accountCode" column="ACCOUNT_CODE"/>
+		<result property="parentAccount" column="PARENT_ACCOUNT"/>
+		<result property="accountName" column="ACCOUNT_NAME"/>
+		<result property="amt" column="AMT"/>
+		<result property="totalAmt" column="TOTAL_AMT"/>
+		<result property="statementYear" column="statement_year"/>
+	</resultMap>
+
+	<parameterMap id="incomeParameter" type="map">
+		<parameter property="sDate" mode="IN" jdbcType="VARCHAR"
+			javaType="String" />
+		<parameter property="eDate" mode="IN" jdbcType="VARCHAR"
+			javaType="String" />
+		<parameter property="errCode" mode="OUT" jdbcType="VARCHAR"
+			javaType="String" />
+		<parameter property="errMsg" mode="OUT" jdbcType="VARCHAR"
+			javaType="String" />
+		<parameter property="result" mode="OUT" resultMap="resultIncomeMap"
+			jdbcType="CURSOR" javaType="ResultSet"/>
+	</parameterMap>
+
+	<parameterMap id="statementParameter" type="map">
+		<parameter property="sDate" mode="IN" jdbcType="VARCHAR"
+			javaType="String" />
+		<parameter property="eDate" mode="IN" jdbcType="VARCHAR"
+			javaType="String" />
+		<parameter property="errCode" mode="OUT" jdbcType="VARCHAR"
+			javaType="String" />
+		<parameter property="errMsg" mode="OUT" jdbcType="VARCHAR"
+			javaType="String" />
+		<parameter property="result" mode="OUT" resultMap="resultStatementMap"
+			jdbcType="CURSOR" javaType="ResultSet" />
+	</parameterMap>
+
+
+	<select id="selectCreditorList" resultType="creditorBalance" parameterType="map">
+		SELECT distinct journal_type as journalType
+     , NVL(amt,0) amt
+     , a.account_code as accountCode
+     , a.account_name as accountName
+  FROM
+       (SELECT journal_type
+            , approval_date
+            , sum(journal_amt) over (partition BY account_code) AS amt
+            , account_Code
+            , account_name
+         FROM journal j
+          JOIN slip s
+              ON j.slip_no = s.slip_no
+        WHERE approval_date BETWEEN #{sDate} AND #{eDate}
+              AND journal_type='대변'
+       ) x
+   RIGHT JOIN ACCOUNT a
+       ON x.account_code = a.account_code
+       order by accountCode
+	</select>
+
+	<select id="selectDebtorList" resultType="debtorBalance" parameterType="map">
+		SELECT distinct journal_type as journalType
+     , NVL(amt,0) amt
+     , a.account_code as accountCode
+     , a.account_name as accountName
+  FROM
+       (SELECT journal_type
+            , approval_date
+            , sum(journal_amt) over (partition BY account_code) AS amt
+            , account_Code
+            , account_name
+         FROM journal j
+          JOIN slip s
+              ON j.slip_no = s.slip_no
+        WHERE approval_date BETWEEN #{sDate} AND #{eDate}
+              AND journal_type='차변'
+       ) x
+   RIGHT JOIN ACCOUNT a
+       ON x.account_code = a.account_code
+       order by accountCode
+
+	</select>
+
+	<select id="selectIncomeList" statementType="CALLABLE" parameterMap="incomeParameter">
+		{ call P_INCOME_STATEMENT(?,?,?,?,?) }
+	</select>
+
+	<select id="selectFormerIncomeList" resultType="formerIncome" parameterType="String">
+		SELECT account_code AS accountCode
+		     , parent_account AS parentAccount
+		     , account_name AS accountName
+		     , NVL(amt,0) AS amt
+		     , NVL(total_amt,0) AS totalAmt
+		     , income_year AS incomeYear
+  		FROM income_statement
+ 		WHERE income_year=#{year}
+ 		ORDER BY account_code
+	</select>
+
+	<select id="selectStatementList" statementType="CALLABLE" parameterMap="statementParameter">
+		{call P_STATEMENT_POSITION(?,?,?,?,?)}
+	</select>
+
+	<select id="selectFormerStatementList" resultType="formerStatementPosition" parameterType="String">
+		SELECT account_code AS accountCode
+		     , parent_account AS parentAccount
+		     , account_name AS accountName
+		     , NVL(amt,0) AS amt
+		     , NVL(total_amt,0) AS totalAmt
+		     , statement_year AS statementYear
+  		FROM statement_position
+ 		WHERE statement_year=#{year}
+ 		ORDER BY account_code
+	</select>
+
+	<insert id="insertIncomeStatement">
+		insert into income_statement values(
+			#{accountCode},
+			#{parentAccount},
+			#{accountName},
+			#{amt},
+			#{totalAmt},
+			#{incomeYear}
+		)
+	</insert>
+
+	<insert id="insertTotalIncome">
+		insert into total_income values(
+			#{incomeYear},
+			#{netProfit}
+		)
+	</insert>
+
+	<insert id="insertStatementPosition">
+		insert into statement_position values(
+			#{accountCode},
+			#{parentAccount},
+			#{accountName},
+			#{amt},
+			#{totalAmt},
+			#{statementYear}
+		)
+	</insert>
+
+	<insert id="insertTotalStatement">
+		insert into total_statement values(
+			#{statementYear},
+			#{assetTotal},
+			#{capitalTotal},
+			#{debtTotal}
+		)
+	</insert>
+
+
+</mapper>

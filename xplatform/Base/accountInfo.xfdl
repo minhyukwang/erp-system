@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="accountInfo" classname="accountInfo" inheritanceid="" position="absolute 0 0 730 486" titletext="New Form" style="background:transparent;" onload="accountInfo_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" text="계정과목조회" position2="absolute l:10 w:710 t:8 h:25" positiontype="position2" style="background:#edaf78ff;align:center middle;font:나눔바른고딕,14,bold antialias;"/>
+        <Static id="Static07" text="상위 계정" position2="absolute l:11 w:205 t:80 h:24" positiontype="position2" style="background:#edaf78ff;align:center middle;font:나눔바른고딕,10,bold antialias;"/>
+        <Grid id="firstAccountGrid" taborder="1" binddataset="dsFirstAccount" useinputpanel="false" autofittype="col" oncellclick="firstAccountGrid_oncellclick" position2="absolute l:11 w:205 t:116 h:360" positiontype="position2">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="background:#f7e4cfff;" text="계정코드"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;" text="계정명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:account_code"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:account_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static08" text="중간 계정" position2="absolute l:219 w:221 t:80 h:24" positiontype="position2" style="background:#edaf78ff;align:center middle;font:나눔바른고딕,10,bold antialias;"/>
+        <Grid id="secondAccountGrid" taborder="1" binddataset="dsSecondAccount" useinputpanel="false" autofittype="col" oncellclick="secondAccountGrid_oncellclick" position2="absolute l:219 w:221 t:116 h:360" positiontype="position2">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="background:#f7e4cfff;" text="계정코드"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;" text="계정명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:account_code"/>
+                <Cell col="1" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:account_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static09" text="하위 계정" position2="absolute l:443 w:277 t:80 h:24" positiontype="position2" style="background:#edaf78ff;align:center middle;font:나눔바른고딕,10,bold antialias;"/>
+        <Grid id="thirdAccountGrid" taborder="1" binddataset="dsThirdAccount" useinputpanel="false" autofittype="col" position2="absolute l:443 w:277 t:116 h:360" positiontype="position2" oncelldblclick="thirdAccountGrid_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="60"/>
+                <Column size="150"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" style="background:#f7e4cfff;" text="계정코드"/>
+                <Cell col="1" displaytype="normal" style="background:#f7e4cfff;" text="계정명"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:account_code"/>
+                <Cell col="1" displaytype="normal" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:Verdana,10,bold;" text="bind:account_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02" text="항목검색" position2="absolute l:250 w:70 t:46 h:26" positiontype="position2" style="background:#edaf78ff;align:center middle;font:나눔바른고딕,9,bold antialias;"/>
+        <Edit id="search" taborder="1" position2="absolute l:327 w:88 t:46 h:26" positiontype="position2" style="font:나눔바른고딕,9,bold antialias;"/>
+        <Button id="searchBtn" taborder="1" text="조회" onclick="empSearchBtn_onclick" position2="absolute l:419 w:41 t:46 h:24" positiontype="position2" style="color:gray;font:나눔바른고딕,9,bold antialias;"/>
+      </Layout>
+    </Layouts>
+    <Bind/>
+    <Objects>
+      <Dataset id="dsFirstAccount" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+          <Column id="parent_account" type="STRING" size="256"/>
+          <Column id="account_balance" type="STRING" size="256"/>
+          <Column id="account_change" type="STRING" size="256"/>
+          <Column id="account_use" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSecondAccount" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+          <Column id="parent_account" type="STRING" size="256"/>
+          <Column id="account_balance" type="STRING" size="256"/>
+          <Column id="account_change" type="STRING" size="256"/>
+          <Column id="account_use" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsThirdAccount" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+          <Column id="parent_account" type="STRING" size="256"/>
+          <Column id="account_balance" type="STRING" size="256"/>
+          <Column id="account_change" type="STRING" size="256"/>
+          <Column id="account_use" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+// 계정과목조회 폼이 로드되면
+function accountInfo_onload(obj:Form, e:LoadEventInfo)
+{
+	dsFirstAccount.copyData(dsAccount);
+	dsFirstAccount.filter("level==1");
+}
+
+// 상위계정 그리드 클릭 시
+function firstAccountGrid_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	var firstCode=dsFirstAccount.getColumn(e.row, "account_code");
+	dsSecondAccount.copyData(dsAccount);
+	dsSecondAccount.filter("parent_account=='"+firstCode+"'");
+	dsThirdAccount.clear();
+}
+
+// 중간계정 그리드 클릭 시
+function secondAccountGrid_oncellclick(obj:Grid, e:GridClickEventInfo)
+{
+	var secondCode=dsSecondAccount.getColumn(e.row, "account_code");
+	dsThirdAccount.copyData(dsAccount);
+	dsThirdAccount.filter("parent_account=='"+secondCode+"'");
+}
+
+// 하위계정 그리드 더블클릭 시
+function thirdAccountGrid_oncelldblclick(obj:Grid, e:GridClickEventInfo)
+{
+	var code=dsThirdAccount.getColumn(e.row,"account_code");
+	var name=dsThirdAccount.getColumn(e.row,"account_name");
+	
+	opener.setAccountCodeInfo(code, name);		
+
+	// 변경되는 값을 jourCompDiv에 세팅한다.
+	var journalNo = dsJournal.getColumn(dsJournal.rowposition,"journal_no");   
+    var slipNo = dsSlip.getColumn(dsSlip.rowposition,"slip_no");   
+    
+    trace("slipNo ------------------------------------ "+slipNo);
+      
+      var iCnt = dsJournalManagement.getRowCount();
+      // 뒤에서부터 삭제한다.
+      for(var i=iCnt-1;i>=0;i--){
+         if((dsJournalManagement.getColumn(i,"journal_no") == journalNo) && (dsJournalManagement.getColumn(i,"slip_no") == slipNo))
+         {
+			// 실제 삭제하는 실행문이다.
+            dsJournalManagement.deleteRow(i);
+         }
+      }       
+      
+      var accountCode = dsJournal.getColumn( dsJournal.rowposition,"account_code");
+      dsAcountManagement.filter("");
+      dsAcountManagement.filter("account_code=='"+accountCode+"'");   
+      
+      // 분개상세 생성한다.
+      for (i=0; i <dsAcountManagement.getRowCount() ;i++){
+      
+         dsJournalManagement.addRow();
+         
+		 var accName=dsAcountManagement.getColumn(i,"account_management_name");	
+		 var accCode=dsAcountManagement.getColumn(i,"management_code");	
+		 var accComp=dsAcountManagement.getColumn(i,"management_type");
+         
+         // 코드명 + 코드타입
+         trace("variable: "+accName+" ---------- "+accComp);
+         
+         dsJournalManagement.setColumn(dsJournalManagement.rowposition,"management_name",accName);
+         dsJournalManagement.setColumn(dsJournalManagement.rowposition,"management_code",accCode);
+         dsJournalManagement.setColumn(dsJournalManagement.rowposition,"management_type",accComp);		
+         dsJournalManagement.setColumn(dsJournalManagement.rowposition,"journal_no",journalNo);
+         dsJournalManagement.setColumn(dsJournalManagement.rowposition,"slip_no",slipNo);	         
+      }
+      
+      this.opener.createComponent(dsJournal.rowposition,slipNo);
+   
+	close();
+}
+]]></Script>
+  </Form>
+</FDL>

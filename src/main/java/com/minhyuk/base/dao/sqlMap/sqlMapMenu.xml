@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.base.dao.MenuDAO">
+
+	<resultMap type="menu" id="resultMenu">
+		<result property="menuCode" column="menu_code" />
+		<result property="parentMenuCode" column="parent_menu_code" />
+		<result property="menuName" column="menu_name" />
+		<result property="menuUrl" column="menu_url" />
+		<result property="menuUse" column="menu_use" />
+		<result property="level" column="level" />
+	</resultMap>
+
+	<select id="selectMenuList" resultMap="resultMenu">
+        SELECT LEVEL
+		     , menu_code
+		     , menu_name
+		     , parent_menu_code
+		     , menu_url
+		     , menu_use
+ 		FROM MENU
+		START WITH parent_menu_code IS NULL
+		CONNECT BY PRIOR menu_code=parent_menu_code
+	</select>
+
+</mapper>

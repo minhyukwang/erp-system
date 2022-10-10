@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="486" Id="codeForm" Left="8" OnLoadCompleted="codeForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static1" Left="24" TabOrder="1" Text="코드" Top="112" VAlign="Middle" Width="288"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" Left="26" TabOrder="2" Text="코드&#32;관리" Top="24" VAlign="Middle" Width="638"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static2" Left="328" TabOrder="3" Text="상세코드" Top="112" VAlign="Middle" Width="336"></Static>
+		<Grid AutoFit="TRUE" BindDataset="dsCode" BkColor2="default" BoldHead="true" Bottom="432" Enable="true" EndLineColor="default" Height="288" Id="codeGrid" InputPanel="FALSE" Left="24" LineColor="default" MinWidth="100" OnCellClick="codeGrid_OnCellClick" Right="312" TabOrder="4" TabStop="true" Top="144" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="288">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="23"/>
+						<col width="106"/>
+						<col width="104"/>
+						<col width="50"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="No"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="코드구분코드"/>
+						<cell bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="코드명"/>
+						<cell bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="수정여부"/>
+					</head>
+					<body>
+						<cell align="center" col="0" display="text" expr="currow+1" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="distinction_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="code_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="code_use" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoFit="TRUE" BindDataset="dsDetailCode" BkColor2="default" BoldHead="true" Bottom="432" Editable="TRUE" Enable="true" EndLineColor="default" Height="288" Id="detailCodeGrid" InputPanel="FALSE" Left="328" LineColor="default" MinWidth="100" OnEnterDown="detailCodeGrid_OnEnterDown" Right="664" TabOrder="5" TabStop="true" Top="144" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="336">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="95"/>
+						<col width="80"/>
+						<col width="105"/>
+						<col width="50"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="상세코드"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="코드구분코드"/>
+						<cell bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="상세코드명"/>
+						<cell bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="사용여부"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="DETAIL_CODE" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="distinction_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="detail_codename" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="detail_use" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="addCode" Left="443" OnClick="addCode_OnClick" TabOrder="6" Text="추가" Top="69" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="save" Left="498" OnClick="save_OnClick" TabOrder="7" Text="저장" Top="69" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="delete" Left="553" OnClick="delete_OnClick" TabOrder="8" Text="삭제" Top="69" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="reset" Left="608" OnClick="reset_OnClick" TabOrder="9" Text="취소" Top="69" Width="56"></Button>
+	</Form>
+	<Script><![CDATA[
+// 코드 폼이 로드 된 후 ~
+function codeForm_OnLoadCompleted(obj)
+{
+	//Transaction("getCodeList","svcBase::/code.do?method=getCodeList","","dsCode=dsCode dsDetailCode=dsDetailCode","","callback");
+	var code = dsCode.getColumn(dsCode.GetCurrow(),'distinction_code');
+	//trace(code);
+	dsDetailCode.filter("distinction_code='"+code+"'");
+	
+}
+
+// 코드그리드가 로드 된 후 ~
+function codeGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var code = dsCode.GetColumn(nRow,"distinction_code");
+	dsDetailCode.filter("distinction_code='"+code+"'");
+}
+
+// 추가 버튼
+function addCode_OnClick(obj)
+{
+	dsdetailcode.AddRow();
+}
+
+// 삭제 버튼
+function delete_OnClick(obj)
+{
+	if(Confirm("선택한 코드상세 정보를 삭제하시겠습니까?")){
+		dsDetailCode.DeleteRow(dsDetailCode.row);
+	}
+}
+
+// 코드상세그리드에서 엔터를 누르면 다음 셀로 ~
+function detailCodeGrid_OnEnterDown(obj,nRow,nCell,strVal,nPivotIndex)
+{
+	// Cell의 Focus를 다음 Editable Cell로 자동 이동시킨다.
+	obj.MoveToNextCell();
+}
+
+function reset_OnClick(obj)
+{
+	if(confirm("취소하시겠습니까?")){
+		reload();
+	}
+}
+
+// 저장 버튼
+function save_OnClick(obj)
+{
+	if(Confirm("변경사항을 저장하시겠습니까?")){
+		Transaction("batchCodeList","svcBase::/code.do?method=batchCodeList","dsDetailCode=dsDetailCode:U","","","callback");
+		reload();
+	}
+}
+]]></Script>
+</Window>

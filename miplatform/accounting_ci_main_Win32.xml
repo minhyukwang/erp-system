@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConnectGroup BkColor="white" device="Win32&#32;(800x600)" Font="Default,0" height="600" SessionURL="base::login.xml" Statusbar="true" Title="accounting" titlebar="true" version="1.0" width="800" work_height="562" work_width="800">
+	<container Version="1000">
+		<Component Height="21" Id="Spin" Image="10" Name="cySpin" Title="Spin" Version="1000" Width="121"/>
+		<Component Height="21" Id="MaskEdit" Image="19" Name="cyMaskedit" Title="MaskEdit" Version="1000" Width="121"/>
+		<Component Height="21" Id="Button" Image="2" Name="cyButton" Title="Button" Version="1000" Width="104"/>
+		<Component Height="13" Id="Static" Image="8" Name="cyStatic" Title="Static" Version="1000" Width="40"/>
+		<Component Height="21" Id="Edit" Image="3" Name="cyEdit" Title="Edit" Version="1000" Width="121"/>
+		<Component Height="65" Id="Shape" Image="28" Name="cyShape" Title="Shape" Version="1000" Width="65"/>
+		<Component Height="65" Id="Pie" Image="30" Name="cyPie" Title="Pie" Version="1000" Width="65"/>
+		<Component Height="21" Id="Checkbox" Image="4" Name="cyCheckBox" Title="Check&#32;Box" Version="1000" Width="97"/>
+		<Component Height="24" Id="FileDialog" Image="18" Name="cyFileDialog" Title="File&#32;Dialog" Version="1000" Width="24"/>
+		<Component Height="24" Id="File" Image="25" Name="cyFile" Title="File" Version="1000" Width="24"/>
+		<Component Height="97" Id="List" Image="6" Name="cyListBox" Title="List" Version="1000" Width="145"/>
+		<Component Height="21" Id="Combo" Image="5" Name="cyComboEx" Title="ComboBox" Version="1000" Width="145"/>
+		<Component Height="21" Id="Radio" Image="7" Name="cyRadio" Title="Radio" Version="1000" Width="113"/>
+		<Component Height="72" Id="TextArea" Image="16" Name="cyTextArea" Title="Text&#32;Area" Version="1000" Width="185"/>
+		<Component Height="17" Id="Progressbar" Image="31" Name="cyProgressbar" Title="Progressbar" Version="1000" Width="150"/>
+		<Component Height="97" Id="TreeView" Image="11" Module="CyTreeView" Name="cyTreeView" Title="Tree&#32;View" Version="1000" Width="121"/>
+		<Component Height="120" Id="Grid" Image="1" Module="CyGrid" Name="cyGrid" Title="Grid" Version="1000" Width="320"/>
+		<Component Height="105" Id="Image" Image="9" Name="cyImage" Title="Image" Version="1000" Width="105"/>
+		<Component Height="21" Id="Calendar" Image="13" Module="CyCalendarEx" Name="cyCalendarEx" Title="Calendar" Version="1000" Width="145"/>
+		<Component Height="193" Id="Div" Image="20" Name="cyDiv" Title="Division" Version="1000" Width="289"/>
+		<Component Id="PopupDiv" Image="54" Name="CyPopupDiv" Title="Popup&#32;Div" Version="1000"/>
+		<Component Height="193" Id="Tab" Image="12" Name="cyTab" Title="Tab" Version="1000" Width="289"/>
+		<Component Height="260" Id="WebBrowser" Image="24" Module="CyWebBrowser" Name="cyWebBrowser" Title="WebBrowser" Version="1000" Width="364"/>
+		<Component Height="168" Id="swFlash" Image="27" Module="CySWFlash" Name="cySWFlash" Title="Flash" Version="1000" Width="248"/>
+		<Component Height="24" Id="MenuBar" Image="32" Module="CyMenuBar" Name="cyMenuBar" Title="MenuBar" Version="1000" Width="192"/>
+		<Component Height="50" Id="Split" Image="55" Module="CySplit" Name="cySplit" Title="Split" Version="1000" Width="8"/>
+		<Component Height="8" Id="SplitJoint" Image="56" Module="CySplitU" Name="cySplitJoint" Title="SplitJoint" Version="1000" Width="8"/>
+		<Component Height="50" Id="Sign" Image="57" Module="CySign" Name="cySign" Title="Sign" Version="1000" Width="50"/>
+	</container>
+	<protocols version="1000">
+		<protocol id="file" name="cyHttpAdp" version="1000"/>
+		<protocol id="http" name="cyHttpAdp" version="1000"/>
+		<protocol id="https" name="cyHttpAdp" version="1000"/>
+	</protocols>
+	<AppGroups>
+		<AppGroup CodePage="utf-8" Language="0" Prefix="base" Type="Form" Version="1.0">
+			<script Baseurl="./base/Win32/" CacheLevel="none" Ext="xml" ScriptUrl="./base/Script/"/>
+		</AppGroup>
+		<AppGroup CodePage="utf-8" Language="1042" Prefix="insa" Type="form" Version="1000">
+			<Script Baseurl="./insa/Win32/" ScriptUrl="./insa/Script/"/>
+		</AppGroup>
+		<AppGroup CodePage="utf-8" Language="1042" Prefix="accounting" Type="form" Version="1000">
+			<Script Baseurl="./accounting/Win32/" ScriptUrl="./accounting/Script/"/>
+		</AppGroup>
+		<AppGroup CodePage="utf-8" Language="1042" Prefix="settlement" Type="form" Version="1000">
+			<Script Baseurl="./settlement/Win32/" ScriptUrl="./settlement/Script/"/>
+		</AppGroup>
+		<DataGroup Baseurl="http://localhost/project4th/base" CodePage="utf-8" Language="0" Prefix="svcBase" Streamver="4000" TrMethod="normal" Type="JSP" Version="1000"/>
+		<DataGroup Baseurl="http://localhost/project4th/accounting" CodePage="utf-8" Language="0" Prefix="svcAccounting" Streamver="4000" TrMethod="normal" Type="JSP" Version="1000"/>
+		<DataGroup Baseurl="http://localhost/project4th/insa" CodePage="utf-8" Language="0" Prefix="svcInsa" Streamver="4000" TrMethod="normal" Type="JSP" Version="1000"/>
+	</AppGroups>
+	<Script></Script>
+	<DataObjects></DataObjects>
+	<ServiceObjects></ServiceObjects>
+	<Datasets>
+		<Dataset DataSetType="Dataset" Id="dsEmp">
+			<Contents>
+				<colinfo id="emp_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_address" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_email" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_position" size="256" summ="default" type="STRING"/>
+				<colinfo id="dept_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_image" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_pw" size="256" summ="default" type="STRING"/>
+				<colinfo id="memo" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_tel" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_hiredate" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsCode">
+			<Contents>
+				<colinfo id="distinction_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="code_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="code_use" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsDetailCode">
+			<Contents>
+				<colinfo id="distinction_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="detail_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="detail_codename" size="256" summ="default" type="STRING"/>
+				<colinfo id="detail_use" size="256" summ="default" type="STRING"/>
+				<colinfo id="memo" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsMenu">
+			<Contents>
+				<colinfo id="level" size="256" summ="default" type="STRING"/>
+				<colinfo id="menu_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="menu_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="menu_url" size="256" summ="default" type="STRING"/>
+				<colinfo id="menu_use" size="256" summ="default" type="STRING"/>
+				<colinfo id="parent_menu_code" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsSlip">
+			<Contents>
+				<colinfo id="slip_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="emp_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_ballot_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_seq" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_date" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_content" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_status" size="256" summ="default" type="STRING"/>
+				<colinfo id="approver" size="256" summ="default" type="STRING"/>
+				<colinfo id="approval_date" size="256" summ="default" type="STRING"/>
+				<colinfo id="difference_amt" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_worker" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_type" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_dept" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsJournal">
+			<Contents>
+				<colinfo id="journal_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="customer_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="customer_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_type" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_amt" size="256" summ="default" type="STRING"/>
+				<colinfo id="summary_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="summary_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_receipt" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsAccount">
+			<Contents>
+				<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="parent_account" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_balance" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_change" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_use" size="256" summ="default" type="STRING"/>
+				<colinfo id="level" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsAcountManagement">
+			<Contents>
+				<colinfo id="management_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_management_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_change" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_use" size="256" summ="default" type="STRING"/>
+				<colinfo id="management_type" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsSettlement">
+			<Contents>
+				<colinfo id="settlement_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="settlement_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="parent_settlement_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="settlement_sum" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_amt" size="256" summ="default" type="STRING"/>
+				<colinfo id="settlement_year" size="256" summ="default" type="STRING"/>
+				<colinfo id="settlement_amt" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsSettlementAccount">
+			<Contents>
+				<colinfo id="settlement_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="settlement_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="settlement_account_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="settlement_account_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="settlement_account_summary" size="256" summ="default" type="STRING"/>
+				<colinfo id="offsetting_account_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="offsetting_account_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="offsetting_account_summary" size="256" summ="default" type="STRING"/>
+				<colinfo id="memo" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsJournalManagement">
+			<Contents>
+				<colinfo id="journal_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="management_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="value" size="256" summ="default" type="STRING"/>
+				<colinfo id="management_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="management_type" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsDebtor">
+			<Contents>
+				<colinfo id="journal_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="customer_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_receipt" size="256" summ="default" type="STRING"/>
+				<colinfo id="customer_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_type" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_amt" size="256" summ="default" type="STRING"/>
+				<colinfo id="summary_name" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsCreditor">
+			<Contents>
+				<colinfo id="journal_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="customer_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_receipt" size="256" summ="default" type="STRING"/>
+				<colinfo id="customer_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_type" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_amt" size="256" summ="default" type="STRING"/>
+				<colinfo id="summary_name" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsJournalList">
+			<Contents>
+				<colinfo id="slip_ballot_date" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_seq" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_amt" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="summary_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="customer_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="customer_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="debtor" size="256" summ="default" type="STRING"/>
+				<colinfo id="creditor" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_type" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_type" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="journal_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="slip_status" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsPermission">
+			<Contents>
+				<colinfo id="permission_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="menu_name" size="256" summ="default" type="STRING"/>
+				<colinfo id="menu_code" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+		<Dataset DataSetType="Dataset" Id="dsEmpPermission">
+			<Contents>
+				<colinfo id="emp_no" size="256" summ="default" type="STRING"/>
+				<colinfo id="permission_code" size="256" summ="default" type="STRING"/>
+				<colinfo id="permission_name" size="256" summ="default" type="STRING"/>
+			</Contents>
+		</Dataset>
+	</Datasets>
+	<Resource Ext="res" Url="C:\MiniProject\MiPlatform\accounting\image\images.res" Version="1000"/>
+	<Variables>
+		<Var Id="gvEmpName" Type="Global"/>
+		<Var Id="gvEmpNo" Type="Global"/>
+		<Var Id="gvEmpPs" Type="Global"/>
+		<Var Id="gvDeptNo" Type="Global"/>
+		<Var Id="gvDeptName" Type="Global"/>
+	</Variables>
+</ConnectGroup>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="menuBar" classname="menuBar" left="0" top="0" width="1024" height="768" titletext="New Form">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" left="0%" top="0" right="-0.1%" height="50" style="background:#ededed00 URL('theme://banner.gif') stretch;"/>
+        <Button id="logoutBtn" taborder="1" text="로그아웃" left="94.24%" top="50" right="-0.1%" height="25" style="font:bold 10 Verdana;" onclick="logoutBtn_onclick"/>
+        <Menu id="Menu00" taborder="2" left="0%" top="50" right="5.76%" height="25" innerdataset="@menu" levelcolumn="LEVEL" idcolumn="MENU_CODE" captioncolumn="MENU_NAME" style="popupbackground:#f2f2efff;popupitembackground:#f2f2efff;gradation:linear 0,0 #eec293ff 0,100 #eec293ff;" onmenuclick="Menu00_onmenuclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="menu">
+        <ColumnInfo>
+          <Column id="LEVEL" type="STRING" size="256"/>
+          <Column id="MENU_CODE" type="STRING" size="256"/>
+          <Column id="MENU_NAME" type="STRING" size="256"/>
+          <Column id="MENU_URL" type="STRING" size="256"/>
+          <Column id="MENU_USE" type="STRING" size="256"/>
+          <Column id="PARENT_MENU_CODE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="LEVEL">0</Col>
+            <Col id="MENU_CODE">ME01</Col>
+            <Col id="MENU_NAME">전표관리</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="MENU_URL">[Undefined]</Col>
+          </Row>
+          <Row>
+            <Col id="LEVEL">1</Col>
+            <Col id="MENU_CODE">ME0101</Col>
+            <Col id="MENU_NAME">전표입력</Col>
+            <Col id="MENU_URL">Accounting::slipInput.xfdl</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME01</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CODE">ME0102</Col>
+            <Col id="MENU_NAME">전표승인해제</Col>
+            <Col id="MENU_URL">Accounting::slipApprove.xfdl</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME01</Col>
+            <Col id="LEVEL">1</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CODE">ME0103</Col>
+            <Col id="MENU_NAME">분개장</Col>
+            <Col id="MENU_URL">Accounting::journalList.xfdl</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME01</Col>
+            <Col id="LEVEL">1</Col>
+          </Row>
+          <Row>
+            <Col id="LEVEL">0</Col>
+            <Col id="MENU_CODE">ME02</Col>
+            <Col id="MENU_NAME">결산/재무재표</Col>
+            <Col id="MENU_URL">[Undefined]</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">[Undefined]</Col>
+          </Row>
+          <Row>
+            <Col id="LEVEL">1</Col>
+            <Col id="MENU_CODE">ME0201</Col>
+            <Col id="MENU_NAME">합계시산표</Col>
+            <Col id="MENU_URL">Settlement::totalTrialBalance.xfdl</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME02</Col>
+          </Row>
+          <Row>
+            <Col id="LEVEL">1</Col>
+            <Col id="MENU_CODE">ME0202</Col>
+            <Col id="MENU_NAME">손익계산서</Col>
+            <Col id="MENU_URL">Settlement::incomeStatement.xfdl</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME02</Col>
+          </Row>
+          <Row>
+            <Col id="LEVEL">1</Col>
+            <Col id="MENU_CODE">ME0203</Col>
+            <Col id="MENU_NAME">재무상태표</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME02</Col>
+            <Col id="MENU_URL">Settlement::statementOfPosition.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_CODE">ME03</Col>
+            <Col id="LEVEL">0</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="MENU_NAME">인사관리</Col>
+            <Col id="MENU_URL">[Undefined]</Col>
+          </Row>
+          <Row>
+            <Col id="LEVEL">1</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME03</Col>
+            <Col id="MENU_CODE">ME0301</Col>
+            <Col id="MENU_NAME">사원관리</Col>
+            <Col id="MENU_URL">Insa::emp.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="LEVEL">0</Col>
+            <Col id="MENU_CODE">ME04</Col>
+            <Col id="MENU_NAME">기초정보관리</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="MENU_URL">[Undefined]</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_NAME">계정과목관리</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME04</Col>
+            <Col id="LEVEL">1</Col>
+            <Col id="MENU_CODE">ME0401</Col>
+            <Col id="MENU_URL">Accounting::accountManagement.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_NAME">코드관리</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME04</Col>
+            <Col id="LEVEL">1</Col>
+            <Col id="MENU_CODE">ME0402</Col>
+            <Col id="MENU_URL">Base::code.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="MENU_NAME">권한관리</Col>
+            <Col id="MENU_USE">Y</Col>
+            <Col id="PARENT_MENU_CODE">ME04</Col>
+            <Col id="LEVEL">1</Col>
+            <Col id="MENU_CODE">ME0403</Col>
+            <Col id="MENU_URL">Base::permissionCode.xfdl</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+// 로그아웃 버튼
+this.logoutBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.exit();
+}
+
+this.Menu00_onmenuclick = function(obj:Menu, e:nexacro.MenuClickEventInfo)
+{
+	var sID=e.id;
+	//비교하고자 하는 컬럼, 두번째 인자를 비교한다, 내부적으로 위치가 나오면 떠내고 싶은 인자를 스트링 포맷으로 세번째에 쓴다.
+	var sURL=this.menu.lookup("MENU_CODE", e.id, "MENU_URL");
+	var sTitle=this.menu.lookup("MENU_CODE", e.id, "MENU_NAME");
+	var sLevel=this.menu.lookup("MENU_CODE", e.id, "LEVEL");
+	trace(sID);
+	
+	if(sID.length!=0){
+	//alert(application.permission.getColumn(0,"menu_name"));
+		if(!(application.permission.findRow("menu_code", sID)==-1)){			
+			application.gfn_open(sID, sURL, sTitle);
+		}else{
+			//alert("접근할 수 없는 화면입니다.");
+			return;
+		}
+	}
+}
+]]></Script>
+  </Form>
+</FDL>

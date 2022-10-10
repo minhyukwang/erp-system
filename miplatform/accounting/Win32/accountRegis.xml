@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="486" Id="accountRegisForm" Left="8" OnLoadCompleted="accountRegisForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="632" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsFirstAccount">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="parent_account" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_balance" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_change" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_use" size="256" summ="default" type="STRING"/>
+					<colinfo id="level" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsSecondAccount">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="parent_account" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_balance" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_change" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_use" size="256" summ="default" type="STRING"/>
+					<colinfo id="level" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="dsThirdAccount">
+				<Contents>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="parent_account" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_balance" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_change" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_use" size="256" summ="default" type="STRING"/>
+					<colinfo id="level" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" Left="8" TabOrder="1" Text="계정과목등록" Top="8" VAlign="Middle" Width="616"></Static>
+		<Static Border="Flat" BorderColor="SCROLLBAR" Height="216" Id="Static1" Left="8" TabOrder="2" Top="256" Width="368"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static2" Left="37" TabOrder="3" Text="상위계정코드" Top="272" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static3" Left="37" TabOrder="4" Text="계정과목코드" Top="304" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static4" Left="37" TabOrder="5" Text="계정과목명" Top="336" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static5" Left="37" TabOrder="6" Text="대차구분" Top="368" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static6" Left="37" TabOrder="7" Text="수정여부" Top="400" VAlign="Middle" Width="107"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static7" Left="37" TabOrder="8" Text="사용여부" Top="432" VAlign="Middle" Width="107"></Static>
+		<Edit BindDataset="dsThirdAccount" Column="parent_account" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountParent" Left="157" LeftMargin="2" TabOrder="9" Top="272" Width="182"></Edit>
+		<Edit BindDataset="dsThirdAccount" Column="account_code" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountCode" Left="157" LeftMargin="2" TabOrder="10" Top="304" Width="182"></Edit>
+		<Edit BindDataset="dsThirdAccount" Column="account_name" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountName" Left="157" LeftMargin="2" TabOrder="11" Top="336" Width="182"></Edit>
+		<Edit BindDataset="dsThirdAccount" Column="account_balance" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountBalance" Left="157" LeftMargin="2" OnClick="accountBalance_OnClick" TabOrder="12" Top="368" Width="182"></Edit>
+		<Edit BindDataset="dsThirdAccount" Column="account_change" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountChange" Left="157" LeftMargin="2" TabOrder="13" Top="400" Width="182"></Edit>
+		<Edit BindDataset="dsThirdAccount" Column="account_use" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="accountUse" Left="157" LeftMargin="2" TabOrder="14" Top="432" Width="182"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="add" Left="403" OnClick="add_OnClick" TabOrder="15" Text="추가" Top="45" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="delete" Left="458" OnClick="delete_OnClick" TabOrder="16" Text="삭제" Top="45" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="save" Left="513" OnClick="save_OnClick" TabOrder="17" Text="저장" Top="45" Width="56"></Button>
+		<Grid AutoEnter="TRUE" AutoFit="TRUE" BindDataset="dsFirstAccount" BkColor2="default" BoldHead="true" Bottom="248" ColSizing="TRUE" Enable="true" EndLineColor="default" Height="136" Id="firstAccountGrid" InputPanel="FALSE" Left="8" LineColor="default" MinWidth="100" MultiSelect="TRUE" OnCellClick="firstAccountGrid_OnCellClick" Right="192" TabOrder="19" TabStop="true" Top="112" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="184">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="50"/>
+						<col width="60"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정코드"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="account_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="account_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static8" Left="8" TabOrder="18" Text="상위&#32;계정" Top="80" VAlign="Middle" Width="184"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static9" Left="196" TabOrder="20" Text="중간&#32;계정" Top="80" VAlign="Middle" Width="184"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static10" Left="384" TabOrder="21" Text="하위&#32;계정" Top="80" VAlign="Middle" Width="240"></Static>
+		<Grid AutoEnter="TRUE" AutoFit="TRUE" BindDataset="dsSecondAccount" BkColor2="default" BoldHead="true" Bottom="248" ColSizing="TRUE" Enable="true" EndLineColor="default" Height="136" Id="secondAccountGrid" InputPanel="FALSE" Left="196" LineColor="default" MinWidth="100" MultiSelect="TRUE" OnCellClick="secondAccountGrid_OnCellClick" Right="380" TabOrder="22" TabStop="true" Top="112" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="184">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="50"/>
+						<col width="60"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정코드"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="account_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="account_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoEnter="TRUE" AutoFit="TRUE" BindDataset="dsThirdAccount" BkColor2="default" BoldHead="true" Bottom="472" ColSizing="TRUE" Enable="true" EndLineColor="default" Height="360" Id="thirdAccountGrid" InputPanel="FALSE" Left="384" LineColor="default" MinWidth="100" MultiSelect="TRUE" Right="624" TabOrder="23" TabStop="true" Top="112" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="240">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="50"/>
+						<col width="100"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정코드"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="계정명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="account_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="account_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="cancel" Left="568" OnClick="cancel_OnClick" TabOrder="24" Text="취소" Top="45" Width="56"></Button>
+	</Form>
+	<Script><![CDATA[
+function accountRegisForm_OnLoadCompleted(obj)
+{
+	//dsAccount.Filter("level=1");
+	dsFirstAccount.Copy(dsAccount);
+	dsFirstAccount.Filter("level=1");
+	
+}
+
+// 대차 구분 코드 받아오는 Dialog
+function accountBalance_OnClick(obj)
+{
+	dsDetailCode.Filter("distinction_code='DC'");
+	Dialog("base::codeInfo.xml","",300,400);
+}
+
+// 상위 계정 그리드 클릭 시
+function firstAccountGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var firstCode=dsFirstAccount.GetColumn(nRow, "account_code");
+	//alert(firstCode);
+	dsSecondAccount.Copy(dsAccount);
+	dsSecondAccount.Filter("parent_account='"+firstCode+"'");
+}
+
+// 중간 계정 그리드 클릭 시
+function secondAccountGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var secondCode=dsSecondAccount.GetColumn(nRow, "account_code");
+	//alert(firstCode);
+	dsThirdAccount.Copy(dsAccount);
+	dsThirdAccount.Filter("parent_account='"+secondCode+"'");
+}
+
+// 추가 버튼
+function add_OnClick(obj)
+{
+	var secondCode=dsSecondAccount.GetColumn(dsSecondAccount.GetCurrow(), "account_code");
+	dsThirdAccount.AddRow();
+	dsThirdAccount.SetColumn(dsThirdAccount.GetCurrow(),"parent_account",secondCode);
+	dsThirdAccount.SetColumn(dsThirdAccount.GetCurrow(),"account_change",'Y');
+	dsThirdAccount.SetColumn(dsThirdAccount.GetCurrow(),"account_use",'Y');
+}
+
+// 삭제 버튼
+function delete_OnClick(obj)
+{
+	dsThirdAccount.DeleteRow(dsThirdAccount.GetCurrow());
+}
+
+// 저장 버튼
+function save_OnClick(obj)
+{
+	if(Confirm("변경사항을 저장하시겠습니까?")){
+		Transaction("batchAccount","svcAccounting::/account/account.do?method=batchAccount","dsAccount=dsThirdAccount:U","","","callback");
+	}
+}
+
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	if(trid=="batchAccount"){	
+		if(ErrorCode!=0){
+			alert("저장 실패: "+ErrorMsg);
+		}else{
+			alert("저장 완료");
+			dsAccount.Copy(dsThirdAccount);
+		}
+	}	
+}
+
+
+function cancel_OnClick(obj)
+{
+	close();
+}
+]]></Script>
+</Window>

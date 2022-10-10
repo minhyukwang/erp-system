@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.base.dao.DetailCodeDAO">
+
+	<resultMap type="detailCode" id="resultDetailCode">
+		<result property="detailCode" column="detail_code" />
+		<result property="detailCodename" column="detail_codename" />
+		<result property="detailUse" column="detail_use" />
+		<result property="memo" column="memo" />
+		<result property="distinctionCode" column="distinction_code" />
+	</resultMap>
+
+	<select id="selectDetailCodeList" resultMap="resultDetailCode" parameterType="String">
+        select *
+        from detail_code
+        where distinction_code=#{distinctionCode}
+	</select>
+
+	<insert id="insertDetailCode">
+        INSERT
+		  INTO detail_code
+		       (
+		           distinction_code,
+		           detail_code,
+		           detail_codename,
+		           detail_use,
+		           memo
+		       )
+		       VALUES
+		       (
+		           #{distinctionCode},
+		           #{detailCode},
+		           #{detailCodename},
+		           #{detailUse},
+		           #{memo}
+       )
+	</insert>
+
+	<update id="updateDetailCode">
+        UPDATE detail_code
+	       SET detail_codename=#{detailCodename},
+	       detail_use=#{detailUse},
+	       memo=#{memo}
+	 WHERE
+	       detail_code=#{detailCode}
+	       AND distinction_code=#{distinctionCode}
+	</update>
+
+	<delete id="deleteDetailCode">
+        delete from detail_code where detail_code=#{detailCode}
+	</delete>
+
+
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="400" Id="codeInfoForm" Left="8" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="300" WorkArea="true">
+		<Grid AutoFit="TRUE" BindDataset="dsDetailCode" BkColor2="default" BoldHead="true" Bottom="387" Enable="true" EndLineColor="default" Font="KBIZ한마음고딕&#32;B,10" Height="347" Id="codeInfo" InputPanel="FALSE" Left="9" LineColor="default" MinWidth="100" OnCellClick="codeInfo_OnCellClick" Right="288" TabOrder="1" TabStop="true" Top="40" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="279">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="40"/>
+						<col width="60"/>
+						<col width="100"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="No"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="코드"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="코드명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" display="text" expr="currow+1" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="detail_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="detail_codename" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,15" Height="26" Id="Static0" Left="9" TabOrder="2" Text="코드&#32;조회" Top="9" VAlign="Middle" Width="279"></Static>
+	</Form>
+	<Script><![CDATA[
+function codeInfo_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	var code=dsDetailCode.GetColumn(nRow,"detail_code");
+	var codeName=dsDetailCode.GetColumn(nRow,"detail_codename");
+	
+	if(dsDetailCode.GetColumn(nRow,"distinction_code")=='DC'){
+		parent.accountBalance.text=code;
+	
+	}else if(dsDetailCode.GetColumn(nRow,"distinction_code")=='DP'){
+		
+		if(gvEmpName == ''){
+			//글로벌변수지정
+			gvDeptNo=code;
+			gvDeptName=codeName;
+		}else if(IsExistVar("codeNum")){
+			//alert(codeNum);
+			parent.jourCompDiv.Object(codeNum).text=codeName;
+			dsJournalManagement.SetColumn(parseInt(codeNum)-1,"value",codeName);
+			close();
+		}
+		parent.deptNo.text=code;
+		parent.deptName.text=codeName;
+	
+	}else if(dsDetailCode.GetColumn(nRow,"distinction_code")=='PS'){
+		//var code=dsDetailCode.GetColumn(nRow,"detail_code");
+		//var name=dsDetailCode.GetColumn(nRow,"detail_codename");
+	
+		parent.dsEmpPermission.SetColumn(parent.dsEmpPermission.GetCurrow(),"permission_code",code);
+		parent.dsEmpPermission.SetColumn(parent.dsEmpPermission.GetCurrow(),"permission_name",codeName);
+	
+	}else if(dsDetailCode.GetColumn(nRow,"distinction_code")=='AM'){
+		//var code=dsDetailCode.GetColumn(nRow,"detail_code");
+		//var name=dsDetailCode.GetColumn(nRow,"detail_codename");	
+		parent.dsAcountManagement.SetColumn(dsAcountManagement.row,"management_code",code);
+		parent.dsAcountManagement.SetColumn(dsAcountManagement.row,"account_management_name",codeName);
+		parent.dsAcountManagement.SetColumn(dsAcountManagement.row,"account_change","Y");
+		parent.dsAcountManagement.SetColumn(dsAcountManagement.row,"account_use","Y");
+	}else if(dsDetailCode.GetColumn(nRow,"distinction_code")=='CT'){
+		parent.dsJournal.SetColumn(dsJournal.GetCurrow(),"customer_code",code);
+		parent.dsJournal.SetColumn(dsJournal.GetCurrow(),"customer_name",codeName);
+	}
+	
+	close();
+}
+]]></Script>
+</Window>

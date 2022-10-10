@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="486" Id="journalListForm" Left="8" OnLoadCompleted="journalListForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsJournalList">
+				<Contents>
+					<colinfo id="slip_date" size="256" summ="default" type="STRING"/>
+					<colinfo id="journal_type" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="account_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="journal_amt" size="256" summ="default" type="STRING"/>
+					<colinfo id="summary_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="customer_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="customer_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="debtor" size="256" summ="default" type="STRING"/>
+					<colinfo id="creditor" size="256" summ="default" type="STRING"/>
+					<colinfo id="slip_type" size="256" summ="default" type="STRING"/>
+					<colinfo id="slip_status" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="slipDiv">
+				<Contents>
+					<colinfo id="slip_division" size="256" summ="default" type="STRING"/>
+					<record>
+						<slip_division>전체</slip_division>
+					</record>
+					<record>
+						<slip_division>차변</slip_division>
+					</record>
+					<record>
+						<slip_division>대변</slip_division>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="slipDept">
+				<Contents>
+					<colinfo id="dept_name" size="256" summ="default" type="STRING"/>
+					<record>
+						<dept_name>전체</dept_name>
+					</record>
+					<record>
+						<dept_name>경영부</dept_name>
+					</record>
+					<record>
+						<dept_name>관리부</dept_name>
+					</record>
+					<record>
+						<dept_name>재경부</dept_name>
+					</record>
+					<record>
+						<dept_name>생산부</dept_name>
+					</record>
+					<record>
+						<dept_name>구매부</dept_name>
+					</record>
+					<record>
+						<dept_name>영업부</dept_name>
+					</record>
+					<record>
+						<dept_name>개발부</dept_name>
+					</record>
+					<record>
+						<dept_name>품질부</dept_name>
+					</record>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="slipCategory">
+				<Contents>
+					<colinfo id="slip_category" size="256" summ="default" type="STRING"/>
+					<record>
+						<slip_category>전체</slip_category>
+					</record>
+					<record>
+						<slip_category>일반</slip_category>
+					</record>
+					<record>
+						<slip_category>매입</slip_category>
+					</record>
+					<record>
+						<slip_category>매출</slip_category>
+					</record>
+					<record>
+						<slip_category>수금</slip_category>
+					</record>
+					<record>
+						<slip_category>반제</slip_category>
+					</record>
+					<record>
+						<slip_category>결산</slip_category>
+					</record>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" TabOrder="1" Text="분개장" Top="8" VAlign="Middle" Width="696"></Static>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="journalListSearch" Left="592" OnClick="journalListSearch_OnClick" TabOrder="2" Text="조회" Top="43" Width="46"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsJournalList" BkColor2="default" BoldHead="true" Bottom="472" Editable="TRUE" Enable="true" EndLineColor="default" Height="392" Id="journalListGrid" InputPanel="FALSE" LineColor="default" MinWidth="100" Right="696" TabOrder="3" TabStop="true" Top="80" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="696">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="70"/>
+						<col width="40"/>
+						<col width="40"/>
+						<col width="50"/>
+						<col width="80"/>
+						<col width="80"/>
+						<col width="80"/>
+						<col width="100"/>
+						<col width="50"/>
+						<col width="80"/>
+					</columns>
+					<head>
+						<cell align="center" bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="일자"/>
+						<cell align="center" bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="유형"/>
+						<cell align="center" bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="구분"/>
+						<cell align="center" bkcolor="#f7e4cf" col="3" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="계정과목"/>
+						<cell align="center" bkcolor="#f7e4cf" col="5" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="금액"/>
+						<cell align="center" bkcolor="#f7e4cf" col="7" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="적요"/>
+						<cell align="center" bkcolor="#f7e4cf" col="8" colspan="2" display="text" font="KBIZ한마음고딕&#32;B,10" rowspan="2" text="거래처명"/>
+						<cell align="center" bkcolor="#f7e4cf" col="5" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="차변"/>
+						<cell align="center" bkcolor="#f7e4cf" col="6" display="text" font="KBIZ한마음고딕&#32;B,10" row="1" text="대변"/>
+					</head>
+					<body>
+						<cell align="center" bkcolor2="#faedde" col="0" colid="slip_date" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="1" colid="slip_type" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="2" colid="journal_type" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="3" colid="account_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="4" colid="account_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="5" colid="debtor" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="6" colid="creditor" display="number" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="7" colid="summary_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="8" colid="customer_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" bkcolor2="#faedde" col="9" colid="customer_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Calendar DisableColor="BACKGROUND" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="sDate" Left="362" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="4" Top="44" Width="105"></Calendar>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="20" Id="Static9" Left="457" TabOrder="6" Text="~" Top="46" VAlign="Middle" Width="32"></Static>
+		<Calendar DisableColor="BACKGROUND" Font="KBIZ한마음고딕&#32;B,10" Height="25" Id="eDate" Left="480" SaturdayTextColor="blue" SundayTextColor="red" TabOrder="5" Top="44" Width="105"></Calendar>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="excelPrint" Left="640" OnClick="excelPrint_OnClick" TabOrder="7" Text="엑셀출력" Top="43" Width="56"></Button>
+		<Combo DataColumn="dept_name" Font="KBIZ한마음고딕&#32;B,10" Height="22" Id="deptName" INDEX="0" InnerDataset="slipDept" Left="80" TabOrder="8" Top="45" Width="79"></Combo>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="Static1" Left="22" TabOrder="9" Text="결의부서" Top="42" VAlign="Middle" Width="59"></Static>
+		<Static Align="Center" Font="KBIZ한마음고딕&#32;B,10" Height="28" Id="Static4" Left="182" TabOrder="10" Text="전표유형" Top="42" VAlign="Middle" Width="59"></Static>
+		<Combo DataColumn="slip_category" Font="KBIZ한마음고딕&#32;B,10" Height="22" Id="slipType" INDEX="0" InnerDataset="slipCategory" Left="240" TabOrder="11" Top="45" Width="79"></Combo>
+	</Form>
+	<Script><![CDATA[
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	if(trid=="getJournalList"){
+		if(ErrorCode != 0){
+			alert(ErrorMsg);
+		}else{
+			
+		}
+	}
+}
+
+// 분개장 폼이 로드된 후 ~
+function journalListForm_OnLoadCompleted(obj)
+{
+	strDate = GetDate();
+	year = Mid(strDate,0,4);
+	strDate = Mid(strDate,0,8);
+	
+	sDate.value = year+'0101' ;
+	eDate.value = strDate ;
+}
+
+// 조회 버튼
+function journalListSearch_OnClick(obj)
+{
+	//alert(deptName.value +"  "+slipType.value +"  "+slipStatus.value);
+	//alert(sDate.value+"   "+eDate.value);
+	Transaction("getJournalList","svcAccounting::/slip/slip.do?method=getJournalList","","dsJournalList=dsJournalList",
+			"deptName='"+deptName.value+"' slipType='"+slipType.value+"' sDate='"+sDate.Value+"' eDate='"+eDate.Value+"'","callback");
+}
+
+// 엑셀 출력 버튼
+function excelPrint_OnClick(obj)
+{
+	if(Confirm("분개장을 출력하시겠습니까?")){
+		journalListGrid.ExportExcelEx("JournalList");
+	}
+}
+]]></Script>
+</Window>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="codeInfo" classname="codeInfo" left="0" top="0" width="300" height="400" titletext="New Form" onload="codeInfo_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="코드조회" left="3.33%" top="13" right="3.67%" height="30" style="background:#edaf78ff;align:center middle;font:Verdana,14,bold;"/>
+        <Grid id="codeSearchGrid" taborder="1" binddataset="dsDetailCode" useinputpanel="false" autofittype="col" oncellclick="codeSearchGrid_oncellclick" left="3.33%" top="53" right="3.67%" height="334">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;font:bold 10 Verdana;" text="코드"/>
+                <Cell col="1" style="background:#f7e4cfff;font:bold 10 Verdana;" text="코드명"/>
+              </Band>
+              <Band id="body">
+                <Cell edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;" text="bind:detail_code"/>
+                <Cell col="1" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;" text="bind:detail_codename"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.0"><![CDATA[
+this.codeSearchGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var code=application.dsDetailCode.getColumn(e.row,"detail_code");
+	var codeName=application.dsDetailCode.getColumn(e.row,"detail_codename");
+	
+	if(application.dsDetailCode.getColumn(e.row, "distinction_code")=='DP'){
+		gvDeptName=codeName;
+		this.opener.setCodeInfo(code, codeName);
+	}else if(application.dsDetailCode.getColumn(e.row, "distinction_code")=='AM'){
+		this.opener.setCodeInfo(code, codeName);
+	}else if(application.dsDetailCode.getColumn(e.row, "distinction_code")=='PS'){
+		this.opener.setCodeInfo(code, codeName);
+	}else if(application.dsDetailCode.getColumn(e.row, "distinction_code")=='C002'){
+		this.opener.setManagementCodeInfo(codeName);
+	}else if(application.dsDetailCode.getColumn(e.row, "distinction_code")=='C024'){
+		this.opener.setManagementCodeInfo(codeName);
+	}else if(application.dsDetailCode.getColumn(e.row, "distinction_code")=='CT'){
+		this.opener.setManagementCodeInfo(code, codeName);
+	}
+	this.close();
+}
+
+
+]]></Script>
+  </Form>
+</FDL>

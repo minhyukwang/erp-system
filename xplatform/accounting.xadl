@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ADL version="1.1">
+  <TypeDefinition url="default_typedef.xml"/>
+  <GlobalVariables url="globalvars.xml"/>
+  <Application id="accounting" codepage="utf-8" language="Korean" loginformurl="" loginformstyle="" windowopeneffect="" windowcloseeffect="" version="" tracemode="" themeid="default.xtheme" onload="application_onload">
+    <Layout>
+      <MainFrame id="mainframe" title="maintitle" defaultfont="" resizable="false" showtitlebar="true" showstatusbar="true" position="absolute 200 50 1000 650" visible="false">
+        <VFrameSet id="VFrameSet0" separatesize="80,*">
+          <Frames>
+            <ChildFrame id="ChildFrame0" showtitlebar="false" position="absolute 0 0 0 0" style="background:antiquewhite;color:burlywood;" formurl="Menu::menuBar.xfdl"/>
+            <HFrameSet id="HFrameSet0" separatesize="200,*" onactivate="mainframe_VFrameSet0_HFrameSet0_onactivate">
+              <Frames>
+                <ChildFrame id="ChildFrame0" showtitlebar="false" position="absolute 0 0 0 0" style="background:whitesmoke;align:center middle;" formurl="Menu::treeView.xfdl"/>
+                <ChildFrame id="ChildFrame1" showtitlebar="false" position="absolute 0 0 0 0" style="align:center middle;"/>
+              </Frames>
+            </HFrameSet>
+          </Frames>
+        </VFrameSet>
+      </MainFrame>
+    </Layout>
+    <ScreenInfo/>
+  </Application>
+  <Script type="xscript4.0"><![CDATA[var oFS;
+function gfn_open(sID, sURL, sTitle){
+	oFS=application.mainframe.VFrameSet0.HFrameSet0.ChildFrame1;
+	oFS.formurl=sURL;
+	oFS.show();
+}
+
+function application_onload(obj:Object, e:LoadEventInfo)
+{   
+	var objNew = new ChildFrame();   
+	objNew.showtitlebar = true;   
+	objNew.init("Login", 500,250,0,0, "Base::loginForm.xfdl");   
+
+	var view = objNew.showModal(oFS);
+      
+	if (view == "open") 
+	{      
+		mainframe.visible = true;
+	}	
+}
+function mainframe_VFrameSet0_HFrameSet0_onactivate(obj:HFrameSet, e:ActivateEventInfo)
+{
+	transaction("getMenuList","DataUrl::base/getMenuList.do","","dsMenu=dsMenu","","callback");
+	dsEmpPermission.filter("emp_no=='"+gvEmpNo+"'");	
+	for(var i=0; i<dsEmpPermission.getRowCount(); i++){
+		var permissionCode=dsEmpPermission.getColumn(i, "permission_code");
+		
+		dsPermission.filter("permission_code=='"+permissionCode+"'");
+		permission.appendData(dsPermission);
+	}
+}]]></Script>
+</ADL>

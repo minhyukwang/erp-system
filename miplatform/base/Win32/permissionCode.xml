@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="486" Id="adminForm" Left="8" OnLoadCompleted="adminForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="700" WorkArea="true">
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,14" Height="24" Id="Static0" Left="8" TabOrder="1" Text="권한관리" Top="8" VAlign="Middle" Width="680"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static2" Left="248" TabOrder="2" Text="접근가능메뉴" Top="248" VAlign="Middle" Width="200"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static1" Left="8" TabOrder="3" Text="권한" Top="248" VAlign="Middle" Width="200"></Static>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="Static3" Left="496" TabOrder="4" Text="전체메뉴" Top="248" VAlign="Middle" Width="192"></Static>
+		<Grid AutoEnter="TRUE" AutoFit="TRUE" BindDataset="dsEmpPermission" BkColor2="default" BoldHead="true" Bottom="440" ColSizing="TRUE" Enable="true" EndLineColor="default" Height="160" Id="permissionGrid" InputPanel="FALSE" Left="8" LineColor="default" MinWidth="100" MultiSelect="TRUE" OnCellClick="permissionGrid_OnCellClick" Right="208" TabOrder="5" TabStop="true" Top="280" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="200">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="100"/>
+						<col width="90"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="권한코드"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="권한명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="permission_code" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="permission_name" display="text" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoFit="TRUE" BindDataset="dsPermission" BkColor2="default" BoldHead="true" Bottom="472" Enable="true" EndLineColor="default" Height="192" Id="perMenuGrid" InputPanel="FALSE" Left="248" LineColor="default" MinWidth="100" Right="448" TabOrder="6" TabStop="true" Top="280" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="200">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="28"/>
+						<col width="80"/>
+						<col width="80"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="No"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="메뉴코드"/>
+						<cell bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="메뉴명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" display="text" expr="currow+1" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="menu_code" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="menu_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Grid AutoFit="TRUE" BindDataset="dsMenu" BkColor2="default" BoldHead="true" Bottom="472" Enable="true" EndLineColor="default" Height="192" Id="menuGrid" InputPanel="FALSE" Left="496" LineColor="default" MinWidth="100" Right="689" TabOrder="7" TabStop="true" Top="280" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="193">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="26"/>
+						<col width="80"/>
+						<col width="80"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="No"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="메뉴코드"/>
+						<cell bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="메뉴명"/>
+					</head>
+					<body>
+						<cell align="center" col="0" display="text" expr="currow+1" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="MENU_CODE" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="menu_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+				</format>
+			</contents>
+		</Grid>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Height="21" Id="add" Left="459" OnClick="add_OnClick" TabOrder="8" Text="&lt;&lt;" Top="344" Width="22"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Height="21" Id="remove" Left="459" OnClick="remove_OnClick" TabOrder="9" Text="&gt;&gt;" Top="376" Width="22"></Button>
+		<Grid AutoFit="TRUE" BindDataset="dsEmp" BkColor2="default" BoldHead="true" Bottom="240" Enable="true" EndLineColor="default" Height="168" Id="empListGrid" InputPanel="FALSE" Left="8" LineColor="default" MinWidth="100" OnCellClick="empListGrid_OnCellClick" Right="688" TabOrder="10" TabStop="true" Top="72" UseDBuff="true" UsePopupMenu="true" UseSelColor="true" Visible="true" VLineColor="default" WheelScrollRow="1" Width="680">
+			<contents>
+				<format id="Default">
+					<columns>
+						<col width="93"/>
+						<col width="150"/>
+						<col width="150"/>
+						<col width="150"/>
+						<col width="150"/>
+					</columns>
+					<head>
+						<cell bkcolor="#f7e4cf" col="0" display="text" font="KBIZ한마음고딕&#32;B,10" text="No"/>
+						<cell bkcolor="#f7e4cf" col="1" display="text" font="KBIZ한마음고딕&#32;B,10" text="사번"/>
+						<cell bkcolor="#f7e4cf" col="2" display="text" font="KBIZ한마음고딕&#32;B,10" text="성명"/>
+						<cell bkcolor="#f7e4cf" col="3" display="text" font="KBIZ한마음고딕&#32;B,10" text="부서"/>
+						<cell bkcolor="#f7e4cf" col="4" display="text" font="KBIZ한마음고딕&#32;B,10" text="직급"/>
+					</head>
+					<body>
+						<cell align="center" col="0" colid="No" display="text" expr="currow+1" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="1" colid="emp_no" combocol="emp_no" combodataset="dsEmp" combotext="emp_no" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="2" colid="emp_name" combocol="emp_name" combodataset="dsEmp" combotext="emp_name" display="text" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="3" colid="dept_no" combocol="detail_code" combodataset="dsDetailCode" combotext="detail_codename" display="combo" edit="normal" font="KBIZ한마음고딕&#32;B,10"/>
+						<cell align="center" col="4" colid="emp_position" combocol="detail_code" combodataset="dsDetailCode" combotext="detail_codename" display="combo" font="KBIZ한마음고딕&#32;B,10"/>
+					</body>
+					<summary>
+						<cell bkcolor="whitesmoke" col="0" colspan="4" display="text">
+							<cell align="center" col="0" display="text" font="나눔바른고딕,9" text="총인원"/>
+							<cell col="1" display="text"/>
+							<cell col="2" display="text"/>
+							<cell col="3" display="text"/>
+						</cell>
+						<cell bkcolor="whitesmoke" col="4" display="text" expr='rowcount()+&quot;명&quot;'/>
+					</summary>
+				</format>
+			</contents>
+		</Grid>
+		<Static Align="Center" BKColor="#edaf78" Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="Static4" Left="378" TabOrder="11" Text="성명" Top="40" VAlign="Middle" Width="46"></Static>
+		<Edit Font="KBIZ한마음고딕&#32;B,10" Height="26" Id="empName" ImeMode="none" Left="424" TabOrder="12" Top="40" Width="88"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="empSearchBtn" Left="519" OnClick="empSearchBtn_OnClick" TabOrder="13" Text="조회" Top="40" Width="41"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="reset" Left="632" OnClick="reset_OnClick" TabOrder="14" Text="취소" Top="40" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="save" Left="568" OnClick="save_OnClick" TabOrder="15" Text="저장" Top="40" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="permissionAddBtn" Left="119" OnClick="permissionAddBtn_OnClick" TabOrder="16" Text="추가" Top="448" Width="41"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="permissionRemoveBtn" Left="167" OnClick="permissionRemoveBtn_OnClick" TabOrder="17" Text="삭제" Top="448" Width="41"></Button>
+	</Form>
+	<Script><![CDATA[var empNo,permission;
+
+// 콜백 함수 ~
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	if(trid=="getEmpPermission"){	
+		empNo=dsEmp.GetColumn(0, "emp_no");	
+		dsEmpPermission.Filter("emp_no='"+empNo+"'");	
+	}else if(trid=="getPermissionList"){	
+		dsEmpPermission.SetColumn(dsEmpPermission.GetCurrow(), "emp_no", empNo);
+	}else if(trid=="batchPermission"){	
+		if(ErrorCode!=0){
+			alert("권한수정 실패: "+ErrorMsg);				
+		}else{
+			alert("권한수정이 완료되었습니다.");
+			reload();
+		}
+	}	
+}
+
+// permission폼이 로드된 후 ~
+function adminForm_OnLoadCompleted(obj)
+{
+	dsEmpPermission.Clear();
+	dsPermission.Clear();
+	Transaction("getEmpPermission","svcBase::/permission.do?method=getEmpPermission","","dsEmpPermission=dsEmpPermission","","callback");
+	
+}
+
+// 권한 그리드를 클릭하면
+function permissionGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+
+	if(permissionGrid.GetCellText("body",nRow,nCell).length==0)
+   {
+		dsDetailCode.filter("distinction_code='PS'");
+		dialog("base::codeInfo.xml","",300,300,"",550,200);
+   }else{
+      permission = dsEmpPermission.GetColumn(nRow,"permission_code");
+      sendData(permission);
+   }
+	
+}
+
+
+function sendData(permission)
+{	
+	trace(empNo +" ---------------- " +permission);
+	Transaction("getPermissionList","svcBase::/permission.do?method=getPermissionList","","dsPermission=dsPermission","permission='"+permission+"'","callback");
+}
+
+// 권한 추가 버튼
+function permissionAddBtn_OnClick(obj)
+{
+	dsEmpPermission.AddRow();
+}
+
+// 사원정보 그리드를 클릭하면
+function empListGrid_OnCellClick(obj,nRow,nCell,nX,nY,nPivotIndex)
+{
+	dsPermission.Clear();
+	
+	empNo=dsEmp.GetColumn(nRow, "emp_no");
+	dsEmpPermission.Filter("emp_no='"+empNo+"'");	
+}
+
+// add 버튼
+function add_OnClick(obj)
+{
+	var addRow=dsPermission.AddRow();
+	var menuCode = dsMenu.GetColumn(dsMenu.row,"menu_code");
+	var menuName = dsMenu.GetColumn(dsMenu.row,"menu_name");
+	
+	dsPermission.SetColumn(addRow,"menu_code",menuCode);
+	dsPermission.SetColumn(addRow,"menu_name",menuName);	
+	
+	//trace("insert ------------------"+permission);
+	
+	dsPermission.SetColumn(addRow,"permission_code",permission);
+}
+
+// remove 버튼
+function remove_OnClick(obj)
+{
+	dsPermission.deleteRow(dsPermission.GetCurrow());
+}
+
+// 리셋 버튼
+function reset_OnClick(obj)
+{
+	Reload();
+}
+
+function permissionRemoveBtn_OnClick(obj)
+{
+	dsEmpPermission.deleteRow(dsEmpPermission.GetCurrow());
+}
+
+
+// 사원 조회 버튼
+function empSearchBtn_OnClick(obj)
+{
+	 //transaction("getEmpList","svcInsa::/emp/emp.do?method=getEmpList", "", "dsEmp=dsEmp","","callback"); 
+	 var name=empName.Text;
+	var sFilter;
+	if(name=""){
+		dsEmp.UnFilter();
+	}else{
+		if(name.trim().length > 0 ) sFilter += " || pos(emp_name," + quote(name) + ") >= 0";
+		dsEmp.Filter(sFilter);
+	}
+}
+
+// 저장 버튼
+function save_OnClick(obj)
+{
+	if(Confirm("변경사항을 저장하시겠습니까?")){
+		Transaction("batchPermission","svcBase::/permission.do?method=batchPermission","dsEmpPermission=dsEmpPermission:U dsPermission=dsPermission:U","","","callback");
+	}
+}
+]]></Script>
+</Window>

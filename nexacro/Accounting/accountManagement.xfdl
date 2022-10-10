@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="accountManagement" classname="accountManagement" left="0" top="0" width="800" height="460" titletext="New Form" onload="accountManagement_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="0" text="계정과목관리" left="1.69%" top="8" right="3.39%" height="25" style="background:#edaf78ff;align:center middle;font:bold antialias 14 Verdana;"/>
+        <Static id="Static03" taborder="1" text="상위계정코드" left="49.15%" top="54" right="32.71%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 11 Verdana;"/>
+        <Edit id="accountParent" taborder="2" readonly="true" left="68.47%" top="54" right="7.46%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Grid id="accountManagementGrid" taborder="3" binddataset="dsAcountManagement" useinputpanel="false" autofittype="col" left="43.22%" top="256" right="1.19%" height="160" style="font:나눔바른고딕,9,bold antialias;" oncellclick="accountManagementGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="25"/>
+                <Column size="90"/>
+                <Column size="85"/>
+                <Column size="60"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#f7e4cfff;font:Verdana,10,bold;" text="No"/>
+                <Cell col="1" style="background:#f7e4cfff;font:Verdana,10,bold;" text="관리항목코드"/>
+                <Cell col="2" style="background:#f7e4cfff;font:Verdana,10,bold;" text="관리항목명"/>
+                <Cell col="3" style="background:#f7e4cfff;font:Verdana,10,bold;" text="입력여부"/>
+                <Cell col="4" style="background:#f7e4cfff;font:Verdana,10,bold;" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" expr="expr:currow+1"/>
+                <Cell col="1" edittype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:management_code"/>
+                <Cell col="2" edittype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_management_name"/>
+                <Cell col="3" edittype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_change"/>
+                <Cell col="4" edittype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_use"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="4" text="계정과목코드" left="49.15%" top="87" right="32.71%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 11 Verdana;"/>
+        <Edit id="accountCode" taborder="5" readonly="true" left="68.47%" top="87" right="7.46%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static02" taborder="6" text="계정과목명" left="49.15%" top="120" right="32.71%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 11 Verdana;"/>
+        <Edit id="accountName" taborder="7" readonly="true" left="68.47%" top="120" right="7.46%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static04" taborder="8" text="대차구분" left="49.15%" top="153" right="32.71%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 11 Verdana;"/>
+        <Edit id="accountBalance" taborder="9" readonly="true" left="68.47%" top="153" right="7.46%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static05" taborder="10" text="수정여부" left="49.15%" top="186" right="32.71%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 11 Verdana;"/>
+        <Edit id="accountChange" taborder="11" readonly="true" left="68.47%" top="186" right="7.46%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Static id="Static06" taborder="12" text="사용여부" left="49.15%" top="219" right="32.71%" height="26" style="background:#edaf78ff;align:center middle;font:bold antialias 11 Verdana;"/>
+        <Edit id="accountUse" taborder="13" readonly="true" left="68.47%" top="219" right="7.46%" height="26" style="font:bold antialias 10 Verdana;"/>
+        <Grid id="accountGrid" taborder="14" binddataset="dsAccount" useinputpanel="false" autofittype="col" treeusecheckbox="false" treeinitstatus="expand,all" left="1.69%" top="51" right="57.63%" height="366" style="linetype:onlyvert;" oncellclick="accountGrid_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="145"/>
+              </Columns>
+              <Rows>
+                <Row size="24"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="tree" edittype="tree" style="background:transparent;background2:transparent;font:bold 10 Verdana;" text="bind:account_name" treelevel="bind:level"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="addBtn" taborder="15" text="추가" left="70.34%" top="422" right="20.17%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="addBtn_onclick"/>
+        <Button id="saveBtn" taborder="16" text="저장" left="89.32%" top="422" right="1.19%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="saveBtn_onclick"/>
+        <Button id="delBtn" taborder="17" text="삭제" left="79.83%" top="422" right="10.68%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="delBtn_onclick"/>
+        <Button id="accountAddBtn" taborder="18" text="회사계정설정" left="27.29%" top="422" right="57.8%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="accountAddBtn_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="accountParent" propid="value" datasetid="dsAccount" columnid="parent_account"/>
+      <BindItem id="item1" compid="accountCode" propid="value" datasetid="dsAccount" columnid="account_code"/>
+      <BindItem id="item2" compid="accountName" propid="value" datasetid="dsAccount" columnid="account_name"/>
+      <BindItem id="item3" compid="accountBalance" propid="value" datasetid="dsAccount" columnid="account_balance"/>
+      <BindItem id="item4" compid="accountChange" propid="value" datasetid="dsAccount" columnid="account_change"/>
+      <BindItem id="item5" compid="accountUse" propid="value" datasetid="dsAccount" columnid="account_use"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[
+// 콜백 함수
+this.callback = function(trid, errorCode, errorMsg){
+	if(trid=="batchAccountManagement"){
+		if(errorCode !=0){
+			alert("등록 실패");
+		}
+	}else if(trid=="getAccountList"){
+		if(errorCode !=0){
+			alert("조회 실패");
+		}
+	}
+}
+
+// 계정과목 폼이 로드되면
+this.accountManagement_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.transaction("getAccountList","DataUrl::account/getAccountList.do","","dsAccount=dsAccount dsAcountManagement=dsAcountManagement","","callback");
+	var accountCode = application.dsAccount.getColumn(e.eventid,"account_code");
+	application.dsAcountManagement.filter("account_code=='"+accountCode+"'");
+}
+
+// 계정과목 그리드 클릭시
+this.accountGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	var accountCode = application.dsAccount.getColumn(e.row,"account_code");
+	application.dsAcountManagement.filter("account_code=='"+accountCode+"'");
+}
+
+// 추가 버튼
+this.addBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(application.dsAccount.getColumn(application.dsAccount.rowposition,"level") == '3'){
+		application.dsAcountManagement.addRow();
+		var accountCode=this.accountCode.value;	
+		application.dsAcountManagement.setColumn(application.dsAcountManagement.rowposition,'account_code', accountCode);
+	}else{
+		alert("최하위 계정에만 추가할 수 있습니다.");
+	}
+}
+
+// 삭제 버튼
+this.delBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.dsAcountManagement.deleteRow(e.row);
+}
+
+// 관리과목 저장 버튼
+this.saveBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if(confirm("변경사항을 저장하시겠습니까?")){
+		this.transaction("batchAccountManagement","DataUrl::accountManagement/batchAccountManagement.do","dsAcountManagement=dsAcountManagement:U","","","callback");
+	}
+}
+
+// 회사설정계정 버튼
+this.accountAddBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	application.open("계정과목등록", "Accounting::accountRegis.xfdl", this.parent , "", "showtitlebar=true showstatusbar=false", "", "");	
+	//application.open("사원리스트", "Base::empInfo.xfdl", this.parent , "" , "showtitlebar=true showstatusbar=false" , 500, 250, 0, 0);
+}
+
+// 관리과목 그리드 클릭시
+this.accountManagementGrid_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	obj.moveToNextCell();
+	
+	if(this.accountManagementGrid.getCellText(e.row, e.cell).length == 0){
+		//관리과목 컬럼을 세팅한다.
+		application.dsDetailCode.filter("distinction_code=='AM'");
+		application.open("코드리스트", "Base::codeInfo.xfdl", this.parent, "" , "showtitlebar=true showstatusbar=false", "", "");	
+	}
+}
+
+// 관리과목 받아오는 함수
+this.setCodeInfo = function(code, codeName){
+	application.dsAcountManagement.setColumn(application.dsAcountManagement.rowposition, "management_code", code);
+	application.dsAcountManagement.setColumn(application.dsAcountManagement.rowposition, "account_management_name", codeName);
+	application.dsAcountManagement.setColumn(application.dsAcountManagement.rowposition, "account_change", "Y");
+	application.dsAcountManagement.setColumn(application.dsAcountManagement.rowposition, "account_use", "Y");
+}
+
+
+
+]]></Script>
+  </Form>
+</FDL>

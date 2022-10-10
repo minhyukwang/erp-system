@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window>
+	<Form Height="600" Id="menuForm" Left="8" OnLoadCompleted="menuForm_OnLoadCompleted" PidAttrib="7" Title="New&#32;Form" Top="8" Ver="1.0" Width="920" WorkArea="true">
+		<Datasets>
+			<Dataset DataSetType="Dataset" Id="dsMyPermission">
+				<Contents>
+					<colinfo id="emp_no" size="256" summ="default" type="STRING"/>
+					<colinfo id="permission_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="permission_name" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+			<Dataset DataSetType="Dataset" Id="permission">
+				<Contents>
+					<colinfo id="permission_code" size="256" summ="default" type="STRING"/>
+					<colinfo id="menu_name" size="256" summ="default" type="STRING"/>
+					<colinfo id="menu_code" size="256" summ="default" type="STRING"/>
+				</Contents>
+			</Dataset>
+		</Datasets>
+		<Image FillType="STRETCH" Height="65" Id="Image0" ImageID="banner" Left="24" TabOrder="6" Top="8" Width="872"></Image>
+		<MenuBar CaptionCol="menu_name" EnableCol="Enable" EndColor="WINDOW" Font="KBIZ한마음고딕&#32;B,10" GradationMode="Horizontal" Height="24" HighlightBKColor="#aa8472" IconCol="Icon" Id="MenuBar" IDCol="menu_url" Left="24" LevelCol="level" MainTextColor="black" MenuDataset="dsMenu" OnMenuClick="MenuBar_OnMenuClick" PopupBoard3D="False" PopupLeftMargin="12" PopupTextColor="black" Selection3D="False" StartColor="#e9ae6f" Style="ORIGINAL" TabOrder="1" Top="73" Width="761"></MenuBar>
+		<TreeView BindDataset="dsMenu" Font="KBIZ한마음고딕&#32;B,10" Height="413" Id="TreeView" Left="24" LevelColumn="level" OnClick="TreeView_OnClick" TabOrder="2" TEXTColumn="menu_name" Top="176" Width="160"></TreeView>
+		<Div Height="486" Id="div" Left="192" scroll="true" TabOrder="3" Text="Div0" Top="104" Url="base::welcome.xml" Width="700">
+			<Contents></Contents>
+		</Div>
+		<Edit Align="RIGHT" DisableBKColor="#f7e4cf" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="23" Id="deptInfo" Left="80" RightMargin="3" TabOrder="4" Top="104" Width="104"></Edit>
+		<Edit Align="RIGHT" DisableBKColor="#f7e4cf" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="22" Id="empCodeInfo" ImeMode="none" Left="80" RightMargin="3" TabOrder="5" Top="128" Width="104"></Edit>
+		<Edit Align="RIGHT" DisableBKColor="#f7e4cf" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="23" Id="deptTitle" Left="24" RightMargin="3" TabOrder="7" Text="부서명" Top="104" Width="56"></Edit>
+		<Edit Align="RIGHT" DisableBKColor="#f7e4cf" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="23" Id="empTitle" Left="24" RightMargin="3" TabOrder="8" Text="사번" Top="128" Width="56"></Edit>
+		<Edit Align="RIGHT" DisableBKColor="#f7e4cf" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="23" Id="Edit0" Left="24" RightMargin="3" TabOrder="10" Text="사원명" Top="152" Width="56"></Edit>
+		<Edit Align="RIGHT" DisableBKColor="#f7e4cf" DisableColor="BACKGROUND" Enable="FALSE" Font="KBIZ한마음고딕&#32;B,10" Height="22" Id="empNameInfo" ImeMode="none" Left="80" RightMargin="3" TabOrder="9" Top="152" Width="104"></Edit>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="MENU" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="logout" Left="840" OnClick="logout_OnClick" TabOrder="11" Text="로그아웃" Top="73" Width="56"></Button>
+		<Button Appearance="FLAT" BKColor="#aa8472" Color="WINDOW" Font="KBIZ한마음고딕&#32;B,10" Height="24" Id="reloadBtn" Left="785" OnClick="reloadBtn_OnClick" TabOrder="12" Text="새로고침" Top="73" Width="56"></Button>
+	</Form>
+	<Script><![CDATA[
+// 콜백 함수
+function callback(trid, ErrorCode, ErrorMsg)
+{
+	if( trid == "getMenuList"){
+		//alert("성공");
+	}
+}
+
+//트리뷰 클릭 시
+function TreeView_OnClick(obj,nOldRow,nNewRow)
+{
+	var check = false;
+	var menuUrl = dsMenu.GetColumn(nNewRow,"menu_url");	
+	var menuCode=dsMenu.GetColumn(nNewRow,"menu_code");
+	
+	
+		var result = permission.FindRow("menu_code", menuCode);
+		trace(menuCode+","+result);
+		// Dataset에서 지정한 Column ID의 Column 값과 입력된 Value의 값이 일치하는 첫번째 레코드 Index를 얻어온다.
+		if(!(result==-1)){
+			check = true;
+		}
+		if(check = false){
+			alert("접근할 수 없는 화면입니다.");
+			return;	
+		}
+		Div.Url=menuUrl;
+
+}
+
+//메뉴폼을 로드한 후
+function menuForm_OnLoadCompleted(obj)
+{
+	//window.movewindow("500","200","920","600");
+	
+	deptInfo.Text=gvDeptName; 
+	empCodeInfo.Text=gvEmpNo;
+	empNameInfo.Text=gvEmpName;
+	dsEmp.UnFilter();
+	Transaction("getMenuList","svcBase::/menu.do?method=getMenuList","","dsMenu=dsMenu","","callback");
+	
+	dsEmpPermission.Filter("emp_no='"+gvEmpNo+"'");	
+	for(var i=0; i<dsEmpPermission.GetRowCount(); i++){
+		var permissionCode=dsEmpPermission.GetColumn(i, "permission_code");
+		
+		dsPermission.Filter("permission_code='"+permissionCode+"'");
+		permission.AppendDataset(dsPermission);
+		//trace(permission.SaveXML());
+	}
+}
+
+//메뉴바
+function MenuBar_OnMenuClick(obj, strID)
+{
+	var rowCount=dsMenu.GetRowCount();
+   
+	for(var index=1; index<=rowCount; index++){
+      var menuCode = dsMenu.getColumn(index, "menu_code");
+      var menuUrl = dsMenu.getColumn(index, "menu_url");
+         
+      if(permission.FindRow("menu_code",menuCode)==-1 && menuUrl!=Null){
+         MenuBar.EnableItem(menuUrl,"false");
+      }
+   }
+	
+	var code=dsMenu.LookUp("menu_url", strID, "menu_code");
+	trace(code);
+	if(strID.length()!=0){
+		if(!(permission.FindRow("menu_code", code)==-1)){			
+			Div.Url=strID;
+		}else{
+			alert("접근할 수 없는 화면입니다.");
+		}
+	}
+}
+
+// 로그아웃 버튼 
+function logout_OnClick(obj)
+{
+	if(confirm("로그아웃하시겠습니까?")){
+		SetVariable('gvDeptName','','global');
+		SetVariable('gvEmpName','','global');
+		go("base::login.xml");
+	}
+}
+
+// 새로고침 버튼
+function reloadBtn_OnClick(obj)
+{
+	div.Reload();
+}
+]]></Script>
+</Window>

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="journalList" classname="journalList" left="0" top="0" width="800" height="530" titletext="New Form" onload="journalList_onload">
+    <Layouts>
+      <Layout>
+        <Calendar id="sDate" taborder="0" dateformat="yyyy-MM-dd" left="40.52%" top="38" right="40.17%" height="26" style="font:bold 10 Verdana;"/>
+        <Static id="Static04" taborder="1" text="~" left="60.17%" top="38" right="37.41%" height="26" style="align:center middle;font:bold antialias 10 Verdana;"/>
+        <Calendar id="eDate" taborder="2" dateformat="yyyy-MM-dd" left="62.59%" top="38" right="18.1%" height="26" style="font:bold 10 Verdana;"/>
+        <Static id="Static05" taborder="3" text="결의부서" left="0.69%" top="38" right="88.62%" height="26" style="align:center middle;font:bold antialias 10 Verdana;"/>
+        <Combo id="deptName" taborder="4" value="전체" text="전체" innerdataset="dsDept" datacolumn="DEPT_NAME" index="0" left="11.03%" top="38" right="79.31%" height="26" style="font:bold 10 Verdana;"/>
+        <Static id="Static06" taborder="5" text="전표유형" left="20%" top="38" right="69.31%" height="26" style="align:center middle;font:bold antialias 10 Verdana;"/>
+        <Combo id="slipType" taborder="6" value="전체" text="전체" innerdataset="dsSlipCategory" datacolumn="slip_category" index="0" left="30.34%" top="38" right="60%" height="26" style="font:bold 10 Verdana;"/>
+        <Static id="Static00" taborder="7" text="분개장" left="1.21%" top="8" right="0.69%" height="25" style="background:#edaf78ff;align:center middle;font:bold antialias 14 Verdana;"/>
+        <Button id="search" taborder="8" text="조회" left="82.59%" top="38" right="10.52%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="search_onclick"/>
+        <Button id="cancelBtn" taborder="9" text="엑셀출력" onclick="cancelBtn_onclick" left="89.48%" top="38" right="0.86%" height="24" style="color:gray;font:bold antialias 10 Verdana;"/>
+        <Grid id="slipGrid" taborder="10" binddataset="dsJournalList" useinputpanel="false" autofittype="col" oncellclick="slipGrid_oncellclick" left="1.21%" top="72" right="0.69%" height="445" style="font:Verdana,10,bold antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="90"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="50"/>
+                <Column size="40"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell rowspan="2" style="background:#f7e4cfff;font:bold 10 Verdana;" text="일자"/>
+                <Cell col="1" rowspan="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="유형"/>
+                <Cell col="2" rowspan="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="구분"/>
+                <Cell col="3" rowspan="2" colspan="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="계정과목"/>
+                <Cell col="5" colspan="2" style="background:#f7e4cfff;font:bold 10 Verdana;" text="금액"/>
+                <Cell col="7" rowspan="2" style="background:#f7e4cfff;font:bold 10 Verdana;" text="적요"/>
+                <Cell col="8" rowspan="2" colspan="2" style="background:#f7e4cfff;font:bold 10 Verdana;" text="거래처명"/>
+                <Cell row="1" col="5" style="background:#f7e4cfff;font:bold 10 Verdana;" text="차변"/>
+                <Cell row="1" col="6" style="background:#f7e4cfff;font:bold 10 Verdana;" text="대변"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:slip_date"/>
+                <Cell col="1" displaytype="normal" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:slip_type" combodataset="slipType" combocodecol="name" combodatacol="name" combodisplay="edit"/>
+                <Cell col="2" displaytype="normal" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:journal_type"/>
+                <Cell col="3" style="background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_code"/>
+                <Cell col="4" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:account_name" combodisplay="edit"/>
+                <Cell col="5" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:debtor"/>
+                <Cell col="6" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:creditor"/>
+                <Cell col="7" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:summary_name"/>
+                <Cell col="8" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:customer_code"/>
+                <Cell col="9" style="background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:bold 10 Verdana;" text="bind:customer_name"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSlipCategory" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="slip_category" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="slip_category">전체</Col>
+          </Row>
+          <Row>
+            <Col id="slip_category">일반</Col>
+          </Row>
+          <Row>
+            <Col id="slip_category">매입</Col>
+          </Row>
+          <Row>
+            <Col id="slip_category">매출</Col>
+          </Row>
+          <Row>
+            <Col id="slip_category">수금</Col>
+          </Row>
+          <Row>
+            <Col id="slip_category">반제</Col>
+          </Row>
+          <Row>
+            <Col id="slip_category">결산</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsDept" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="DEPT_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_NAME">전체</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">경영부</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">관리부</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">재경부</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">생산부</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">구매부</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">영업부</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">개발부</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_NAME">품질부</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[
+// 콜백 함수
+this.callback = function(trid, errorCode, errorMsg){
+	if(trid=="getJournalList"){
+		if(application.dsJournalList.getRowCount()==0){
+			alert("조회된 데이터가 없습니다.");
+		}
+	}
+}
+
+// 분개장 폼이 로드되면
+this.journalList_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	var objDate = new Date();
+	var pToday  = objDate.getFullYear() + "";
+    var pMonth = objDate.getMonth()+1;
+    var pDate = objDate.getDate();
+    var strDate = pToday+pMonth+pDate;
+    this.sDate.set_value(pToday+'0101');
+    this.eDate.set_value(strDate);
+	
+}
+
+// 조회 버튼
+this.search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	//alert(deptName.value);
+	//alert(slipType.value);
+	//alert(sDate.value);
+	//alert(eDate.value);
+	this.transaction("getJournalList","DataUrl::slip/getJournalList.do","","dsJournalList=dsJournalList",
+			"deptName='"+this.deptName.value+"' slipType='"+this.slipType.value+"' sDate='"+this.sDate.value+"' eDate='"+this.eDate.value+"'","callback");	
+}
+
+]]></Script>
+  </Form>
+</FDL>

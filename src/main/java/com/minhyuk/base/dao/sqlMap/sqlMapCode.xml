@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.base.dao.CodeDAO">
+
+	<resultMap type="code" id="resultCode">
+		<result property="distinctionCode" column="distinction_code" />
+		<result property="codeName" column="code_name" />
+		<result property="codeUse" column="code_use" />
+		<collection property="detailCodeBeanList" select="com.minhyuk.base.dao.DetailCodeDAO.selectDetailCodeList"
+			column="distinction_code" javaType="list"/>
+	</resultMap>
+
+	<select id="selectCodeList" resultMap="resultCode">
+        select *
+        from code
+	</select>
+
+</mapper>

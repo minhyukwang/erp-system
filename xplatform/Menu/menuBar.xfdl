@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.4">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="menuBar" classname="menuBar" inheritanceid="" position="absolute 0 0 800 600" titletext="New Form" style="background:transparent;">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" position2="absolute l:0 w:793 t:0 h:50" positiontype="position2" style="background:#ededed00 URL('banner') stretch;"/>
+        <Button id="logoutBtn" taborder="1" text="로그아웃" position2="absolute l:733 w:60 t:50 h:25" positiontype="position2" onclick="logoutBtn_onclick"/>
+        <Menu id="menuBar" taborder="1" innerdataset="@menu" idcolumn="menu_code" captioncolumn="menu_name" levelcolumn="level" position2="absolute l:0 w:734 t:50 h:25" positiontype="position2" style="itembackground:#eec293ff;itemgradation:linear 50%,0% #f8fbfdb3 50%,100% #92c9f3b3;itemalign:center middle;popupbackground:#eec293ff;popupcolor:#000000ff;popupitembackground:#d9d9d9b3;background:#eec293ff;border:1px solid #697070b3 ;color:black;font:Verdana,10,bold antialias;gradation:linear 50%,0% #fdfdfdb3 50%,100% #f0f0f0b3;" onmenuclick="menuBar_onmenuclick" enable="true"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="menu">
+        <ColumnInfo>
+          <Column id="level" type="STRING" size="256"/>
+          <Column id="menu_code" type="STRING" size="256"/>
+          <Column id="menu_name" type="STRING" size="256"/>
+          <Column id="menu_url" type="STRING" size="256"/>
+          <Column id="menu_use" type="STRING" size="256"/>
+          <Column id="parent_menu_code" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="level">0</Col>
+            <Col id="menu_code">ME01</Col>
+            <Col id="menu_name">전표관리</Col>
+            <Col id="menu_use">Y</Col>
+          </Row>
+          <Row>
+            <Col id="level">1</Col>
+            <Col id="menu_code">ME0101</Col>
+            <Col id="menu_name">전표입력</Col>
+            <Col id="menu_url">Accounting::slipInput.xfdl</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME01</Col>
+          </Row>
+          <Row>
+            <Col id="menu_code">ME0102</Col>
+            <Col id="menu_name">전표승인해제</Col>
+            <Col id="menu_url">Accounting::slipApprove.xfdl</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME01</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="menu_code">ME0103</Col>
+            <Col id="menu_name">분개장</Col>
+            <Col id="menu_url">Accounting::journalList.xfdl</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME01</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="level">0</Col>
+            <Col id="menu_code">ME02</Col>
+            <Col id="menu_name">결산/재무재표</Col>
+            <Col id="menu_url">[Undefined]</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">[Undefined]</Col>
+          </Row>
+          <Row>
+            <Col id="level">1</Col>
+            <Col id="menu_code">ME0201</Col>
+            <Col id="menu_name">합계시산표</Col>
+            <Col id="menu_url">Settlement::totalTrialBalance.xfdl</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME02</Col>
+          </Row>
+          <Row>
+            <Col id="level">1</Col>
+            <Col id="menu_code">ME0202</Col>
+            <Col id="menu_name">손익계산서</Col>
+            <Col id="menu_url">Settlement::incomeStatement.xfdl</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME02</Col>
+          </Row>
+          <Row>
+            <Col id="level">1</Col>
+            <Col id="menu_code">ME0203</Col>
+            <Col id="menu_name">재무상태표</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME02</Col>
+            <Col id="menu_url">Settlement::statementOfPosition.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="menu_code">ME03</Col>
+            <Col id="level">0</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="menu_name">인사관리</Col>
+          </Row>
+          <Row>
+            <Col id="level">1</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME03</Col>
+            <Col id="menu_code">ME0301</Col>
+            <Col id="menu_name">사원관리</Col>
+            <Col id="menu_url">Insa::emp.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="level">0</Col>
+            <Col id="menu_code">ME04</Col>
+            <Col id="menu_name">기초정보관리</Col>
+            <Col id="menu_use">Y</Col>
+          </Row>
+          <Row>
+            <Col id="menu_name">계정과목관리</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME04</Col>
+            <Col id="level">1</Col>
+            <Col id="menu_code">ME0401</Col>
+            <Col id="menu_url">Accounting::accountManagement.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="menu_name">코드관리</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME04</Col>
+            <Col id="level">1</Col>
+            <Col id="menu_code">ME0402</Col>
+            <Col id="menu_url">Base::code.xfdl</Col>
+          </Row>
+          <Row>
+            <Col id="menu_name">권한관리</Col>
+            <Col id="menu_use">Y</Col>
+            <Col id="parent_menu_code">ME04</Col>
+            <Col id="level">1</Col>
+            <Col id="menu_code">ME0403</Col>
+            <Col id="menu_url">Base::permissionCode.xfdl</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript4.0"><![CDATA[
+// 로그아웃 버튼
+function logoutBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	mainframe.visible='false';
+}
+
+
+function reloadBtn_onclick(obj:Button,  e:ClickEventInfo)
+{
+	
+}
+
+// 메뉴바를 클릭 시
+function menuBar_onmenuclick(obj:Menu, e:MenuClickEventInfo)
+{
+	//var sID=e.id;
+	// 비교하고자 하는 컬럼, 두번째 인자를 비교한다, 내부적으로 위치가 나오면 떠내고 싶은 인자를 스트링 포맷으로 세번째에 쓴다.
+	//var sURL=menu.lookup("menu_code", e.id, "menu_url");
+	//var sTitle=menu.lookup("menu_code", e.id, "menu_name");
+	//var sLevel=menu.lookup("menu_code", e.id, "level");
+	
+	//trace(sID+" --------------------------- "+sURL+" --------------------------- "+sTitle); 
+	
+	//if(sLevel=='0'){
+	//	return;
+	//}
+	
+	
+	//var rowCount=menu.getRowCount();
+	//alert(rowCount);
+	//for(var index=1; index<=rowCount; index++){
+	//	var menuCode = menu.getColumn(index, "menu_code");
+	//	var menuUrl = menu.getColumn(index, "menu_url");
+         
+    //  if(permission.findRow("menu_code",menuCode)==-1 && menuUrl!=null){
+    //     menuBar.style.color = 'red';
+    //  }
+   //}
+
+	var sID=e.id;
+	//비교하고자 하는 컬럼, 두번째 인자를 비교한다, 내부적으로 위치가 나오면 떠내고 싶은 인자를 스트링 포맷으로 세번째에 쓴다.
+	var sURL=menu.lookup("menu_code", e.id, "menu_url");
+	var sTitle=menu.lookup("menu_code", e.id, "menu_name");
+	var sLevel=menu.lookup("menu_code", e.id, "level");
+	trace(sID);
+	if(sID.length!=0){
+		if(!(permission.findRow("menu_code", sID)==-1)){			
+			gfn_open(sID, sURL, sTitle);
+		}else{
+			//alert("접근할 수 없는 화면입니다.");
+			return;
+		}
+	}
+	
+	
+	//화면이 갖고 있는 메서드
+	//gfn_open(sID, sURL, sTitle);	
+}
+
+]]></Script>
+  </Form>
+</FDL>

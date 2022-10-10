@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="totalTrialBalance" classname="totalTrialBalance" left="0" top="0" width="800" height="460" titletext="New Form" onload="totalTrialBalance_onload">
+    <Layouts>
+      <Layout>
+        <Calendar id="sDate" taborder="0" dateformat="yyyy-MM-dd" left="40.52%" top="38" right="40.17%" height="26" style="font:bold 10 Verdana;"/>
+        <Static id="Static04" taborder="1" text="~" left="60.17%" top="38" right="37.41%" height="26" style="align:center middle;font:bold antialias 10 Verdana;"/>
+        <Calendar id="eDate" taborder="2" dateformat="yyyy-MM-dd" left="62.59%" top="38" right="18.1%" height="26" style="font:bold 10 Verdana;"/>
+        <Combo id="selYear" taborder="3" value="2016" text="2016" innerdataset="selectYear" datacolumn="preYear" index="0" left="27.59%" top="38" right="60%" height="26" style="font:bold 10 Verdana;" onitemchanged="selYear_onitemchanged"/>
+        <Static id="Static00" taborder="4" text="합계 잔액 시산표" left="1.21%" top="8" right="0.69%" height="25" style="background:#edaf78ff;align:center middle;font:bold antialias 14 Verdana;"/>
+        <Button id="search" taborder="5" text="조회" left="82.59%" top="38" right="10.52%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="search_onclick"/>
+        <Button id="excelBtn" taborder="6" text="엑셀출력" left="89.48%" top="38" right="0.86%" height="24" style="color:gray;font:bold antialias 10 Verdana;" onclick="excelBtn_onclick"/>
+        <Grid id="totalTrialBalanceGrid" taborder="7" binddataset="dsTotalTrialBalance" useinputpanel="false" autofittype="col" left="1.21%" top="72" right="0.69%" height="381" style="font:Verdana,10,bold antialias;">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="70"/>
+                <Column size="60"/>
+                <Column size="120"/>
+                <Column size="70"/>
+                <Column size="70"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+                <Row size="24" band="summ"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="차변"/>
+                <Cell col="2" rowspan="2" colspan="2" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="계정과목"/>
+                <Cell col="4" colspan="2" style="background:#f7e4cfff;font:bold 10 Verdana;" text="대변"/>
+                <Cell row="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="잔액"/>
+                <Cell row="1" col="1" displaytype="normal" style="background:#f7e4cfff;font:bold 10 Verdana;" text="합계"/>
+                <Cell row="1" col="4" style="background:#f7e4cfff;font:bold 10 Verdana;" text="합계"/>
+                <Cell row="1" col="5" style="background:#f7e4cfff;font:bold 10 Verdana;" text="잔액"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="normal" edittype="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:9 Verdana;" text="expr:parseInt(dataset.getColumn(currow, &quot;amt&quot;))-parseInt(comp.parent.dsTotalCreditor.getColumn(currow, &quot;amt&quot;)) &gt; 0 ? parseInt(dataset.getColumn(currow, &quot;amt&quot;))-parseInt(comp.parent.dsTotalCreditor.getColumn(currow, &quot;amt&quot;)) : &quot;&quot;" combodisplay="edit"/>
+                <Cell col="1" displaytype="combo" edittype="combo" editfilter="none" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:9 Verdana;" text="bind:account_code" combodataset="dsTotalDebtor" combocodecol="account_code" combodatacol="amt" combodisplaynulltype="none" combodisplay="edit"/>
+                <Cell col="2" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;" text="bind:account_code"/>
+                <Cell col="3" displaytype="normal" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:9 Verdana;" text="bind:account_name" combodisplay="edit"/>
+                <Cell col="4" displaytype="combo" edittype="combo" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:9 Verdana;" text="bind:account_code" combodataset="dsTotalCreditor" combocodecol="account_code" combodatacol="amt" combodisplaynulltype="none"/>
+                <Cell col="5" style="align:center middle;background:#f9f0d7ff;background2:transparent;font:bold 10 Verdana;selectfont:9 Verdana;" text="expr:parseInt(comp.parent.dsTotalCreditor.getColumn(currow, &quot;amt&quot;))-parseInt(dataset.getColumn(currow, &quot;amt&quot;)) &gt; 0 ? parseInt(comp.parent.dsTotalCreditor.getColumn(currow, &quot;amt&quot;))-parseInt(dataset.getColumn(currow, &quot;amt&quot;)) : &quot;&quot;"/>
+              </Band>
+              <Band id="summary">
+                <Cell style="align:center middle;font:bold 10 Verdana;"/>
+                <Cell col="1" displaytype="number" style="align:center middle;font:bold 10 Verdana;" text="expr:dataset.getSum(&quot;parseInt(amt)&quot;)"/>
+                <Cell col="2" colspan="2" style="align:center middle;font:bold 10 Verdana;"/>
+                <Cell col="4" displaytype="number" style="align:center middle;font:bold 10 Verdana;" text="expr:dataset.getSum(&quot;parseInt(amt)&quot;)"/>
+                <Cell col="5" style="align:center middle;font:bold 10 Verdana;"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsTotalTrialBalance" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTotalCreditor" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="amt" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+          <Column id="journal_type" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="selectYear" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="preYear" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="preYear">2016</Col>
+          </Row>
+          <Row>
+            <Col id="preYear">2015</Col>
+          </Row>
+          <Row>
+            <Col id="preYear">2014</Col>
+          </Row>
+          <Row>
+            <Col id="preYear">2013</Col>
+          </Row>
+          <Row>
+            <Col id="preYear">2012</Col>
+          </Row>
+          <Row>
+            <Col id="preYear">2011</Col>
+          </Row>
+          <Row>
+            <Col id="preYear">2010</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsTotalDebtor" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="account_code" type="STRING" size="256"/>
+          <Column id="amt" type="STRING" size="256"/>
+          <Column id="account_name" type="STRING" size="256"/>
+          <Column id="journal_type" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[var curYear, strDate, year;
+
+// 콜백 함수
+this.callback = function(trid, errorCode, errorMsg){
+	if(trid=="getTotalTrialBalanceList"){
+		if(this.dsTotalCreditor.getRowCount()==0 || this.dsTotalDebtor.getRowCount()==0){
+			alert("조회된 데이터가 없습니다.");
+		}else{
+			this.dsTotalTrialBalance.copyData(this.dsTotalDebtor);
+			
+		}
+	}
+}
+
+// 합계 잔액 시산표 폼이 로드 되면
+this.totalTrialBalance_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	var objDate = new Date();
+	var pToday  = objDate.getFullYear() + "";
+    var pMonth = objDate.getMonth()+1;
+    var pDate = objDate.getDate();
+    this.strDate = pToday+pMonth+pDate;
+    this.curYear = pToday;
+    this.sDate.set_value(pToday+'0101');
+    this.eDate.set_value(this.strDate);
+	
+}
+
+// 연도 콤보가 바뀌면
+this.selYear_onitemchanged = function(obj:Combo, e:nexacro.ItemChangeEventInfo)
+{
+	this.year = this.selYear.value ;
+	if(this.year == this.curYear){
+		
+		//var objDate = new Date();
+		//var pToday  = objDate.getFullYear() + "";
+		//var pMonth = objDate.getMonth()+1;
+		//var pDate = objDate.getDate();
+		//var strDate = pToday+pMonth+pDate;
+		this.sDate.set_value(this.curYear+'0101');
+		this.eDate.set_value(this.strDate);
+		
+	}else{
+		//alert("change");
+		this.sDate.set_value(parseInt(this.year)+'0101') ;
+		this.eDate.set_value(parseInt(this.year)+'1231') ;
+	}
+}
+
+// 조회 버튼
+this.search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.transaction("getTotalTrialBalanceList","DataUrl::slip/getTotalTrialBalanceList.do","","dsTotalCreditor=dsTotalCreditor dsTotalDebtor=dsTotalDebtor",
+			"sDate='"+this.sDate.value+"' eDate='"+this.eDate.value+"'","callback");
+}
+
+// 엑셀 출력
+this.excelBtn_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+     /*
+     if(confirm("합계잔액시산표를 엑셀로 출력하시겠습니까?")){
+		objExport.exporttype = ExportTypes.EXCEL;
+		objExport.activepagename = "TotalTrialBalance";
+		objExport.addExportItem( ExportItemTypes.GRID, totalTrialBalanceGrid, "A0" );
+		objExport.export();
+	}
+	*/
+	
+}
+
+
+
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.minhyuk.base.dao.PermissionDAO">
+
+	<resultMap id="resultPermission" type="permission">
+		<result property="permissionCode" column="permission_code" />
+		<result property="menuCode" column="menu_code" />
+		<result property="menuName" column="menu_name" />
+	</resultMap>
+
+	<resultMap id="resultEmpPermission" type="empPermission">
+		<result property="empNo" column="emp_no" />
+		<result property="permissionCode" column="permission_code" />
+		<result property="permissionName" column="permission_name" />
+	</resultMap>
+
+	<!-- <select id="selectPermission" resultMap="resultPermission"> -->
+	<select id="selectPermission" resultType="permission">
+		SELECT m.menu_code as menuCode
+				, m.menu_name as menuName
+				, p.permission_code as permissionCode
+		FROM permission_menu p
+				, menu m
+		WHERE p.menu_code=m.menu_code
+	</select>
+
+	<!-- <select id="selectEmpPermission" resultMap="resultEmpPermission"> -->
+	<select id="selectEmpPermission" resultType="empPermission">
+        SELECT e.permission_code as permissionCode
+     			, p.permission_name as permissionName
+     			, e.emp_no as empNo
+  		FROM permission p
+     			, emp_permission e
+ 		WHERE p.permission_code=e.permission_code
+	</select>
+
+	<!-- <select id="selectPermissionList" resultMap="resultPermission"	 parameterType="String"> -->
+	<select id="selectPermissionList" resultType="permission"	 parameterType="String">
+		SELECT m.menu_code as menuCode,
+					m.menu_name as menuName,
+					p.permission_code as permissionCode
+		FROM permission_menu p,
+				menu m
+		WHERE p.menu_code=m.menu_code
+		AND p.permission_code=#{permissionCode}
+	</select>
+
+	<insert id="insertPermission">
+        insert
+        into permission_menu
+        (
+		           menu_code,
+		           permission_code
+		  )
+		        values
+        (
+		       #{menuCode},
+		       #{permissionCode}
+		  )
+	</insert>
+
+	<delete id="deletePermission">
+        delete from permission_menu where menu_code= #{menuCode}
+	</delete>
+
+	<insert id="insertEmpPermission">
+        insert
+        into emp_permission
+        (
+		           emp_no,
+		           permission_code
+		  )
+		        values
+        (
+		       #{empNo},
+		       #{permissionCode}
+		  )
+	</insert>
+
+	<delete id="deleteEmpPermission">
+        delete
+        from emp_permission
+        where emp_no= #{empNo}
+        and  permission_code= #{permissionCode}
+	</delete>
+
+</mapper>

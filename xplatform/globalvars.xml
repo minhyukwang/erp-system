@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GlobalVariables>
+  <Dataset id="dsEmp">
+    <ColumnInfo>
+      <Column id="emp_no" type="STRING" size="256"/>
+      <Column id="emp_name" type="STRING" size="256"/>
+      <Column id="emp_address" type="STRING" size="256"/>
+      <Column id="emp_email" type="STRING" size="256"/>
+      <Column id="emp_position" type="STRING" size="256"/>
+      <Column id="emp_tel" type="STRING" size="256"/>
+      <Column id="emp_hiredate" type="STRING" size="256"/>
+      <Column id="dept_no" type="STRING" size="256"/>
+      <Column id="emp_image" type="STRING" size="256"/>
+      <Column id="emp_pw" type="STRING" size="256"/>
+      <Column id="memo" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsCode">
+    <ColumnInfo>
+      <Column id="distinction_code" type="STRING" size="256"/>
+      <Column id="code_name" type="STRING" size="256"/>
+      <Column id="code_use" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsDetailCode">
+    <ColumnInfo>
+      <Column id="distinction_code" type="STRING" size="256"/>
+      <Column id="detail_code" type="STRING" size="256"/>
+      <Column id="detail_codename" type="STRING" size="256"/>
+      <Column id="detail_use" type="STRING" size="256"/>
+      <Column id="memo" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsAccount">
+    <ColumnInfo>
+      <Column id="account_code" type="STRING" size="256"/>
+      <Column id="account_name" type="STRING" size="256"/>
+      <Column id="parent_account" type="STRING" size="256"/>
+      <Column id="account_balance" type="STRING" size="256"/>
+      <Column id="account_change" type="STRING" size="256"/>
+      <Column id="account_use" type="STRING" size="256"/>
+      <Column id="level" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsAcountManagement">
+    <ColumnInfo>
+      <Column id="management_code" type="STRING" size="256"/>
+      <Column id="account_code" type="STRING" size="256"/>
+      <Column id="account_management_name" type="STRING" size="256"/>
+      <Column id="account_change" type="STRING" size="256"/>
+      <Column id="account_use" type="STRING" size="256"/>
+      <Column id="account_type" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsDebtor">
+    <ColumnInfo>
+      <Column id="journal_no" type="STRING" size="256"/>
+      <Column id="account_code" type="STRING" size="256"/>
+      <Column id="customer_code" type="STRING" size="256"/>
+      <Column id="account_name" type="STRING" size="256"/>
+      <Column id="journal_receipt" type="STRING" size="256"/>
+      <Column id="customer_name" type="STRING" size="256"/>
+      <Column id="journal_type" type="STRING" size="256"/>
+      <Column id="journal_amt" type="STRING" size="256"/>
+      <Column id="summary_name" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsCreditor">
+    <ColumnInfo>
+      <Column id="journal_no" type="STRING" size="256"/>
+      <Column id="account_code" type="STRING" size="256"/>
+      <Column id="customer_code" type="STRING" size="256"/>
+      <Column id="account_name" type="STRING" size="256"/>
+      <Column id="journal_receipt" type="STRING" size="256"/>
+      <Column id="customer_name" type="STRING" size="256"/>
+      <Column id="journal_type" type="STRING" size="256"/>
+      <Column id="journal_amt" type="STRING" size="256"/>
+      <Column id="summary_name" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsJournalList">
+    <ColumnInfo>
+      <Column id="slip_date" type="STRING" size="256"/>
+      <Column id="journal_type" type="STRING" size="256"/>
+      <Column id="account_code" type="STRING" size="256"/>
+      <Column id="account_name" type="STRING" size="256"/>
+      <Column id="journal_amt" type="STRING" size="256"/>
+      <Column id="summary_name" type="STRING" size="256"/>
+      <Column id="customer_code" type="STRING" size="256"/>
+      <Column id="customer_name" type="STRING" size="256"/>
+      <Column id="debtor" type="STRING" size="256"/>
+      <Column id="creditor" type="STRING" size="256"/>
+      <Column id="slip_type" type="STRING" size="256"/>
+      <Column id="slip_status" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsPermission">
+    <ColumnInfo>
+      <Column id="permission_code" type="STRING" size="256"/>
+      <Column id="menu_name" type="STRING" size="256"/>
+      <Column id="menu_code" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsEmpPermission">
+    <ColumnInfo>
+      <Column id="emp_no" type="STRING" size="256"/>
+      <Column id="permission_code" type="STRING" size="256"/>
+      <Column id="permission_name" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsMenu">
+    <ColumnInfo>
+      <Column id="level" type="STRING" size="256"/>
+      <Column id="menu_code" type="STRING" size="256"/>
+      <Column id="menu_name" type="STRING" size="256"/>
+      <Column id="menu_url" type="STRING" size="256"/>
+      <Column id="menu_use" type="STRING" size="256"/>
+      <Column id="parent_menu_code" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Variable id="gvDeptName"/>
+  <Variable id="gvDeptNo"/>
+  <Variable id="gvEmpNo"/>
+  <Variable id="gvEmpName"/>
+  <Variable id="gvEmpPs"/>
+  <Images>
+    <Image id="search1" url="Images\search1.bmp"/>
+    <Image id="banner" url="Images\banner.bmp"/>
+  </Images>
+  <Dataset id="dsSlip">
+    <ColumnInfo>
+      <Column id="slip_no" type="STRING" size="256"/>
+      <Column id="emp_no" type="STRING" size="256"/>
+      <Column id="slip_ballot_no" type="STRING" size="256"/>
+      <Column id="slip_seq" type="STRING" size="256"/>
+      <Column id="slip_date" type="STRING" size="256"/>
+      <Column id="slip_content" type="STRING" size="256"/>
+      <Column id="slip_status" type="STRING" size="256"/>
+      <Column id="approver" type="STRING" size="256"/>
+      <Column id="approval_date" type="STRING" size="256"/>
+      <Column id="difference_amt" type="STRING" size="256"/>
+      <Column id="slip_worker" type="STRING" size="256"/>
+      <Column id="slip_type" type="STRING" size="256"/>
+      <Column id="slip_dept" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsJournal">
+    <ColumnInfo>
+      <Column id="journal_no" type="STRING" size="256"/>
+      <Column id="slip_no" type="STRING" size="256"/>
+      <Column id="account_code" type="STRING" size="256"/>
+      <Column id="customer_code" type="STRING" size="256"/>
+      <Column id="account_name" type="STRING" size="256"/>
+      <Column id="customer_name" type="STRING" size="256"/>
+      <Column id="journal_type" type="STRING" size="256"/>
+      <Column id="journal_amt" type="STRING" size="256"/>
+      <Column id="summary_code" type="STRING" size="256"/>
+      <Column id="summary_name" type="STRING" size="256"/>
+      <Column id="journal_receipt" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="dsJournalManagement">
+    <ColumnInfo>
+      <Column id="journal_no" type="STRING" size="256"/>
+      <Column id="slip_no" type="STRING" size="256"/>
+      <Column id="management_code" type="STRING" size="256"/>
+      <Column id="value" type="STRING" size="256"/>
+      <Column id="management_name" type="STRING" size="256"/>
+      <Column id="management_type" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+  <Dataset id="permission">
+    <ColumnInfo>
+      <Column id="permission_code" type="STRING" size="256"/>
+      <Column id="menu_name" type="STRING" size="256"/>
+      <Column id="menu_code" type="STRING" size="256"/>
+    </ColumnInfo>
+  </Dataset>
+</GlobalVariables>
