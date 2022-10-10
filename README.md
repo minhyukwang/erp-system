@@ -1,2 +1,2 @@
 # erp-system
-Spring Framwork, Java, JSP, MiPlatform, Xplatform, Nexacro
+Spring Framework, Java, JSP, MiPlatform, Xplatform, Nexacro
