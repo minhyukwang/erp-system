@@ -5,6 +5,6 @@
   - Spring Framework, Java, JSP, MiPlatform, Xplatform, Nexacro
 
 ㅇ 주요기능
-  - 물류시스템
-  - 인사시스템
-  - 회계시스템
+  - 물류 모듈
+  - 인사 모듈
+  - 회계 모듈
